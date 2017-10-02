@@ -38,8 +38,6 @@
         <SettingsText CommandDelete="Xóa" CommandEdit="Sửa" CommandNew="Thêm" ConfirmDelete="Bạn có chắc chắn muốn xóa không?. " PopupEditFormCaption="Thông tin nhóm hàng" Title="DANH SÁCH NHÓM HÀNG" EmptyDataRow="Không có dữ liệu hiển thị" SearchPanelEditorNullText="Nhập thông tin cần tìm..." />
         <EditFormLayoutProperties>
             <Items>
-                <dx:GridViewColumnLayoutItem ColumnName="Ngành Hàng" Name="IDNganhHang">
-                </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Mã Nhóm" Name="MaNhom">
                 </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Tên Nhóm" Name="TenNhomHang">
@@ -58,13 +56,6 @@
                 </PropertiesDateEdit>
                 <Settings AutoFilterCondition="Contains" />
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Ngành Hàng" FieldName="IDNganhHang" VisibleIndex="2">
-                <PropertiesComboBox DataSourceID="sqlNganhHang" TextField="TenNganhHang" ValueField="ID">
-                    <ValidationSettings SetFocusOnError="True">
-                        <RequiredField IsRequired="True" />
-                    </ValidationSettings>
-                </PropertiesComboBox>
-            </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataTextColumn Caption="Ghi Chú" VisibleIndex="3" FieldName="GhiChu">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Tên Nhóm" VisibleIndex="1" FieldName="TenNhomHang">
@@ -74,7 +65,7 @@
                     </ValidationSettings>
                 </PropertiesTextEdit>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Mã Nhóm" FieldName="MaNhom" VisibleIndex="0">
+            <dx:GridViewDataTextColumn Caption="Mã Nhóm" FieldName="MaNhom" VisibleIndex="0" ReadOnly="True">
                 <PropertiesTextEdit DisplayFormatString="g">
                     <ValidationSettings SetFocusOnError="True">
                         <RequiredField IsRequired="True" />

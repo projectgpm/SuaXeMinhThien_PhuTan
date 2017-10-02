@@ -158,18 +158,18 @@ namespace BanHang.Data
             }
         }
 
-        public void updateNhomHang(int ID, int IDNganhHang, string MaNhom, string TenNhomHang, string GhiChu)
+        public void updateNhomHang(int ID, string MaNhom, string TenNhomHang, string GhiChu)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
                 try
                 {
                     myConnection.Open();
-                    string strSQL = "UPDATE [GPM_NHOMHANG] SET [IDNganhHang] = @IDNganhHang,[MaNhom] = @MaNhom,[TenNhomHang]=@TenNhomHang,[GhiChu] = @GhiChu, [NgayCapNhat] = getDATE() WHERE [ID] = @ID";
+                    string strSQL = "UPDATE [GPM_NHOMHANG] SET [MaNhom] = @MaNhom,[TenNhomHang]=@TenNhomHang,[GhiChu] = @GhiChu, [NgayCapNhat] = getDATE() WHERE [ID] = @ID";
                     using (SqlCommand myCommand = new SqlCommand(strSQL, myConnection))
                     {
                         myCommand.Parameters.AddWithValue("@ID", ID);
-                        myCommand.Parameters.AddWithValue("@IDNganhHang", IDNganhHang);
+
                         myCommand.Parameters.AddWithValue("@MaNhom", MaNhom);
                         myCommand.Parameters.AddWithValue("@TenNhomHang", TenNhomHang);
                         myCommand.Parameters.AddWithValue("@GhiChu", GhiChu);
@@ -184,17 +184,17 @@ namespace BanHang.Data
         }
 
 
-        public void insertNhomHang(int IDNganhHang, string MaNhom, string TenNhomHang, string GhiChu)
+        public void insertNhomHang(string MaNhom, string TenNhomHang, string GhiChu)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
                 try
                 {
                     myConnection.Open();
-                    string cmdText = "INSERT INTO [GPM_NHOMHANG] ([IDNganhHang], [MaNhom],[TenNhomHang],[GhiChu],[NgayCapNhat]) VALUES (@IDNganhHang, @MaNhom,@TenNhomHang,@GhiChu,getDATE())";
+                    string cmdText = "INSERT INTO [GPM_NHOMHANG] ([MaNhom],[TenNhomHang],[GhiChu],[NgayCapNhat]) VALUES ( @MaNhom,@TenNhomHang,@GhiChu,getDATE())";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
-                        myCommand.Parameters.AddWithValue("@IDNganhHang", IDNganhHang);
+                     
                         myCommand.Parameters.AddWithValue("@MaNhom", MaNhom);
                         myCommand.Parameters.AddWithValue("@TenNhomHang", TenNhomHang);
                         myCommand.Parameters.AddWithValue("@GhiChu", GhiChu);

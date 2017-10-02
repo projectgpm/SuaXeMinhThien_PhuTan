@@ -22,14 +22,14 @@ namespace BanHang
             else
             {
                 
-                if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
-                {
+                //if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
+                //{
                     LoadGrid();
-                    if (dtSetting.LayChucNang_ThemXoaSua(Session["IDNhom"].ToString()) == false)
-                        gridNhomHang.Columns["chucnang"].Visible = false;
-                }
-                else
-                    Response.Redirect("Default.aspx");
+                //    if (dtSetting.LayChucNang_ThemXoaSua(Session["IDNhom"].ToString()) == false)
+                //        gridNhomHang.Columns["chucnang"].Visible = false;
+                //}
+                //else
+                //    Response.Redirect("Default.aspx");
             }
         }
         public void LoadGrid()
@@ -50,7 +50,7 @@ namespace BanHang
 
         protected void gridNhomHang_RowInserting(object sender, DevExpress.Web.Data.ASPxDataInsertingEventArgs e)
         {
-            int IDNganhHang = Int32.Parse(e.NewValues["IDNganhHang"].ToString());
+            //int IDNganhHang = Int32.Parse(e.NewValues["IDNganhHang"].ToString());
             string MaNhom = e.NewValues["MaNhom"].ToString();
             string TenNhomHang = e.NewValues["TenNhomHang"].ToString();
             if (dtSetting.kiemTraChuyenDoiDau() == 1)
@@ -62,7 +62,7 @@ namespace BanHang
             {
                 if (dataNhomHang.KiemTraMaNhom(MaNhom) == false)
                 {
-                    da.insertNhomHang(IDNganhHang, MaNhom, TenNhomHang, GhiChu);
+                    da.insertNhomHang(MaNhom, TenNhomHang, GhiChu);
                     e.Cancel = true;
                     gridNhomHang.CancelEdit();
                     LoadGrid();
@@ -82,7 +82,6 @@ namespace BanHang
         protected void gridNhomHang_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
         {
             string ID = e.Keys["ID"].ToString();
-            int IDNganhHang = Int32.Parse(e.NewValues["IDNganhHang"].ToString());
             string MaNhom = e.NewValues["MaNhom"].ToString();
             string TenNhomHang = e.NewValues["TenNhomHang"].ToString();
             if (dtSetting.kiemTraChuyenDoiDau() == 1)
@@ -92,7 +91,7 @@ namespace BanHang
             {
                 if (dataNhomHang.KiemTraMaNhom_ID(MaNhom, ID) == true)
                 {
-                    da.updateNhomHang(Int32.Parse(ID), IDNganhHang, MaNhom, TenNhomHang, GhiChu);
+                    da.updateNhomHang(Int32.Parse(ID), MaNhom, TenNhomHang, GhiChu);
                     e.Cancel = true;
                     gridNhomHang.CancelEdit();
                     LoadGrid();
@@ -102,7 +101,7 @@ namespace BanHang
                 {
                     if (dataNhomHang.KiemTraMaNhom(MaNhom) == false)
                     {
-                        da.updateNhomHang(Int32.Parse(ID), IDNganhHang, MaNhom, TenNhomHang, GhiChu);
+                        da.updateNhomHang(Int32.Parse(ID), MaNhom, TenNhomHang, GhiChu);
                         e.Cancel = true;
                         gridNhomHang.CancelEdit();
                         LoadGrid();
@@ -124,7 +123,7 @@ namespace BanHang
         {
 
             e.NewValues["MaNhom"] = dataNhomHang.Dem_Max();
-            e.NewValues["IDNganhHang"] = 2;
+            //e.NewValues["IDNganhHang"] = 2;
         }
     }
 }

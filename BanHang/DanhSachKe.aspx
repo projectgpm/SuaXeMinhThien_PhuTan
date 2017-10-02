@@ -82,7 +82,7 @@
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Mô Tả" FieldName="MoTa" VisibleIndex="3">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Chi Nhánh" FieldName="IDKho" VisibleIndex="0">
+            <dx:GridViewDataComboBoxColumn Caption="Chi Nhánh" FieldName="IDKho" VisibleIndex="0" Visible="False">
                 <PropertiesComboBox DataSourceID="SqlChiNhanh" TextField="TenCuaHang" ValueField="ID">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>

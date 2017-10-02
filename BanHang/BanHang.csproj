@@ -720,6 +720,7 @@
     <Compile Include="Data\dtLichSuTruyCap.cs" />
     <Compile Include="Data\dtMasterPage.cs" />
     <Compile Include="Data\dtNhaCungCap.cs" />
+    <Compile Include="Data\dtNhanVienKyThuat.cs" />
     <Compile Include="Data\dtNhomDatHang.cs" />
     <Compile Include="Data\dtNhomKhachHang.cs" />
     <Compile Include="Data\dtNhomNguoiDung.cs" />
