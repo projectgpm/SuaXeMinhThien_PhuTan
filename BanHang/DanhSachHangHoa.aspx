@@ -66,7 +66,7 @@
     <dx:ASPxButton ID="ASPxButton1" runat="server" AutoPostBack="False" ClientVisible="false"  Text="ASPxButton">
             <ClientSideEvents Click="function(s, e){ txtBarCode.Focus();}" />
         </dx:ASPxButton>
-    <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridHangHoa_RowDeleting" OnRowInserting="gridHangHoa_RowInserting" OnRowUpdating="gridHangHoa_RowUpdating" style="margin-top: 0px">
+    <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridHangHoa_RowDeleting" OnRowInserting="gridHangHoa_RowInserting" OnRowUpdating="gridHangHoa_RowUpdating" style="margin-top: 0px" OnInitNewRow="gridHangHoa_InitNewRow">
         <SettingsDetail ShowDetailRow="True" />
         <Templates>
             <EditForm>
@@ -251,7 +251,7 @@
                     </ValidationSettings>
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataTextColumn Caption="Mã Hàng" FieldName="MaHang" VisibleIndex="1">
+            <dx:GridViewDataTextColumn Caption="Mã Hàng" FieldName="MaHang" VisibleIndex="1" ReadOnly="True">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Hình Ảnh" FieldName="HinhAnh" VisibleIndex="7">
             </dx:GridViewDataTextColumn>

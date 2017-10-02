@@ -191,5 +191,10 @@ namespace BanHang
             LoadGrid();
 
         }
+
+        protected void gridHangHoa_InitNewRow(object sender, DevExpress.Web.Data.ASPxDataInitNewRowEventArgs e)
+        {
+            e.NewValues["MaHang"] = dataHangHoa.Dem_Max();
+        }
     }
 }

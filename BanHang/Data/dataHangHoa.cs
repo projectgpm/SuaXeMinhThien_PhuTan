@@ -10,6 +10,28 @@ namespace BanHang.Data
 {
     public class dataHangHoa
     {
+        public static string Dem_Max()
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                int STTV = 0;
+                string So;
+                string GPM = "0000";
+                string cmdText = "SELECT * FROM [GPM_HANGHOA]";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    STTV = tb.Rows.Count + 1;
+                    int DoDaiHT = STTV.ToString().Length;
+                    string DoDaiGPM = GPM.Substring(0, 4 - DoDaiHT);
+                    So = DoDaiGPM + STTV;
+                    return So;
+                }
+            }
+        }
         public static bool KiemTraBarcode(string Barcode)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
