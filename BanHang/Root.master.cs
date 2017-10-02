@@ -22,25 +22,25 @@ namespace BanHang
             }
             else
             {
-                XuLyThayDoiGiaTheoGio();
-                XuLyDonHangChiNhanh();
-                HuyDonHangThuMua();
-                if (!IsPostBack)
-                {
-                    data = new dtMasterPage();
-                    DataTable dbt = data.DanhSachMemuDuocHienThi(Session["IDNhom"].ToString());
-                    if (dbt.Rows.Count > 0)
-                    {
-                        foreach (DataRow dr in dbt.Rows)
-                        {
-                            string name = dr["Name"].ToString();
-                            RibbonItemBase kt = getbyName(name, ribbonMenu);
-                            kt.Visible = true;
-                        }
-                    }
-                    lblChao.Text = "Xin Chào: " + Session["TenDangNhap"].ToString();
-                    ASPxLabel2.Text = Server.HtmlDecode("Copyrights &copy;") + DateTime.Now.Year + Server.HtmlDecode(". All Rights Reserved. Designed by GPM.VN");
-                }
+                //XuLyThayDoiGiaTheoGio();
+              //  XuLyDonHangChiNhanh();
+              //  HuyDonHangThuMua();
+                //if (!IsPostBack)
+                //{
+                //    data = new dtMasterPage();
+                //    DataTable dbt = data.DanhSachMemuDuocHienThi(Session["IDNhom"].ToString());
+                //    if (dbt.Rows.Count > 0)
+                //    {
+                //        foreach (DataRow dr in dbt.Rows)
+                //        {
+                //            string name = dr["Name"].ToString();
+                //            RibbonItemBase kt = getbyName(name, ribbonMenu);
+                //            kt.Visible = true;
+                //        }
+                //    }
+                lblChao.Text = "Xin Chào: " + Session["TenDangNhap"].ToString();
+                ASPxLabel2.Text = Server.HtmlDecode("Copyrights &copy;") + DateTime.Now.Year + Server.HtmlDecode(". All Rights Reserved. Designed by GPM.VN");
+                //}
             }
         }
         protected RibbonItemBase getbyName(string name, ASPxRibbon ribbon)

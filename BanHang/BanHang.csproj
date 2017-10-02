@@ -1307,17 +1307,6 @@
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="ChungTu\13092017_025952_PM_DonDatHangThuMua.xls" />
-    <Content Include="ChungTu\13092017_030623_PM_KeHangHoa.xls" />
-    <Content Include="ChungTu\13092017_033520_PM_HangHoaGoiYDat.xlsx" />
-    <Content Include="ChungTu\13092017_033735_PM_DonDatHangChiNhanh.xls" />
-    <Content Include="ChungTu\13092017_034902_PM_DanhSachNhaCungCap.xls" />
-    <Content Include="ChungTu\13092017_035028_PM_DanhSachNhaCungCap.xls" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ChuyenKho\14092017_015305_PM_13092017_035028_PM_DanhSachNhaCungCap.xls" />
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
