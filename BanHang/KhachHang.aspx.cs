@@ -48,7 +48,7 @@ namespace BanHang
             string DienThoai = e.NewValues["DienThoai"] == null ? "" : e.NewValues["DienThoai"].ToString();
             string Email = e.NewValues["Email"] == null ? "" : e.NewValues["Email"].ToString();
             string GhiChu = e.NewValues["GhiChu"] == null ? "" : e.NewValues["GhiChu"].ToString();
-            string ChietKhau = e.NewValues["ChietKhau"].ToString();
+            string IDChietKhau = e.NewValues["IDChietKhau"].ToString();
             if (dtKhachHang.KT_SDT_KH_CapNhat(DienThoai.Trim(), ID) == -1)
             {
                 if (dtKhachHang.KT_SDT_KH(DienThoai.Trim()) == 1)
@@ -59,7 +59,7 @@ namespace BanHang
             else
             {
 
-                data.SuaThongTinKhachHang(Int32.Parse(ID), IDNhomKhachHang, TenKhachHang, NgaySinh, CMND, DiaChi, DienThoai, Email, GhiChu, ChietKhau);
+                data.SuaThongTinKhachHang(Int32.Parse(ID), IDNhomKhachHang, TenKhachHang, NgaySinh, CMND, DiaChi, DienThoai, Email, GhiChu, IDChietKhau);
                 dtLichSuTruyCap.ThemLichSu(Session["IDNhanVien"].ToString(), Session["IDNhom"].ToString(), "Khách hàng:" + TenKhachHang, Session["IDKho"].ToString(), "Danh Mục", "Cập Nhật");   
             }
             e.Cancel = true;
@@ -81,7 +81,7 @@ namespace BanHang
             string MaKh = "";
             string Barcode = "";
             object ID;
-            string ChietKhau = e.NewValues["ChietKhau"].ToString();
+            string IDChietKhau = e.NewValues["IDChietKhau"].ToString();
             string GhiChu = e.NewValues["GhiChu"] == null ? "" : e.NewValues["GhiChu"].ToString();
             if (DienThoai != "")
             {
@@ -91,7 +91,7 @@ namespace BanHang
                 }
                 else
                 {
-                    ID = data.ThemKhachHang(IDNhomKhachHang, MaKh, TenKhachHang, NgaySinh, CMND, DiaChi, DienThoai, Email, Barcode, GhiChu, Session["IDKho"].ToString(), ChietKhau);
+                    ID = data.ThemKhachHang(IDNhomKhachHang, MaKh, TenKhachHang, NgaySinh, CMND, DiaChi, DienThoai, Email, Barcode, GhiChu, Session["IDKho"].ToString(), IDChietKhau);
                     if (ID != null)
                     {
                         if (e.NewValues["MaKhachHang"] == null)
@@ -105,7 +105,7 @@ namespace BanHang
             }
             else
             {
-                ID = data.ThemKhachHang(IDNhomKhachHang, MaKh, TenKhachHang, NgaySinh, CMND, DiaChi, DienThoai, Email, Barcode, GhiChu, Session["IDKho"].ToString(), ChietKhau);
+                ID = data.ThemKhachHang(IDNhomKhachHang, MaKh, TenKhachHang, NgaySinh, CMND, DiaChi, DienThoai, Email, Barcode, GhiChu, Session["IDKho"].ToString(), IDChietKhau);
                 if (ID != null)
                 {
                     if (e.NewValues["MaKhachHang"] == null)

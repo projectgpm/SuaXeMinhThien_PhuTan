@@ -22,6 +22,15 @@ namespace BanHang {
         protected global::DevExpress.Web.ASPxGridView gridKhachHang;
         
         /// <summary>
+        /// SqlChietKhau control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlChietKhau;
+        
+        /// <summary>
         /// SqlKho control.
         /// </summary>
         /// <remarks>
