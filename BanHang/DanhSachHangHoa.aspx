@@ -236,11 +236,11 @@
             </dx:GridViewDataTextColumn>
             <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="14">
             </dx:GridViewCommandColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Giá Mua" FieldName="GiaMua" VisibleIndex="5">
+            <dx:GridViewDataSpinEditColumn Caption="Giá Mua" FieldName="GiaMua" VisibleIndex="4">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom" DisplayFormatInEditMode="True">
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Giá Bán" FieldName="GiaBan" VisibleIndex="6">
+            <dx:GridViewDataSpinEditColumn Caption="Giá Bán" FieldName="GiaBan" VisibleIndex="5">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom" DisplayFormatInEditMode="True">
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
@@ -253,8 +253,8 @@
             </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataTextColumn Caption="Mã Hàng" FieldName="MaHang" VisibleIndex="1" ReadOnly="True">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Hình Ảnh" FieldName="HinhAnh" VisibleIndex="7">
-            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataImageColumn Caption="Hình Ảnh" FieldName="HinhAnh" VisibleIndex="12">
+            </dx:GridViewDataImageColumn>
         </Columns>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">
