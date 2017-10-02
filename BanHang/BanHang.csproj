@@ -225,6 +225,7 @@
   <ItemGroup>
     <Content Include="NganhHang.aspx" />
     <Content Include="NhaCungCap.aspx" />
+    <Content Include="NhanVienKyThuat.aspx" />
     <Content Include="NhomHang.aspx" />
     <Content Include="NhomKhachHang.aspx" />
     <Content Include="NhomNguoiDung.aspx" />
@@ -1031,6 +1032,13 @@
     </Compile>
     <Compile Include="NhaCungCap.aspx.designer.cs">
       <DependentUpon>NhaCungCap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NhanVienKyThuat.aspx.cs">
+      <DependentUpon>NhanVienKyThuat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NhanVienKyThuat.aspx.designer.cs">
+      <DependentUpon>NhanVienKyThuat.aspx</DependentUpon>
     </Compile>
     <Compile Include="NhomHang.aspx.cs">
       <DependentUpon>NhomHang.aspx</DependentUpon>
