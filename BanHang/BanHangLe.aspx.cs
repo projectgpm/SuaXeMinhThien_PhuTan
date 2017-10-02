@@ -452,7 +452,7 @@ namespace BanHang
                 dtKhachHang dtkh = new dtKhachHang();
                 string MaKh = "";
                 string Barcode = "";
-                object ID = dtkh.ThemKhachHang(IDNhom, MaKh, TenKH, DateTime.Now, "", DC, SDT, "", Barcode, "", Session["IDKho"].ToString());
+                //object ID = dtkh.ThemKhachHang(IDNhom, MaKh, TenKH, DateTime.Now, "", DC, SDT, "", Barcode, "", Session["IDKho"].ToString());
 
                 if (ID != null)
                 {

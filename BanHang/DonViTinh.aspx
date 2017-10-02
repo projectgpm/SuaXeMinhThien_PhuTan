@@ -51,7 +51,7 @@
         <Columns>
             <dx:GridViewCommandColumn ShowClearFilterButton="True" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="6" Name="chucnang">
             </dx:GridViewCommandColumn>
-            <dx:GridViewDataTextColumn Caption="Mã ĐVT" FieldName="MaDonVi" VisibleIndex="0">
+            <dx:GridViewDataTextColumn Caption="Mã ĐVT" FieldName="MaDonVi" VisibleIndex="0" ReadOnly="True">
                 <PropertiesTextEdit>
                     <ValidationSettings SetFocusOnError="True">
                         <RequiredField IsRequired="True" />

@@ -80,27 +80,27 @@ namespace BanHang
                         if (dtKhachHang.KT_SDT_KH(DienThoai.Trim()) == -1)
                         {
                             dtKhachHang kh = new dtKhachHang();
-                            ID = kh.ThemKhachHang(IDNhomKhachHang, MaKH, TenKhachHang, DateTime.Parse(NgaySinh), CMND, DiaChi, DienThoai, Email, Barcode, GhiChu, Session["IDKho"].ToString());
-                            if (ID != null)
-                            {
+                            //ID = kh.ThemKhachHang(IDNhomKhachHang, MaKH, TenKhachHang, DateTime.Parse(NgaySinh), CMND, DiaChi, DienThoai, Email, Barcode, GhiChu, Session["IDKho"].ToString());
+                            //if (ID != null)
+                            //{
                                 
-                                kh = new dtKhachHang();
-                                kh.CapNhatMaKhachHang(ID, (Session["IDKho"].ToString() + "." + (Int32.Parse(ID.ToString()) * 0.0001).ToString().Replace(".", "")).ToString(), (Session["IDKho"].ToString() + "." + (Int32.Parse(ID.ToString()) * 0.0001)).Replace(".", ""));
-                                dtLichSuTruyCap.ThemLichSu(Session["IDNhanVien"].ToString(), Session["IDNhom"].ToString(), "Khách hàng:" + TenKhachHang, Session["IDKho"].ToString(), "Danh Mục", "Thêm");
+                            //    kh = new dtKhachHang();
+                            //    kh.CapNhatMaKhachHang(ID, (Session["IDKho"].ToString() + "." + (Int32.Parse(ID.ToString()) * 0.0001).ToString().Replace(".", "")).ToString(), (Session["IDKho"].ToString() + "." + (Int32.Parse(ID.ToString()) * 0.0001)).Replace(".", ""));
+                            //    dtLichSuTruyCap.ThemLichSu(Session["IDNhanVien"].ToString(), Session["IDNhom"].ToString(), "Khách hàng:" + TenKhachHang, Session["IDKho"].ToString(), "Danh Mục", "Thêm");
                                
-                            }
+                            //}
                         }
                     }
                     else
                     {
                         dtKhachHang kh = new dtKhachHang();
-                        ID = kh.ThemKhachHang(IDNhomKhachHang, MaKH, TenKhachHang, DateTime.Parse(NgaySinh), CMND, DiaChi, DienThoai, Email, Barcode, GhiChu, Session["IDKho"].ToString());
-                        if (ID != null)
-                        {
-                            kh = new dtKhachHang();
-                            kh.CapNhatMaKhachHang(ID, (Session["IDKho"].ToString() + "." + (Int32.Parse(ID.ToString()) * 0.0001).ToString().Replace(".", "")).ToString(), (Session["IDKho"].ToString() + "." + (Int32.Parse(ID.ToString()) * 0.0001)).Replace(".", ""));
-                            dtLichSuTruyCap.ThemLichSu(Session["IDNhanVien"].ToString(), Session["IDNhom"].ToString(), "Khách hàng:" + TenKhachHang, Session["IDKho"].ToString(), "Danh Mục", "Thêm");
-                        }
+                       // ID = kh.ThemKhachHang(IDNhomKhachHang, MaKH, TenKhachHang, DateTime.Parse(NgaySinh), CMND, DiaChi, DienThoai, Email, Barcode, GhiChu, Session["IDKho"].ToString());
+                        //if (ID != null)
+                        //{
+                        //    kh = new dtKhachHang();
+                        //    kh.CapNhatMaKhachHang(ID, (Session["IDKho"].ToString() + "." + (Int32.Parse(ID.ToString()) * 0.0001).ToString().Replace(".", "")).ToString(), (Session["IDKho"].ToString() + "." + (Int32.Parse(ID.ToString()) * 0.0001)).Replace(".", ""));
+                        //    dtLichSuTruyCap.ThemLichSu(Session["IDNhanVien"].ToString(), Session["IDNhom"].ToString(), "Khách hàng:" + TenKhachHang, Session["IDKho"].ToString(), "Danh Mục", "Thêm");
+                        //}
                     }
                 }
                 

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="KhachHang.aspx.cs" Inherits="BanHang.KhachHang" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-    <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="8" Width="10%">
+   <%-- <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="8" Width="10%">
         <Items>
             <dx:LayoutItem Caption="" HorizontalAlign="Left">
                 <LayoutItemNestedControlCollection>
@@ -33,8 +33,8 @@
                 </LayoutItemNestedControlCollection>
             </dx:LayoutItem>
         </Items>
-    </dx:ASPxFormLayout>
-    <dx:ASPxGridView ID="gridKhachHang" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridKhachHang_RowDeleting" OnRowInserting="gridKhachHang_RowInserting" OnRowUpdating="gridKhachHang_RowUpdating">
+    </dx:ASPxFormLayout>--%>
+    <dx:ASPxGridView ID="gridKhachHang" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridKhachHang_RowDeleting" OnRowInserting="gridKhachHang_RowInserting" OnRowUpdating="gridKhachHang_RowUpdating" OnInitNewRow="gridKhachHang_InitNewRow">
         <SettingsEditing Mode="PopupEditForm">
         </SettingsEditing>
         <Settings ShowFilterRow="True" ShowTitlePanel="True" />
@@ -78,6 +78,8 @@
                         </dx:GridViewColumnLayoutItem>
                         <dx:GridViewColumnLayoutItem ColumnName="Tên KH" Name="TenKhachHang" Width="100%">
                         </dx:GridViewColumnLayoutItem>
+                        <dx:GridViewColumnLayoutItem ColumnName="Chiết Khấu">
+                        </dx:GridViewColumnLayoutItem>
                         <dx:GridViewColumnLayoutItem ColumnName="Ngày sinh" Name="NgaySinh">
                         </dx:GridViewColumnLayoutItem>
                         <dx:GridViewColumnLayoutItem ColumnName="Địa chỉ" Name="DiaChi" Width="100%">
@@ -107,19 +109,19 @@
                 </PropertiesTextEdit>
                 <HeaderStyle Wrap="True" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="CMND" FieldName="CMND" VisibleIndex="4">
+            <dx:GridViewDataTextColumn Caption="CMND" FieldName="CMND" VisibleIndex="5">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Địa chỉ" FieldName="DiaChi" VisibleIndex="5">
+            <dx:GridViewDataTextColumn Caption="Địa chỉ" FieldName="DiaChi" VisibleIndex="6">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="6">
+            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="7">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Email" FieldName="Email" VisibleIndex="7">
+            <dx:GridViewDataTextColumn Caption="Email" FieldName="Email" VisibleIndex="8">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Barcode" FieldName="Barcode" VisibleIndex="10" Visible="False">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" VisibleIndex="12">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn Caption="Ngày sinh" FieldName="NgaySinh" VisibleIndex="3">
+            <dx:GridViewDataDateColumn Caption="Ngày sinh" FieldName="NgaySinh" VisibleIndex="4">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy" EditFormat="Custom" EditFormatString="dd/MM/yyyy">
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
@@ -139,10 +141,17 @@
             </dx:GridViewDataDateColumn>
             <dx:GridViewDataTextColumn Caption="Mã KH" FieldName="MaKhachHang" VisibleIndex="1">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Chi Nhánh" FieldName="IDKho" VisibleIndex="17">
+            <dx:GridViewDataComboBoxColumn Caption="Chi Nhánh" FieldName="IDKho" VisibleIndex="17" Visible="False">
                 <PropertiesComboBox DataSourceID="SqlKho" TextField="TenCuaHang" ValueField="ID">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataSpinEditColumn Caption="Chiết Khấu" FieldName="ChietKhau" VisibleIndex="3">
+                <PropertiesSpinEdit DisplayFormatString="g">
+                    <ValidationSettings SetFocusOnError="True">
+                        <RequiredField IsRequired="True" />
+                    </ValidationSettings>
+                </PropertiesSpinEdit>
+            </dx:GridViewDataSpinEditColumn>
         </Columns>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">

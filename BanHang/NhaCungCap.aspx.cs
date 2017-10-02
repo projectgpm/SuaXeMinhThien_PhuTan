@@ -21,19 +21,19 @@ namespace BanHang
             }
             else
             {
-                if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
-                {
+                //if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
+                //{
                     LoadGrid();
-                    if (dtSetting.LayChucNang_ThemXoaSua(Session["IDNhom"].ToString()) == false)
-                    {
-                        gridNhaCungCap.Columns["chucnang"].Visible = false;
-                        btnNhapExcel.Enabled = false;
-                    }
-                }
-                else
-                {
-                    Response.Redirect("Default.aspx");
-                }
+                    //if (dtSetting.LayChucNang_ThemXoaSua(Session["IDNhom"].ToString()) == false)
+                    //{
+                    //    gridNhaCungCap.Columns["chucnang"].Visible = false;
+                    //    btnNhapExcel.Enabled = false;
+                    //}
+                //}
+                //else
+                //{
+                //    Response.Redirect("Default.aspx");
+                //}
             }
         }
         public void LoadGrid()
