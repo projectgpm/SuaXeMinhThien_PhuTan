@@ -98,7 +98,7 @@
             </Items>
         </EditFormLayoutProperties>
         <Columns>
-            <dx:GridViewCommandColumn ShowClearFilterButton="True" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="11" Name="chucnang">
+            <dx:GridViewCommandColumn ShowClearFilterButton="True" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="10" Name="chucnang">
             </dx:GridViewCommandColumn>
             <dx:GridViewDataTextColumn Caption="Tên NCC" FieldName="TenNhaCungCap" VisibleIndex="1">
                 <PropertiesTextEdit>
@@ -132,7 +132,7 @@
             <dx:GridViewDataTextColumn Caption="Mã số thuế" FieldName="MaSoThue" VisibleIndex="3">
             </dx:GridViewDataTextColumn>
             
-            <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" VisibleIndex="10">
+            <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" VisibleIndex="9">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Mã NCC" VisibleIndex="0" FieldName="MaNCC">
                 <PropertiesTextEdit>
@@ -141,6 +141,10 @@
                     </ValidationSettings>
                 </PropertiesTextEdit>
             </dx:GridViewDataTextColumn>
+            <dx:GridViewDataSpinEditColumn Caption="Công Nợ" FieldName="CongNo" VisibleIndex="11">
+                <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
+                </PropertiesSpinEdit>
+            </dx:GridViewDataSpinEditColumn>
         </Columns>
 
          <Styles>

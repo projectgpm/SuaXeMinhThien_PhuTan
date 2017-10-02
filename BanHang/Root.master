@@ -81,7 +81,7 @@
                                                             </dx:RibbonDropDownButtonItem>
                                                             <dx:RibbonDropDownButtonItem Name="nganh-hang" NavigateUrl="NganhHang.aspx" Text="Ngành Hàng" Visible="False">
                                                             </dx:RibbonDropDownButtonItem>
-                                                            <dx:RibbonDropDownButtonItem Name="ma-hang" NavigateUrl="HangHoa.aspx" Text="Hàng Hóa">
+                                                            <dx:RibbonDropDownButtonItem Name="danh-sach-hang-hoa" NavigateUrl="DanhSachHangHoa.aspx" Text="Hàng Hóa">
                                                             </dx:RibbonDropDownButtonItem>
                                                             <dx:RibbonDropDownButtonItem Name="tra-cuu-ma-hang" Text="Tra Cứu Mã Hàng" NavigateUrl="TraCuuMaHang.aspx" Visible="False">
                                                             </dx:RibbonDropDownButtonItem>
