@@ -3,6 +3,7 @@ using DevExpress.Web;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -70,7 +71,18 @@ namespace BanHang
                 float GiaMua = float.Parse(e.NewValues["GiaMua"].ToString());
                 float GiaBan = float.Parse(e.NewValues["GiaBan"].ToString());
                 string GhiChu = e.NewValues["GhiChu"] != null ? e.NewValues["GhiChu"].ToString() : "";
+                e.NewValues["HinhAnh"] = Session["data"];
                 string HinhAnh = e.NewValues["HinhAnh"] != null ? e.NewValues["HinhAnh"].ToString() : "";
+               // ASPxGridView grid = (sender as ASPxGridView);
+               // ASPxUploadControl fileUpLoad = ((ASPxGridView)gridHangHoa).FindEditFormTemplateControl("UploadHinhAnh") as ASPxUploadControl;
+                //string = Session["data"];
+                //if (Page.IsValid && fileUpLoad.HasFile)
+                //{
+                //    HinhAnh = "HinhAnh/" + DateTime.Now.ToString("ddMMyyyy_hhmmss_tt_") + fileUpLoad.FileName;
+                //    string filePath = MapPath(HinhAnh);
+                //    fileUpLoad.SaveAs(filePath);
+                //}
+
                 object IDHangHoa = data.ThemHangHoa(IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu, HinhAnh);
                 if (IDHangHoa != null)
                 {
@@ -80,7 +92,7 @@ namespace BanHang
                     {
                         DataRow dr = dta.Rows[i];
                         int IDKho = Int32.Parse(dr["ID"].ToString());
-                        
+
                         data.ThemHangVaoTonKho(IDKho, (int)IDHangHoa, 0);
                     }
                 }
@@ -195,6 +207,19 @@ namespace BanHang
         protected void gridHangHoa_InitNewRow(object sender, DevExpress.Web.Data.ASPxDataInitNewRowEventArgs e)
         {
             e.NewValues["MaHang"] = dataHangHoa.Dem_Max();
+        }
+
+        protected void ASPxUploadControl1_FileUploadComplete(object sender, FileUploadCompleteEventArgs e)
+        {
+            if (e.IsValid)
+            {
+              
+                string path = Page.MapPath("~/HinhAnh/") + DateTime.Now.ToString("ddMMyyyy_hhmmss_tt_")  + e.UploadedFile.FileName;
+                if (File.Exists(path))
+                    File.Delete(path);
+                e.UploadedFile.SaveAs(path);
+                Session["data"] = path;
+            }
         }
     }
 }

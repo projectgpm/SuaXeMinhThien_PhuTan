@@ -773,6 +773,7 @@
     <Content Include="obj\Debug\ResolveAssemblyReference.cache" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="HinhAnh\" />
     <Folder Include="HoaDonBanLe\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Uploads\" />

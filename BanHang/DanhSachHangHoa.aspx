@@ -23,6 +23,12 @@
             }
             preventEndEdit_LostFocus_onBarCode = false;
         }
+        //function OnTextChanged(s, e) {
+        //    s.Upload();
+        //}
+        //function OnFileUploadComplete(s, e) {
+        //    alert('FileUploadComplete: ' + e.callbackData);
+        //}
 </script>
     <dx:ASPxButton ID="ASPxButton2" runat="server" AutoPostBack="False" ClientVisible="false"  Text="ASPxButton">
             <ClientSideEvents Click="function(s, e){ txtBarCode.Focus();}" />
@@ -86,7 +92,7 @@
                     </dx:ASPxTokenBox>                    
                 </div>
                 <div style="text-align: right; padding: 2px">
-                    <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton"
+                    <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton" 
                         runat="server">
                     </dx:ASPxGridViewTemplateReplacement>
                     <dx:ASPxGridViewTemplateReplacement ID="CancelButton" ReplacementType="EditFormCancelButton"
@@ -191,30 +197,37 @@
         <SettingsText CommandDelete="Xóa" CommandEdit="Sửa" CommandNew="Thêm" ConfirmDelete="Bạn có chắc chắn muốn xóa không?" PopupEditFormCaption="Thông tin hàng hóa" Title="DANH SÁCH HÀNG HÓA" SearchPanelEditorNullText="Nhập thông tin cần tìm...." />
         <EditFormLayoutProperties>
             <Items>
-                <dx:GridViewTabbedLayoutGroup>
-                    <Items>
-                        <dx:GridViewLayoutGroup Caption="Thông tin hàng hóa" ColCount="2">
-                            <Items>
-                                <dx:GridViewColumnLayoutItem ColSpan="2" ColumnName="Mã Hàng" Name="TenHangHoa">
-                                </dx:GridViewColumnLayoutItem>
-                                <dx:GridViewColumnLayoutItem ColSpan="2" ColumnName="Tên Hàng Hóa">
-                                </dx:GridViewColumnLayoutItem>
-                                <dx:GridViewColumnLayoutItem ColumnName="Đơn Vị Tính" ColSpan="2">
-                                </dx:GridViewColumnLayoutItem>
-                                <dx:GridViewColumnLayoutItem ColSpan="2" ColumnName="Nhóm Hàng">
-                                </dx:GridViewColumnLayoutItem>
-                                <dx:GridViewColumnLayoutItem ColumnName="Giá Mua" Name="GiaMua">
-                                </dx:GridViewColumnLayoutItem>
-                                <dx:GridViewColumnLayoutItem Caption="Giá Bán" ColumnName="Giá Bán" Name="GiaBan1">
-                                </dx:GridViewColumnLayoutItem>
-                                <dx:GridViewColumnLayoutItem ColumnName="Hình Ảnh" ColSpan="2">
-                                </dx:GridViewColumnLayoutItem>
-                                <dx:GridViewColumnLayoutItem ColSpan="2" ColumnName="Ghi Chú" Name="GhiChu">
-                                </dx:GridViewColumnLayoutItem>
-                            </Items>
-                        </dx:GridViewLayoutGroup>
-                    </Items>
-                </dx:GridViewTabbedLayoutGroup>
+                <dx:GridViewColumnLayoutItem ColumnName="Mã Hàng" Name="TenHangHoa">
+                </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem ColumnName="Tên Hàng Hóa">
+                </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem ColumnName="Đơn Vị Tính">
+                </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem ColumnName="Nhóm Hàng">
+                </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem ColumnName="Giá Mua" Name="GiaMua">
+                </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem Caption="Giá Bán" ColumnName="Giá Bán" Name="GiaBan1">
+                </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem ColumnName="Hình Ảnh">
+                    <Template>
+                        <dx:ASPxUploadControl ID="ASPxUploadControl1" runat="server" OnFileUploadComplete="ASPxUploadControl1_FileUploadComplete" UploadMode="Auto" Width="100%" ClientInstanceName="upload">
+                            <ValidationSettings AllowedFileExtensions=".jpg, .bmp, .jpeg, .png" MaxFileSize="4000000">
+                            </ValidationSettings>
+                           <%-- <ClientSideEvents FilesUploadComplete="function(s, e) {
+	                                if(e.isValid){gridHangHoa.UpdateEdit();}
+                                }" />--%>
+                            <ClientSideEvents FilesUploadComplete="function(s, e) {
+	}" TextChanged="function(s, e) {
+
+}" />
+                            <BrowseButton Text="Thêm hình ảnh...">
+                            </BrowseButton>
+                        </dx:ASPxUploadControl>
+                    </Template>
+                </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem ColumnName="Ghi Chú" Name="GhiChu">
+                </dx:GridViewColumnLayoutItem>
             </Items>
         </EditFormLayoutProperties>
         <Columns>
@@ -238,10 +251,16 @@
             </dx:GridViewCommandColumn>
             <dx:GridViewDataSpinEditColumn Caption="Giá Mua" FieldName="GiaMua" VisibleIndex="4">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom" DisplayFormatInEditMode="True">
+                    <ValidationSettings SetFocusOnError="True">
+                        <RequiredField IsRequired="True" />
+                    </ValidationSettings>
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
             <dx:GridViewDataSpinEditColumn Caption="Giá Bán" FieldName="GiaBan" VisibleIndex="5">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom" DisplayFormatInEditMode="True">
+                    <ValidationSettings SetFocusOnError="True">
+                        <RequiredField IsRequired="True" />
+                    </ValidationSettings>
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
             <dx:GridViewDataComboBoxColumn Caption="Nhóm Hàng" FieldName="IDNhomHang" VisibleIndex="0">
@@ -252,6 +271,11 @@
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataTextColumn Caption="Mã Hàng" FieldName="MaHang" VisibleIndex="1" ReadOnly="True">
+                <PropertiesTextEdit>
+                    <ValidationSettings>
+                        <RequiredField IsRequired="True" />
+                    </ValidationSettings>
+                </PropertiesTextEdit>
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataImageColumn Caption="Hình Ảnh" FieldName="HinhAnh" VisibleIndex="12">
             </dx:GridViewDataImageColumn>

@@ -170,7 +170,7 @@
                             <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom"></PropertiesSpinEdit>
                             </dx:GridViewDataSpinEditColumn>
                             <dx:GridViewDataButtonEditColumn Caption="Xóa" ShowInCustomizationForm="True" Width="50px" 
-                                VisibleIndex="8">
+                                VisibleIndex="9">
                                 <DataItemTemplate>
                                     <dx:ASPxButton ID="BtnXoaHang" runat="server" CommandName="XoaHang"
                                         CommandArgument='<%# Eval("STT") %>' 
@@ -182,12 +182,16 @@
                                 <CellStyle HorizontalAlign="Center">
                                 </CellStyle>
                             </dx:GridViewDataButtonEditColumn>
-                            <dx:GridViewDataSpinEditColumn Caption="Thành tiền" FieldName="ThanhTien" ShowInCustomizationForm="True" UnboundType="Decimal" VisibleIndex="7" Width="120px">
+                            <dx:GridViewDataSpinEditColumn Caption="Thành tiền" FieldName="ThanhTien" ShowInCustomizationForm="True" UnboundType="Decimal" VisibleIndex="8" Width="120px">
                                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                 </PropertiesSpinEdit>
                             </dx:GridViewDataSpinEditColumn>
                             <dx:GridViewDataSpinEditColumn Caption="Tồn Kho" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="4">
                                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom" Width="100px">
+                                </PropertiesSpinEdit>
+                            </dx:GridViewDataSpinEditColumn>
+                            <dx:GridViewDataSpinEditColumn Caption="Giá Kỹ Thuật" ShowInCustomizationForm="True" VisibleIndex="7">
+                                <PropertiesSpinEdit DisplayFormatString="g">
                                 </PropertiesSpinEdit>
                             </dx:GridViewDataSpinEditColumn>
                         </columns>                                                  
@@ -226,11 +230,6 @@
                                 </dx:ASPxButton>                                
                             </td>
                             <td align="right" width="50%">
-                                 <dx:ASPxButton ID="btnQuyDoiHangHoa" runat="server"
-                                    RenderMode="Link" Text="Quy Đổi Mã Hàng" OnClick="btnQuyDoiHangHoa_Click">
-                                    <Image IconID="businessobjects_boorderitem_32x32">
-                                    </Image>
-                                </dx:ASPxButton> 
                                 <dx:ASPxButton ID="btnThoat" runat="server"
                                     RenderMode="Link" Text="Thoát" PostBackUrl="DangXuat.aspx">
                                     <Image IconID="edit_delete_32x32">
@@ -536,87 +535,6 @@
 </ContentCollection>
     </dx:ASPxPopupControl>
         
-        <dx:ASPxPopupControl ID="popupQuiDoi" runat="server" AllowDragging="True" AllowResize="True" 
-         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"  Width="600px"
-         Height="200px"
-        HeaderText="Quy Đổi Hàng Hóa" ClientInstanceName="popupQuiDoi" CloseAction="CloseButton">
-         <ContentCollection>
-    <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
-    <dx:ASPxFormLayout ID="ASPxFormLayout3" runat="server" ColCount="2" Width="100%">
-        <Items>
-            <dx:LayoutItem Caption="Tìm Mã Hàng" ColSpan="2">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer11" runat="server">
-                         <dx:ASPxComboBox ID="cmbMaHang" runat="server" ValueType="System.String" 
-                                        DropDownWidth="600" DropDownStyle="DropDown" 
-                                        ValueField="ID"
-                                        NullText="Nhập Barcode hoặc mã hàng ......." Width="80%" TextFormatString="{0}"
-                                        EnableCallbackMode="true" CallbackPageSize="10" 
-                                        OnItemsRequestedByFilterCondition="cmbMaHang_ItemsRequestedByFilterCondition"
-                                        OnItemRequestedByValue="cmbMaHang_ItemRequestedByValue" AutoPostBack="True" OnSelectedIndexChanged="cmbMaHang_SelectedIndexChanged" 
-                                        >                                    
-                                        <Columns>
-                                            <dx:ListBoxColumn FieldName="MaHang" Width="80px" Caption="Mã Hàng" />
-                                            <dx:ListBoxColumn FieldName="TenHangHoa" Width="250px" Caption="Tên Hàng Hóa"/>
-                                            <dx:ListBoxColumn FieldName="TenDonViTinh" Width="100px" Caption="Đơn Vị Tính"/>
-                                        </Columns>
-                                        <DropDownButton Visible="False">
-                                        </DropDownButton>
-
-                                    </dx:ASPxComboBox>                             
-                        <dx:ASPxLabel ID="txtTonKhoA" CssClass="canhphai" Width="10%" runat="server" Text="" ForeColor="Blue" Font-Bold="True"></dx:ASPxLabel>
-                         <asp:SqlDataSource ID="SqlQuiDoi" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" >                                       
-                                    </asp:SqlDataSource>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="Hàng Hóa Qui Đổi" ColSpan="2">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer12" runat="server">
-                        <dx:ASPxComboBox ID="cmbHangHoaQuyDoi" Width="80%" runat="server" TextFormatString="{0}" AutoPostBack="True" OnSelectedIndexChanged="cmbHangHoaQuyDoi_SelectedIndexChanged">
-                            <Columns>
-                                    <dx:ListBoxColumn FieldName="MaHang" Width="80px" Caption="Mã Hàng" />
-                                    <dx:ListBoxColumn FieldName="TenHangHoa" Width="250px" Caption="Tên Hàng Hóa"/>
-                                    <dx:ListBoxColumn FieldName="TenDonViTinh" Width="100px" Caption="Đơn Vị Tính"/>
-                                </Columns>
-                        </dx:ASPxComboBox>
-                        <dx:ASPxLabel ID="txtTonKhoB" CssClass="canhphai" Width="10%" runat="server" Text="" ForeColor="#FF3300" Font-Bold="True"></dx:ASPxLabel>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="Số Lượng Qui Đổi" ColSpan="2">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer13" runat="server">
-                        <dx:ASPxSpinEdit ID="txtSoLuongQuyDoi" runat="server" Width="80%">
-                        </dx:ASPxSpinEdit>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer14" runat="server">
-                        <dx:ASPxButton ID="btnQuiDoi" runat="server" Text="Qui Đổi" OnClick="btnQuiDoi_Click">
-                            <Image IconID="actions_apply_32x32">
-                            </Image>
-                        </dx:ASPxButton>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer15" runat="server">
-                        <dx:ASPxButton ID="btnHuyQuiDoi" runat="server" OnClick="btnHuyQuiDoi_Click" Text="Hủy">
-                            <Image IconID="actions_cancel_32x32">
-                            </Image>
-                        </dx:ASPxButton>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-        </Items>
-    </dx:ASPxFormLayout>
-  </dx:PopupControlContentControl>
-</ContentCollection>
-    </dx:ASPxPopupControl>
         <dx:ASPxPopupControl ID="chitietbuilInLai" runat="server" AllowDragging="True" AllowResize="True" 
          PopupHorizontalAlign="WindowCenter" ClientInstanceName="chitietbuilInLai" PopupVerticalAlign="WindowCenter"  Width="1000px" Height="600px" HeaderText="Chi tiết hóa đơn">
         </dx:ASPxPopupControl>

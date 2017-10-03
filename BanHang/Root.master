@@ -171,7 +171,7 @@
                                                             </dx:RibbonDropDownButtonItem>
                                                             <dx:RibbonDropDownButtonItem Name="quan-ly-vung" NavigateUrl="Vung.aspx" Text="Quản Lý Vùng" Visible="False">
                                                             </dx:RibbonDropDownButtonItem>
-                                                            <dx:RibbonDropDownButtonItem Name="quan-ly-kho" Text="Quản Lý Chi Nhánh" NavigateUrl="Kho.aspx">
+                                                            <dx:RibbonDropDownButtonItem Name="quan-ly-kho" Text="Quản Lý Chi Nhánh" NavigateUrl="Kho.aspx" Visible ="false">
                                                             </dx:RibbonDropDownButtonItem>
                                                             <dx:RibbonDropDownButtonItem Name="lich-su-truy-cap" Text="Lịch Sử Truy Cập" NavigateUrl="LichSuTruyCap.aspx">
                                                             </dx:RibbonDropDownButtonItem>
