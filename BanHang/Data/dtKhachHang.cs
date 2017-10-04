@@ -9,6 +9,26 @@ namespace BanHang.Data
 {
     public class dtKhachHang
     {
+        public static int TyLeChietKhauKhachHang(string IDKhachHang)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT GPM_ChietKhau.TyLe FROM GPM_KhachHang, GPM_ChietKhau WHERE GPM_KhachHang.IDChietKhau = GPM_ChietKhau.ID AND GPM_KhachHang.ID = '" + IDKhachHang + "'";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    if (tb.Rows.Count != 0)
+                    {
+                        DataRow dr = tb.Rows[0];
+                        return Int32.Parse(dr["TyLe"].ToString());
+                    }
+                    else return 0;
+                }
+            }
+        }
         public static int KT_SDT_KH_CapNhat(string SDT,string ID)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))

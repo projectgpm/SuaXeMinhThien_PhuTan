@@ -74,8 +74,6 @@ namespace BanHang
             tabHoaDonNew.Index = SoHoaDon - 1;
             tabControlSoHoaDon.Tabs.Add(tabHoaDonNew);
             tabControlSoHoaDon.ActiveTabIndex = SoHoaDon - 1;
-            // txtTienThua.Text = "";
-            //  txtKhachThanhToan.Text = "";
             BindGridChiTietHoaDon();
         }
         public void HuyHoaDon()
@@ -106,14 +104,14 @@ namespace BanHang
             if (exitHang != null)
             {
                 int SoLuong = exitHang.SoLuong + int.Parse(txtSoLuong.Text);
-                float ThanhTienOld = exitHang.ThanhTien;
+                double ThanhTienOld = exitHang.ThanhTien;
                 exitHang.SoLuong = SoLuong;
-                exitHang.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
-                exitHang.GiaKyThuat = float.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
+                exitHang.DonGia = double.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
+                exitHang.GiaKyThuat = double.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
                 exitHang.TonKho = dtCapNhatTonKho.SoLuong_TonKho(IDHangHoa.ToString(), Session["IDKho"].ToString());
                 exitHang.ThanhTien = SoLuong * exitHang.GiaKyThuat;
                 DanhSachHoaDon[MaHoaDon].TongTien += SoLuong * exitHang.DonGia - ThanhTienOld;
-                DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien - DanhSachHoaDon[MaHoaDon].GiamGia;
+                DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe; //- DanhSachHoaDon[MaHoaDon].GiamGia;
             }
             else
             {
@@ -124,14 +122,14 @@ namespace BanHang
                 cthd.TenHang = tbThongTin.Rows[0]["TenHangHoa"].ToString();
                 cthd.SoLuong = int.Parse(txtSoLuong.Text);
                 cthd.DonViTinh = tbThongTin.Rows[0]["TenDonViTinh"].ToString();
-                cthd.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
-                cthd.GiaKyThuat = float.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
-                cthd.GiaMua = float.Parse(tbThongTin.Rows[0]["GiaMua"].ToString());
-                cthd.ThanhTien = int.Parse(txtSoLuong.Text) * float.Parse(cthd.GiaKyThuat.ToString());
+                cthd.DonGia = double.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
+                cthd.GiaKyThuat = double.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
+                cthd.GiaMua = double.Parse(tbThongTin.Rows[0]["GiaMua"].ToString());
+                cthd.ThanhTien = int.Parse(txtSoLuong.Text) * double.Parse(cthd.GiaKyThuat.ToString());
                 DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Add(cthd);
                 DanhSachHoaDon[MaHoaDon].SoLuongHang++;
                 DanhSachHoaDon[MaHoaDon].TongTien += cthd.ThanhTien;
-                DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien - DanhSachHoaDon[MaHoaDon].GiamGia;
+                DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe;//- DanhSachHoaDon[MaHoaDon].GiamGia;
             }
         }
         protected void btnInsertHang_Click(object sender, EventArgs e)
@@ -231,10 +229,10 @@ namespace BanHang
                         int STT = Convert.ToInt32(gridChiTietHoaDon.GetRowValues(i, "STT"));
                         var exitHang = DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.FirstOrDefault(item => item.STT == STT);
                         int SoLuongOld = exitHang.SoLuong;
-                        float ThanhTienOld = exitHang.ThanhTien;
+                        double ThanhTienOld = exitHang.ThanhTien;
                         exitHang.SoLuong = Convert.ToInt32(SoLuongMoi);
-                        exitHang.GiaKyThuat = float.Parse(spineditGiaKyThuat.Value.ToString());
-                        exitHang.ThanhTien = Convert.ToInt32(SoLuongMoi) * exitHang.DonGia;
+                        exitHang.GiaKyThuat = double.Parse(spineditGiaKyThuat.Value.ToString());
+                        exitHang.ThanhTien = Convert.ToInt32(SoLuongMoi) * exitHang.GiaKyThuat;
                         DanhSachHoaDon[MaHoaDon].TongTien += exitHang.ThanhTien - ThanhTienOld;
                         DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien - DanhSachHoaDon[MaHoaDon].GiamGia;
                     }
@@ -250,9 +248,9 @@ namespace BanHang
                             int STT = Convert.ToInt32(gridChiTietHoaDon.GetRowValues(i, "STT"));
                             var exitHang = DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.FirstOrDefault(item => item.STT == STT);
                             int SoLuongOld = exitHang.SoLuong;
-                            float ThanhTienOld = exitHang.ThanhTien;
+                            double ThanhTienOld = exitHang.ThanhTien;
                             exitHang.SoLuong = Convert.ToInt32(SoLuongMoi);
-                            exitHang.GiaKyThuat = float.Parse(spineditGiaKyThuat.Value.ToString());
+                            exitHang.GiaKyThuat = double.Parse(spineditGiaKyThuat.Value.ToString());
                             exitHang.ThanhTien = Convert.ToInt32(SoLuongMoi) * exitHang.DonGia;
                             DanhSachHoaDon[MaHoaDon].TongTien += exitHang.ThanhTien - ThanhTienOld;
                             DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien - DanhSachHoaDon[MaHoaDon].GiamGia;
@@ -269,17 +267,19 @@ namespace BanHang
 
         protected void txtKhachThanhToan_TextChanged(object sender, EventArgs e)
         {
-            
-            //float TienKhachThanhToan;
-            //bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
-            //if (!isNumeric)
-            //{
-            //    HienThiThongBao("Nhập không đúng số tiền !!"); return;
-            //}
-            //int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
-            //DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
-            //DanhSachHoaDon[MaHoaDon].TienThua = TienKhachThanhToan - DanhSachHoaDon[MaHoaDon].TongTien;
-            //txtTienThua.Text = DanhSachHoaDon[MaHoaDon].TienThua.ToString();
+
+            float TienKhachThanhToan;
+            bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
+            if (!isNumeric)
+            {
+                txtKhachThanhToan.Text = "";
+                txtKhachThanhToan.Focus();
+                HienThiThongBao("Nhập không đúng số tiền !!"); return;
+            }
+            int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
+            DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
+            DanhSachHoaDon[MaHoaDon].TienThua = TienKhachThanhToan - DanhSachHoaDon[MaHoaDon].TongTien;
+            txtTienThoi.Text = DanhSachHoaDon[MaHoaDon].TienThua.ToString();
         }
 
         protected void BtnXoaHang_Click(object sender, EventArgs e)
@@ -288,7 +288,6 @@ namespace BanHang
             {
                 int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
                 int STT = Convert.ToInt32(((ASPxButton)sender).CommandArgument);
-               // int a = DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Count();
                 var itemToRemove =  DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Single(r => r.STT == STT);
                 DanhSachHoaDon[MaHoaDon].SoLuongHang--;
                 DanhSachHoaDon[MaHoaDon].TongTien = DanhSachHoaDon[MaHoaDon].TongTien - itemToRemove.ThanhTien;
@@ -303,7 +302,6 @@ namespace BanHang
         }
         protected void UpdateSTT(int MaHoaDon)
         {
-            //int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
             for (int i = 1; i <= DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Count; i++)
             {
                 DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon[i - 1].STT = i;
@@ -326,24 +324,62 @@ namespace BanHang
 
         protected void btnThanhToan_Click(object sender, EventArgs e)
         {
-            //int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
-            //float TienKhachThanhToan;
-            //bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
-            //if (!isNumeric)
-            //{
-            //    HienThiThongBao("Nhập không đúng số tiền !!"); return;
-            //}
-            //if (TienKhachThanhToan < DanhSachHoaDon[MaHoaDon].KhachCanTra)
-            //{
-            //    HienThiThongBao("Thanh toán chưa đủ số tiền !!"); return;
-            //}
-            //DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
-            //dtBanHangLe dt = new dtBanHangLe();
-            //string IDKho = Session["IDKho"].ToString();
-            //string IDNhanVien = Session["IDThuNgan"].ToString();
-            //string IDKhachHang = "1";
-            //if (ccbKhachHang.Value != null)
-            //    IDKhachHang = ccbKhachHang.Value.ToString();
+            int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
+            float TienKhachThanhToan;
+            bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
+            if (!isNumeric)
+            {
+                HienThiThongBao("Nhập không đúng số tiền !!"); return;
+            }
+            
+            DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
+            dtBanHangLe dt = new dtBanHangLe();
+            string IDKho = Session["IDKho"].ToString();
+            string IDNhanVien = Session["IDThuNgan"].ToString();
+            int IDKhachHang = 1, IDKyThuat = 1;
+            if (ccbKhachHang.Value != null)
+                IDKhachHang = Int32.Parse(ccbKhachHang.Value.ToString());
+            if (cmbKyThuat.Value != null)
+                IDKyThuat = Int32.Parse(cmbKyThuat.Value.ToString());
+            if (IDKhachHang == 1)// khách lẻ
+            {
+                if (TienKhachThanhToan < DanhSachHoaDon[MaHoaDon].KhachCanTra)
+                {
+                    txtKhachThanhToan.Text = "";
+                    txtKhachThanhToan.Focus();
+                    HienThiThongBao("Thanh toán chưa đủ số tiền !!"); return;
+                }
+                if (IDKyThuat != 0)
+                {
+                    int TyLeChietKhauKyThuat = dtNhanVienKyThuat.TyLeChietKhauKyThuat(cmbKyThuat.Value.ToString());
+                    double TienHuong = 0, TienHeThong = 0;
+                    for (int i = 0; i < gridChiTietHoaDon.VisibleRowCount; i++)
+                    {
+                        int SoLuong = Int32.Parse(gridChiTietHoaDon.GetRowValues(i, "SoLuong").ToString());
+                        double TongTienGiaGoc =  double.Parse(gridChiTietHoaDon.GetRowValues(i, "DonGia").ToString());
+                        TienHeThong = TienHeThong + (double.Parse(gridChiTietHoaDon.GetRowValues(i, "DonGia").ToString()) * SoLuong);
+                        double TongTienBaoGia =  double.Parse(gridChiTietHoaDon.GetRowValues(i, "GiaKyThuat").ToString());
+                        TienHuong = TienHuong + ((TongTienBaoGia - TongTienGiaGoc) * SoLuong);
+                    }
+                    double TienChietKhau = TienHeThong * TyLeChietKhauKyThuat / (float)100;
+                    double TongThucNhan = TienChietKhau + TienHuong;// cộng tiền vào công nợ kỹ thuật
+
+                }
+                else
+                { 
+                }
+            }
+            else// #khach lẻ
+            {
+                // tính chiết khấu khách sỉ
+                int TyLeChietKhauKhachHang = dtKhachHang.TyLeChietKhauKhachHang(IDKhachHang.ToString());
+                //object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon]);
+                //HuyHoaDon();
+                //ccbKhachHang.Text = "";
+                //string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
+                //ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
+                //txtBarcode.Focus();
+            }
             //object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang, DanhSachHoaDon[MaHoaDon]);
             //HuyHoaDon();
             //ccbKhachHang.Text = "";
@@ -359,22 +395,27 @@ namespace BanHang
 
         protected void ASPxButton1_Click(object sender, EventArgs e)
         {
+            txtTenKhachHang.Text = "";
+            cmbNhomKhachHang.Text = "";
+            txtSoDienThoai.Text = "";
+            txtDiaChi.Text = "";
+            cmbChietKhau.Text = "";
             popupThemKhachHang.ShowOnPageLoad = true;
         }
 
         protected void btnThemKhachHang_Click(object sender, EventArgs e)
         {
-            if (cmbNhomKhachHang.Text != "" && txtTenKhachHang.Text != "")
+            if (cmbNhomKhachHang.Text != "" && txtTenKhachHang.Text != "" && cmbChietKhau.Text !="")
             {
                 int IDNhom = Int32.Parse(cmbNhomKhachHang.Value.ToString());
                 string TenKH = txtTenKhachHang.Text;
                 string SDT = txtSoDienThoai.Text == null ? "" : txtSoDienThoai.Text;
                 string DC = txtDiaChi.Text == null ? "" : txtDiaChi.Text;
+                string IDChietKhau = cmbChietKhau.Value.ToString();
                 dtKhachHang dtkh = new dtKhachHang();
                 string MaKh = "";
                 string Barcode = "";
-                //object ID = dtkh.ThemKhachHang(IDNhom, MaKh, TenKH, DateTime.Now, "", DC, SDT, "", Barcode, "", Session["IDKho"].ToString());
-
+                object ID = dtkh.ThemKhachHang(IDNhom, MaKh, TenKH, DateTime.Now, "", DC, SDT, "", Barcode, "", Session["IDKho"].ToString(), IDChietKhau);
                 if (ID != null)
                 {
                     dtkh = new dtKhachHang();
@@ -385,6 +426,7 @@ namespace BanHang
                 cmbNhomKhachHang.Text = "";
                 txtSoDienThoai.Text = "";
                 txtDiaChi.Text = "";
+                cmbChietKhau.Text = "";
                 HienThiThongBao("Thêm khách hàng thành công !!");
                 popupThemKhachHang.ShowOnPageLoad = false; return;
             }
@@ -565,20 +607,40 @@ namespace BanHang
                 }
             }
         }
+
+        protected void txtTienSuaXe_TextChanged(object sender, EventArgs e)
+        {
+            float TienSuaXe;
+            bool isNumeric = float.TryParse(txtTienSuaXe.Text, out TienSuaXe);
+            if (!isNumeric)
+            {
+                txtTienSuaXe.Text = "";
+                txtTienSuaXe.Focus();
+                HienThiThongBao("Nhập không đúng số tiền !!"); return;
+            }
+            int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
+            DanhSachHoaDon[MaHoaDon].TienSuaXe = TienSuaXe;
+            DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe;
+            txtKhachCanTra.Text = DanhSachHoaDon[MaHoaDon].KhachCanTra.ToString();
+        }
+
+       
     }
     [Serializable]
     public class HoaDon
     {
         public int IDHoaDon { get; set; }
         public int SoLuongHang { get; set; }
-        public float TongTien { get; set; }
-        public float GiamGia { get; set; }
-        public float KhachCanTra { get; set; }
-        public float KhachThanhToan { get; set; }
-        public float TienThua { get; set; }
+        public double TongTien { get; set; }
+        public double GiamGia { get; set; }
+        public double KhachCanTra { get; set; }
+        public double KhachThanhToan { get; set; }
+        public double TienThua { get; set; }
+        public double TienSuaXe { get; set; }
         public List<ChiTietHoaDon> ListChiTietHoaDon { get; set; }
         public HoaDon()
         {
+            TienSuaXe = 0;
             SoLuongHang = 0;
             TongTien = 0;
             GiamGia = 0;
@@ -599,10 +661,10 @@ namespace BanHang
         public int TonKho { get; set; }
         public string DonViTinh { get; set; }
         public int SoLuong { get; set; }
-        public float DonGia { get; set; }
-        public float GiaMua { get; set; }
-        public float ThanhTien { get; set; }
-        public float GiaKyThuat { get; set; }
+        public double DonGia { get; set; }
+        public double GiaMua { get; set; }
+        public double ThanhTien { get; set; }
+        public double GiaKyThuat { get; set; }
         public ChiTietHoaDon()
         {
             TonKho = 0;

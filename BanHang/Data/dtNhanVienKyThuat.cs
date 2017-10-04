@@ -9,6 +9,26 @@ namespace BanHang.Data
 {
     public class dtNhanVienKyThuat
     {
+        public static int TyLeChietKhauKyThuat(string IDKyThuat)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT GPM_ChietKhau.TyLe FROM GPM_KyThuat, GPM_ChietKhau WHERE GPM_KyThuat.IDChietKhau = GPM_ChietKhau.ID AND GPM_KyThuat.ID = '" + IDKyThuat + "'";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    if (tb.Rows.Count != 0)
+                    {
+                        DataRow dr = tb.Rows[0];
+                        return Int32.Parse(dr["TyLe"].ToString());
+                    }
+                    else return 0;
+                }
+            }
+        }
         public DataTable DanhSachChiTietCongNo()
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
@@ -167,7 +187,7 @@ namespace BanHang.Data
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = "SELECT * FROM [GPM_KyThuat] WHERE [DAXOA] = 0";
+                string cmdText = "SELECT * FROM [GPM_KyThuat] WHERE [DAXOA] = 0 AND ID != 1";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
