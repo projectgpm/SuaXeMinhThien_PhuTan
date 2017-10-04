@@ -179,12 +179,12 @@ namespace BanHang.Data
             {
                 con.Open();
                 string cmdText = "";
-                cmdText = "SELECT HH.ID, HH.TenHangHoa,HH.MaHang, Dvi.TenDonViTinh, HHTK.GiaBan,HHTK.GiaBan1,HHTK.GiaBan2,HHTK.GiaBan3,HHTK.GiaBan4,HHTK.GiaBan5, HH.GiaMuaSauThue " +
+                cmdText = "SELECT HH.ID, HH.TenHangHoa,HH.MaHang, Dvi.TenDonViTinh, HH.GiaBan, HH.GiaMua " +
                                  "FROM GPM_HangHoa AS HH " +
                                  "INNER JOIN GPM_HangHoaTonKho AS HHTK ON HH.ID = HHTK.IDHangHoa " +
                                  "INNER JOIN GPM_DonViTinh as DVi ON HH.IDDonViTinh = DVi.ID " +
                                  "LEFT OUTER JOIN GPM_HangHoa_Barcode AS BC ON HHTK.IDHangHoa = BC.IDHangHoa " +
-                                 "WHERE (BC.Barcode = @Barcode OR CONVERT(NVARCHAR(250), HHTK.IDHangHoa) = @Barcode) AND (HH.IDTrangThaiHang = 1 OR HH.IDTrangThaiHang = 3 OR HH.IDTrangThaiHang = 6) AND HHTK.IDKho = @IDKho AND HHTK.DaXoa = 0";
+                                 "WHERE (BC.Barcode = @Barcode OR CONVERT(NVARCHAR(250), HHTK.IDHangHoa) = @Barcode) AND HHTK.IDKho = @IDKho AND HHTK.DaXoa = 0";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 {
                     command.Parameters.AddWithValue("@Barcode", Barcode);

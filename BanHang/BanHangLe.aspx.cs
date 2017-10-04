@@ -31,8 +31,8 @@ namespace BanHang
         {
             if (Session["KTBanLe"] == "GPMBanLe")
             {
-                if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
-                {
+                //if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
+                //{
                     if (!IsPostBack)
                     {
                         DanhSachHoaDon = new List<HoaDon>();
@@ -41,11 +41,11 @@ namespace BanHang
                         txtBarcode.Focus();
                     }
                     DanhSachKhachHang();
-                }
-                else
-                {
-                    Response.Redirect("DangNhap.aspx");
-                }
+                //}
+                //else
+                //{
+                //    Response.Redirect("DangNhap.aspx");
+                //}
             }
             else
             {
@@ -108,76 +108,31 @@ namespace BanHang
                 int SoLuong = exitHang.SoLuong + int.Parse(txtSoLuong.Text);
                 float ThanhTienOld = exitHang.ThanhTien;
                 exitHang.SoLuong = SoLuong;
-                float GiaBanSL = BanTheoSoLuong(exitHang.IDHangHoa, SoLuong);
-                if (GiaBanSL != -1)
-                {
-                    exitHang.DonGia = GiaBanSL;
-                }
-                //else
-                //{
-                //    int KT_GiaApDung = dtBanHangLe.KT_GiaApDung(Session["IDKho"].ToString());
-                //    switch (KT_GiaApDung)
-                //    {
-                //        case 1: exitHang.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan1"].ToString()); break;
-                //        case 2: exitHang.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan2"].ToString()); break;
-                //        case 3: exitHang.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan3"].ToString()); break;
-                //        case 4: exitHang.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan4"].ToString()); break;
-                //        case 5: exitHang.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan5"].ToString()); break;
-                //        default: exitHang.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan"].ToString()); break;
-                //    }
-                //}
+                exitHang.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
+                exitHang.GiaKyThuat = float.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
                 exitHang.TonKho = dtCapNhatTonKho.SoLuong_TonKho(IDHangHoa.ToString(), Session["IDKho"].ToString());
-                exitHang.ThanhTien = SoLuong * exitHang.DonGia;
+                exitHang.ThanhTien = SoLuong * exitHang.GiaKyThuat;
                 DanhSachHoaDon[MaHoaDon].TongTien += SoLuong * exitHang.DonGia - ThanhTienOld;
                 DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien - DanhSachHoaDon[MaHoaDon].GiamGia;
             }
             else
             {
                 ChiTietHoaDon cthd = new ChiTietHoaDon();
-               // cthd.STT = DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Count + 1;
                 cthd.IDHangHoa = IDHangHoa;
                 cthd.MaHang = MaHang;
                 cthd.TonKho = dtCapNhatTonKho.SoLuong_TonKho(IDHangHoa.ToString(), Session["IDKho"].ToString());
                 cthd.TenHang = tbThongTin.Rows[0]["TenHangHoa"].ToString();
                 cthd.SoLuong = int.Parse(txtSoLuong.Text);
                 cthd.DonViTinh = tbThongTin.Rows[0]["TenDonViTinh"].ToString();
-                //kt giá bán theo số lượng
-                float GiaBanSL = BanTheoSoLuong(cthd.IDHangHoa, cthd.SoLuong);
-                if (GiaBanSL != -1)
-                {
-                    cthd.DonGia = GiaBanSL;
-                }
-                else
-                {
-                    int KT_GiaApDung = dtBanHangLe.KT_GiaApDung(Session["IDKho"].ToString());
-                    switch (KT_GiaApDung)
-                    {
-                        case 1: cthd.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan1"].ToString()); break;
-                        case 2: cthd.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan2"].ToString()); break;
-                        case 3: cthd.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan3"].ToString()); break;
-                        case 4: cthd.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan4"].ToString()); break;
-                        case 5: cthd.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan5"].ToString()); break;
-                        default: cthd.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan"].ToString()); break;
-                    }
-                }
-                cthd.GiaMua = float.Parse(tbThongTin.Rows[0]["GiaMuaSauThue"].ToString());
-                cthd.ThanhTien = int.Parse(txtSoLuong.Text) * float.Parse(cthd.DonGia.ToString());
+                cthd.DonGia = float.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
+                cthd.GiaKyThuat = float.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
+                cthd.GiaMua = float.Parse(tbThongTin.Rows[0]["GiaMua"].ToString());
+                cthd.ThanhTien = int.Parse(txtSoLuong.Text) * float.Parse(cthd.GiaKyThuat.ToString());
                 DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Add(cthd);
                 DanhSachHoaDon[MaHoaDon].SoLuongHang++;
                 DanhSachHoaDon[MaHoaDon].TongTien += cthd.ThanhTien;
                 DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien - DanhSachHoaDon[MaHoaDon].GiamGia;
             }
-        }
-        public float BanTheoSoLuong(int IDHangHoa, int SoLuongMua)
-        {
-            dtBanHangLe dt = new dtBanHangLe();
-            float DonGia = -1;
-            DataTable db = dt.DanhSachGiaTheoSoLuong(IDHangHoa);
-            if (db.Rows.Count > 0)
-            {
-                DonGia = dt.LayGiaBanTheoSoLuong(IDHangHoa, SoLuongMua);
-            }
-            return DonGia;
         }
         protected void btnInsertHang_Click(object sender, EventArgs e)
         {
@@ -263,9 +218,12 @@ namespace BanHang
             for (int i = 0; i < gridChiTietHoaDon.VisibleRowCount; i++)
             {
                 object SoLuong = gridChiTietHoaDon.GetRowValues(i, "SoLuong");
+                object GiaKyThuat = gridChiTietHoaDon.GetRowValues(i, "GiaKyThuat");
                 ASPxSpinEdit spineditSoLuong = gridChiTietHoaDon.FindRowCellTemplateControl(i, (GridViewDataColumn)gridChiTietHoaDon.Columns["SoLuong"], "txtSoLuongChange") as ASPxSpinEdit;
+                ASPxSpinEdit spineditGiaKyThuat = gridChiTietHoaDon.FindRowCellTemplateControl(i, (GridViewDataColumn)gridChiTietHoaDon.Columns["GiaKyThuat"], "txtGiaKyThuatChange") as ASPxSpinEdit;
                 object SoLuongMoi = spineditSoLuong.Value;
-                if (SoLuong != SoLuongMoi)
+                object GiaMoi = spineditGiaKyThuat.Value;
+                if (SoLuong != SoLuongMoi || GiaKyThuat != GiaMoi)
                 {
                     if (dtSetting.KT_BanHang(IDKho) == 1)
                     {
@@ -275,26 +233,7 @@ namespace BanHang
                         int SoLuongOld = exitHang.SoLuong;
                         float ThanhTienOld = exitHang.ThanhTien;
                         exitHang.SoLuong = Convert.ToInt32(SoLuongMoi);
-                        float GiaBanSL = BanTheoSoLuong(exitHang.IDHangHoa, exitHang.SoLuong);
-                        if (GiaBanSL != -1)
-                        {
-                            exitHang.DonGia = GiaBanSL;
-                        }
-                        else
-                        {
-                            int KT_GiaApDung = dtBanHangLe.KT_GiaApDung(Session["IDKho"].ToString());
-                            
-                            switch (KT_GiaApDung)
-                            {
-                                case 1: exitHang.DonGia = dtHangHoa.GiaBan1((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                case 2: exitHang.DonGia = dtHangHoa.GiaBan2((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                case 3: exitHang.DonGia = dtHangHoa.GiaBan3((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                case 4: exitHang.DonGia = dtHangHoa.GiaBan4((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                case 5: exitHang.DonGia = dtHangHoa.GiaBan5((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                default: exitHang.DonGia = dtHangHoa.GiaBan0((exitHang.IDHangHoa).ToString(), IDKho); break;
-                            }
-                        }
-                        //exitHang.TonKho = dtCapNhatTonKho.SoLuong_TonKho(exitHang.IDHangHoa.ToString(), Session["IDKho"].ToString());
+                        exitHang.GiaKyThuat = float.Parse(spineditGiaKyThuat.Value.ToString());
                         exitHang.ThanhTien = Convert.ToInt32(SoLuongMoi) * exitHang.DonGia;
                         DanhSachHoaDon[MaHoaDon].TongTien += exitHang.ThanhTien - ThanhTienOld;
                         DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien - DanhSachHoaDon[MaHoaDon].GiamGia;
@@ -313,24 +252,7 @@ namespace BanHang
                             int SoLuongOld = exitHang.SoLuong;
                             float ThanhTienOld = exitHang.ThanhTien;
                             exitHang.SoLuong = Convert.ToInt32(SoLuongMoi);
-                            float GiaBanSL = BanTheoSoLuong(exitHang.IDHangHoa, SoLuongOld);
-                            if (GiaBanSL != -1)
-                            {
-                                exitHang.DonGia = GiaBanSL;
-                            }
-                            else
-                            {
-                                int KT_GiaApDung = dtBanHangLe.KT_GiaApDung(Session["IDKho"].ToString());
-                                switch (KT_GiaApDung)
-                                {
-                                    case 1: exitHang.DonGia = dtHangHoa.GiaBan1((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                    case 2: exitHang.DonGia = dtHangHoa.GiaBan2((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                    case 3: exitHang.DonGia = dtHangHoa.GiaBan3((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                    case 4: exitHang.DonGia = dtHangHoa.GiaBan4((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                    case 5: exitHang.DonGia = dtHangHoa.GiaBan5((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                    default: exitHang.DonGia = dtHangHoa.GiaBan0((exitHang.IDHangHoa).ToString(), IDKho); break;
-                                }
-                            }
+                            exitHang.GiaKyThuat = float.Parse(spineditGiaKyThuat.Value.ToString());
                             exitHang.ThanhTien = Convert.ToInt32(SoLuongMoi) * exitHang.DonGia;
                             DanhSachHoaDon[MaHoaDon].TongTien += exitHang.ThanhTien - ThanhTienOld;
                             DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien - DanhSachHoaDon[MaHoaDon].GiamGia;
@@ -680,7 +602,7 @@ namespace BanHang
         public float DonGia { get; set; }
         public float GiaMua { get; set; }
         public float ThanhTien { get; set; }
-
+        public float GiaKyThuat { get; set; }
         public ChiTietHoaDon()
         {
             TonKho = 0;
