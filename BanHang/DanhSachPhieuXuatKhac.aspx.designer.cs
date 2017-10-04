@@ -67,15 +67,6 @@ namespace BanHang {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlNhanVien;
         
         /// <summary>
-        /// SqlKho control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlKho;
-        
-        /// <summary>
         /// popup control.
         /// </summary>
         /// <remarks>
