@@ -63,10 +63,10 @@
     <dx:GridViewDataComboBoxColumn FieldName="IDHangHoa" Caption="H&#224;ng H&#243;a" VisibleIndex="1" ReadOnly="True">
     <PropertiesComboBox DataSourceID="sqlHangHoa" TextField="TenHangHoa" ValueField="ID"></PropertiesComboBox>
     </dx:GridViewDataComboBoxColumn>
-    <dx:GridViewDataSpinEditColumn Caption="Số Lượng Trả" FieldName="SoLuong" VisibleIndex="5">
+    <dx:GridViewDataSpinEditColumn Caption="Số Lượng Trả" FieldName="SoLuong" VisibleIndex="4">
         <propertiesspinedit DisplayFormatString="g"></propertiesspinedit>
     </dx:GridViewDataSpinEditColumn>
-    <dx:GridViewDataSpinEditColumn Caption="Tồn Kho" FieldName="TonKho" VisibleIndex="4" ReadOnly="True">
+    <dx:GridViewDataSpinEditColumn Caption="Tồn Kho" FieldName="TonKho" VisibleIndex="3" ReadOnly="True">
         <propertiesspinedit DisplayFormatString="g"></propertiesspinedit>
     </dx:GridViewDataSpinEditColumn>
     
@@ -78,15 +78,22 @@
     <dx:GridViewDataTextColumn Caption="Mã Hàng" FieldName="MaHang" VisibleIndex="0">
     </dx:GridViewDataTextColumn>
     
-    <dx:GridViewDataTextColumn Caption="Trọng Lượng" FieldName="TrongLuong" VisibleIndex="3">
+    <dx:GridViewDataTextColumn Caption="Ghi Chú" FieldName="GhiChu" VisibleIndex="7">
     </dx:GridViewDataTextColumn>
-    <dx:GridViewDataTextColumn Caption="Ghi Chú" FieldName="GhiChu" VisibleIndex="6">
-    </dx:GridViewDataTextColumn>
+    <dx:GridViewDataSpinEditColumn Caption="Thành Tiền" FieldName="ThanhTien" VisibleIndex="6">
+        <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
+        </PropertiesSpinEdit>
+    </dx:GridViewDataSpinEditColumn>
+    <dx:GridViewDataSpinEditColumn Caption="Đơn Giá" FieldName="DonGia" VisibleIndex="5">
+        <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
+        </PropertiesSpinEdit>
+    </dx:GridViewDataSpinEditColumn>
     
 </Columns>
 
                  <TotalSummary>
                      <dx:ASPxSummaryItem DisplayFormat="Tổng mặt hàng : {0}" FieldName="MaHang" ShowInColumn="Hàng Hóa" SummaryType="Count" />
+                     <dx:ASPxSummaryItem DisplayFormat="Tổng tiền: {0}" FieldName="ThanhTien" ShowInColumn="Thành Tiền" SummaryType="Sum" />
                  </TotalSummary>
 
 <Styles>

@@ -118,10 +118,10 @@
                                 </dx:LayoutItemNestedControlContainer>
                             </LayoutItemNestedControlCollection>
                         </dx:LayoutItem>
-                        <dx:LayoutItem Caption="Đơn Giá">
+                        <dx:LayoutItem Caption="Giá Mua">
                             <LayoutItemNestedControlCollection>
                                 <dx:LayoutItemNestedControlContainer runat="server">
-                                    <dx:ASPxSpinEdit ID="ASPxFormLayout1_E2" runat="server">
+                                    <dx:ASPxSpinEdit ID="txtDonGia" runat="server" Width="100%" DisplayFormatString="N0">
                                     </dx:ASPxSpinEdit>
                                 </dx:LayoutItemNestedControlContainer>
                             </LayoutItemNestedControlCollection>
