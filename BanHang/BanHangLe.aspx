@@ -242,81 +242,6 @@
                             </td>
                         </tr>
                     </table>
-                    <div class="Separator">                
-                    </div>
-                    <%--<table width="100%">                        
-                        <tr>
-                            <td width="85%">
-                                <%--<dx:ASPxFormLayout ID="ASPxFormLayout3" runat="server">
-                                    <Items>
-                                        <dx:LayoutItem Caption="Chọn Khách Hàng">
-                                            <LayoutItemNestedControlCollection>
-                                                <dx:LayoutItemNestedControlContainer runat="server">
-                                                    <dx:ASPxComboBox ID="ccbKhachHang" runat="server" ValueType="System.String" 
-                                                        NullText="Nhập sdt hoặc tên khách hàng trong danh sách." Width="100%" 
-                                                        DropDownWidth="550px" OnItemRequestedByValue="ccbKhachHang_ItemRequestedByValue" OnItemsRequestedByFilterCondition="ccbKhachHang_ItemsRequestedByFilterCondition"  >
-                                                         <Columns>
-                                                            <dx:ListBoxColumn FieldName="TenKhachHang" Width="100%"  Caption="Tên khách hàng"/>
-                                                             <dx:ListBoxColumn FieldName="DienThoai" Width="100px" Caption="Số điện thoại" />    
-                                                            <dx:ListBoxColumn FieldName="DiaChi" Width="100px" Caption="Địa chỉ" />
-                                                                            
-                                                        </Columns>
-                                                    </dx:ASPxComboBox>
-                                                </dx:LayoutItemNestedControlContainer>
-                                            </LayoutItemNestedControlCollection>
-                                        </dx:LayoutItem>
-                                        <dx:LayoutItem Caption="Chọn Kỹ Thuật">
-                                            <LayoutItemNestedControlCollection>
-                                                <dx:LayoutItemNestedControlContainer runat="server">
-                                                   <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" ValueType="System.String" 
-                                    NullText="Nhập sdt hoặc tên khách hàng trong danh sách." Width="100%" 
-                                    DropDownWidth="550px" OnItemRequestedByValue="ccbKhachHang_ItemRequestedByValue" OnItemsRequestedByFilterCondition="ccbKhachHang_ItemsRequestedByFilterCondition"  >
-                                     <Columns>
-                                        <dx:ListBoxColumn FieldName="TenKhachHang" Width="100%"  Caption="Tên khách hàng"/>
-                                         <dx:ListBoxColumn FieldName="DienThoai" Width="100px" Caption="Số điện thoại" />    
-                                        <dx:ListBoxColumn FieldName="DiaChi" Width="100px" Caption="Địa chỉ" />
-                                                                            
-                                    </Columns>
-                                </dx:ASPxComboBox>
-                                                </dx:LayoutItemNestedControlContainer>
-                                            </LayoutItemNestedControlCollection>
-                                        </dx:LayoutItem>
-                                    </Items>
-                                </dx:ASPxFormLayout>
-                               <dx:ASPxComboBox ID="ccbKhachHang" runat="server" ValueType="System.String" 
-                                    NullText="Nhập sdt hoặc tên khách hàng trong danh sách." Width="100%" 
-                                    DropDownWidth="550px" OnItemRequestedByValue="ccbKhachHang_ItemRequestedByValue" OnItemsRequestedByFilterCondition="ccbKhachHang_ItemsRequestedByFilterCondition"  >
-                                     <Columns>
-                                        <dx:ListBoxColumn FieldName="TenKhachHang" Width="100%"  Caption="Tên khách hàng"/>
-                                         <dx:ListBoxColumn FieldName="DienThoai" Width="100px" Caption="Số điện thoại" />    
-                                        <dx:ListBoxColumn FieldName="DiaChi" Width="100px" Caption="Địa chỉ" />
-                                                                            
-                                    </Columns>
-                                </dx:ASPxComboBox>
-                                <br />
-                                <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" ValueType="System.String" 
-                                    NullText="Nhập sdt hoặc tên khách hàng trong danh sách." Width="100%" 
-                                    DropDownWidth="550px" OnItemRequestedByValue="ccbKhachHang_ItemRequestedByValue" OnItemsRequestedByFilterCondition="ccbKhachHang_ItemsRequestedByFilterCondition"  >
-                                     <Columns>
-                                        <dx:ListBoxColumn FieldName="TenKhachHang" Width="100%"  Caption="Tên khách hàng"/>
-                                         <dx:ListBoxColumn FieldName="DienThoai" Width="100px" Caption="Số điện thoại" />    
-                                        <dx:ListBoxColumn FieldName="DiaChi" Width="100px" Caption="Địa chỉ" />
-                                                                            
-                                    </Columns>
-                                </dx:ASPxComboBox>
-                                 <asp:SqlDataSource ID="sqlKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" >                                       
-                                    </asp:SqlDataSource>
-                            </td>
-                            <td width="15%" align="right">
-                                <dx:ASPxButton ID="ASPxButton1" runat="server" RenderMode="Link" OnClick="ASPxButton1_Click">
-                                    <Image IconID="actions_newemployee_32x32devav" ToolTip="Thêm khách hàng">
-                                    </Image>
-                                </dx:ASPxButton>
-                            </td>
-                        </tr>
-                    </table>--%>
-                    <div class="Separator">                
-                    </div>
                     <div id="divTabThanhToan">    
                          <asp:SqlDataSource ID="sqlKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" ></asp:SqlDataSource>
                           <asp:SqlDataSource ID="sqlKyThuat" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" ></asp:SqlDataSource>
@@ -329,12 +254,12 @@
                                         <dx:ASPxFormLayout ID="formLayoutThanhToan" runat="server" Width="100%" 
                                             ClientInstanceName="formLayoutThanhToan">
                                             <Items>
-                                                <dx:LayoutItem Caption="KHÁCH HÀNG">
+                                                <dx:LayoutItem Caption="KHÁCH HÀNG" VerticalAlign="Middle">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
                                                             <dx:ASPxComboBox ID="ccbKhachHang" runat="server" ValueType="System.String" 
-                                                            NullText="Nhập sdt hoặc tên khách hàng." Width="100%" 
-                                                            DropDownWidth="550px" OnItemRequestedByValue="ccbKhachHang_ItemRequestedByValue" OnItemsRequestedByFilterCondition="ccbKhachHang_ItemsRequestedByFilterCondition"  >
+                                                            NullText="Nhập sdt hoặc tên khách hàng." Width="100%"   TextFormatString="{0}"
+                                                            DropDownWidth="550px" OnItemRequestedByValue="ccbKhachHang_ItemRequestedByValue" OnItemsRequestedByFilterCondition="ccbKhachHang_ItemsRequestedByFilterCondition" AutoPostBack="True" OnSelectedIndexChanged="ccbKhachHang_SelectedIndexChanged"  >
                                                              <Columns>
                                                                 <dx:ListBoxColumn FieldName="TenKhachHang" Width="100%"  Caption="Tên khách hàng"/>
                                                                  <dx:ListBoxColumn FieldName="DienThoai" Width="100px" Caption="Số điện thoại" />    
@@ -345,67 +270,72 @@
                                                         </dx:LayoutItemNestedControlContainer>
                                                     </LayoutItemNestedControlCollection>
                                                 </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="KỸ THUẬT">
+                                                <dx:LayoutItem Caption="KỸ THUẬT" VerticalAlign="Middle">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                                                            <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" ValueType="System.String" 
-                                                                NullText="Nhập tên kỹ thuật." Width="100%" 
-                                                                DropDownWidth="550px" OnItemRequestedByValue="ccbKhachHang_ItemRequestedByValue" OnItemsRequestedByFilterCondition="ccbKhachHang_ItemsRequestedByFilterCondition"  >
+                                                            <dx:ASPxComboBox ID="cmbKyThuat" runat="server" ValueType="System.String" 
+                                                                NullText="Nhập tên kỹ thuật." Width="100%"   TextFormatString="{0}"
+                                                                DropDownWidth="450px" OnItemRequestedByValue="cmbKyThuat_ItemRequestedByValue" OnItemsRequestedByFilterCondition="cmbKyThuat_ItemsRequestedByFilterCondition" Enabled="False"  >
                                                                  <Columns>
-                                                                    <dx:ListBoxColumn FieldName="TenKhachHang" Width="100%"  Caption="Tên khách hàng"/>
+                                                                    <dx:ListBoxColumn FieldName="TenKyThuat" Width="100%"  Caption="Tên kỹ thuật"/>
                                                                      <dx:ListBoxColumn FieldName="DienThoai" Width="100px" Caption="Số điện thoại" />    
-                                                                    <dx:ListBoxColumn FieldName="DiaChi" Width="100px" Caption="Địa chỉ" />
-                                                                            
+                                                                  
                                                                 </Columns>
                                                             </dx:ASPxComboBox>
                                                         </dx:LayoutItemNestedControlContainer>
                                                     </LayoutItemNestedControlCollection>
                                                 </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="TỔNG TIỀN HÀNG">
+                                                <dx:LayoutItem Caption="TỔNG TIỀN HÀNG" VerticalAlign="Middle">
                                                     <LayoutItemNestedControlCollection>
-                                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer3" runat="server">
-                                                            <dx:ASPxSpinEdit ID="txtTongTienHang" runat="server" Width ="100%" DisplayFormatString="N0" Enabled ="false" >
-                                                            </dx:ASPxSpinEdit>
+                                                        <dx:LayoutItemNestedControlContainer ID="TongTienHang" runat="server">
+                                                            <dx:ASPxTextBox ID="txtTongTienHang" runat="server"  Width="100%"  Font-Names="digital-7" Font-Bold="True" Font-Size="20pt" 
+                                                                HorizontalAlign="Right" DisplayFormatString="N0" ReadOnly="true"  NullText="0"   ForeColor="#0000CC">
+                                                            </dx:ASPxTextBox>
                                                         </dx:LayoutItemNestedControlContainer>
                                                     </LayoutItemNestedControlCollection>
                                                 </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="TIỀN SỬA XE">
+                                                <dx:LayoutItem Caption="TIỀN SỬA XE" VerticalAlign="Middle">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer4" runat="server">
-                                                            <dx:ASPxSpinEdit ID="txtTienSuaXe" runat="server" Width ="100%" DisplayFormatString="N0">
-                                                            </dx:ASPxSpinEdit>
+                                                            <dx:ASPxTextBox ID="txtTienSuaXe" runat="server" Width="100%"  Font-Names="digital-7" Font-Bold="True" Font-Size="20pt" 
+                                                                HorizontalAlign="Right" DisplayFormatString="N0"  NullText="0" ForeColor="Red" Enabled="False">
+                                                            </dx:ASPxTextBox>
                                                         </dx:LayoutItemNestedControlContainer>
                                                     </LayoutItemNestedControlCollection>
                                                 </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="TIỀN KỸ THUẬT">
+                                                <dx:LayoutItem Caption="TIỀN KỸ THUẬT" VerticalAlign="Middle">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer5" runat="server">
-                                                            <dx:ASPxSpinEdit ID="txtTienKyThuat" runat="server" Width ="100%" DisplayFormatString="N0" Enabled ="false">
-                                                            </dx:ASPxSpinEdit>
+                                                            <dx:ASPxTextBox ID="txtTienKyThuat" runat="server" Width="100%"  Font-Names="digital-7" Font-Bold="True" Font-Size="20pt" 
+                                                                HorizontalAlign="Right" DisplayFormatString="N0" ReadOnly="true"  NullText="0" ForeColor="#0000CC">
+                                                            </dx:ASPxTextBox>
                                                         </dx:LayoutItemNestedControlContainer>
                                                     </LayoutItemNestedControlCollection>
                                                 </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="KHÁCH CẦN TRẢ">
+                                                <dx:LayoutItem Caption="KHÁCH CẦN TRẢ" VerticalAlign="Middle">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer6" runat="server">
-                                                            <dx:ASPxSpinEdit ID="txtKhachCanTra11" runat="server" Width ="100%" DisplayFormatString="N0" Enabled ="false" >
-                                                            </dx:ASPxSpinEdit>
+                                                            <dx:ASPxTextBox ID="txtKhachCanTra" runat="server" Width="100%"  Font-Names="digital-7" Font-Bold="True" Font-Size="20pt" 
+                                                                HorizontalAlign="Right" DisplayFormatString="N0" ReadOnly="true"  NullText="0"  ForeColor="Red">
+                                                            </dx:ASPxTextBox>
                                                         </dx:LayoutItemNestedControlContainer>
                                                     </LayoutItemNestedControlCollection>
                                                 </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="KHÁCH THANH TOÁN">
+                                                <dx:LayoutItem Caption="KHÁCH THANH TOÁN" VerticalAlign="Middle">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer runat="server">
-                                                            <dx:ASPxSpinEdit ID="txtKhachThanhToan" runat="server"  Width ="100%" DisplayFormatString="N0" >
-                                                            </dx:ASPxSpinEdit>
+                                                            <dx:ASPxTextBox ID="txtKhachThanhToan" runat="server" Width="100%"  Font-Names="digital-7" Font-Bold="True" Font-Size="20pt" 
+                                                                HorizontalAlign="Right" DisplayFormatString="N0"  NullText="0" ForeColor="#0000CC">
+                                                            </dx:ASPxTextBox>
                                                         </dx:LayoutItemNestedControlContainer>
                                                     </LayoutItemNestedControlCollection>
                                                 </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="TIỀN THỒI">
+                                                <dx:LayoutItem Caption="TIỀN THỒI" VerticalAlign="Middle">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer runat="server">
-                                                            <dx:ASPxSpinEdit ID="txtTienThoi" runat="server"  Width ="100%" DisplayFormatString="N0" Enabled ="false" >
-                                                            </dx:ASPxSpinEdit>
+                                                            <dx:ASPxTextBox ID="txtTienThoi" runat="server" Width="100%"  Font-Names="digital-7" Font-Bold="True" Font-Size="20pt" 
+                                                                HorizontalAlign="Right" DisplayFormatString="N0" ReadOnly="true"  NullText="0"  ForeColor="Red">
+                                                            </dx:ASPxTextBox>
                                                         </dx:LayoutItemNestedControlContainer>
                                                     </LayoutItemNestedControlCollection>
                                                 </dx:LayoutItem>

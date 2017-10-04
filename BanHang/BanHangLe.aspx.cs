@@ -586,6 +586,63 @@ namespace BanHang
                 HienThiThongBao("Vui lòng nhập thông tin cần tìm?");
             }
         }
+
+        protected void cmbKyThuat_ItemRequestedByValue(object source, ListEditItemRequestedByValueEventArgs e)
+        {
+            long value = 0;
+            if (e.Value == null || !Int64.TryParse(e.Value.ToString(), out value))
+                return;
+            ASPxComboBox comboBox = (ASPxComboBox)source;
+            sqlKyThuat.SelectCommand = @"SELECT ID,TenKyThuat,DienThoai,DiaChi
+                                        FROM GPM_KyThuat
+                                        WHERE (GPM_KyThuat.ID = @ID)";
+            sqlKyThuat.SelectParameters.Clear();
+            sqlKyThuat.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
+            comboBox.DataSource = sqlKyThuat;
+            comboBox.DataBind();
+        }
+
+        protected void cmbKyThuat_ItemsRequestedByFilterCondition(object source, ListEditItemsRequestedByFilterConditionEventArgs e)
+        {
+            ASPxComboBox comboBox = (ASPxComboBox)source;
+            sqlKyThuat.SelectCommand = @"SELECT ID,TenKyThuat,DienThoai,DiaChi
+                                        FROM (
+	                                            select ID,TenKyThuat, DienThoai,DiaChi, row_number()over(order by ID) as [rn] 
+	                                            FROM GPM_KyThuat
+	                                            WHERE ((TenKyThuat LIKE @TenKyThuat) OR (DienThoai LIKE @DienThoai))  AND (DaXoa = 0)	
+	                                        ) as st 
+                                        where st.[rn] between @startIndex and @endIndex";
+            sqlKyThuat.SelectParameters.Clear();
+            sqlKyThuat.SelectParameters.Add("TenKyThuat", TypeCode.String, string.Format("%{0}%", e.Filter));
+            sqlKyThuat.SelectParameters.Add("DienThoai", TypeCode.String, string.Format("%{0}%", e.Filter));
+
+            sqlKyThuat.SelectParameters.Add("startIndex", TypeCode.Int64, (e.BeginIndex + 1).ToString());
+            sqlKyThuat.SelectParameters.Add("endIndex", TypeCode.Int64, (e.EndIndex + 1).ToString());
+            comboBox.DataSource = sqlKyThuat;
+            comboBox.DataBind();
+        }
+
+        protected void ccbKhachHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ccbKhachHang.Text != "")
+            {
+                int ID = Int32.Parse(ccbKhachHang.Value.ToString());
+                if (ID == 1)//khách lẻ
+                {
+                    cmbKyThuat.Enabled = true;
+                    txtTienSuaXe.Enabled = true;
+                    cmbKyThuat.Text = "";
+                    txtTienSuaXe.Text = "0";
+                }
+                else// #khách lẻ
+                {
+                    cmbKyThuat.Text = "";
+                    txtTienSuaXe.Text = "0";
+                    cmbKyThuat.Enabled = false;
+                    txtTienSuaXe.Enabled = false;
+                }
+            }
+        }
     }
     [Serializable]
     public class HoaDon

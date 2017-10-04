@@ -283,22 +283,22 @@ namespace BanHang {
         protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer2;
         
         /// <summary>
-        /// ASPxComboBox1 control.
+        /// cmbKyThuat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ASPxComboBox1;
+        protected global::DevExpress.Web.ASPxComboBox cmbKyThuat;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer3 control.
+        /// TongTienHang control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer3;
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer TongTienHang;
         
         /// <summary>
         /// txtTongTienHang control.
@@ -307,7 +307,7 @@ namespace BanHang {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit txtTongTienHang;
+        protected global::DevExpress.Web.ASPxTextBox txtTongTienHang;
         
         /// <summary>
         /// LayoutItemNestedControlContainer4 control.
@@ -325,7 +325,7 @@ namespace BanHang {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit txtTienSuaXe;
+        protected global::DevExpress.Web.ASPxTextBox txtTienSuaXe;
         
         /// <summary>
         /// LayoutItemNestedControlContainer5 control.
@@ -343,7 +343,7 @@ namespace BanHang {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit txtTienKyThuat;
+        protected global::DevExpress.Web.ASPxTextBox txtTienKyThuat;
         
         /// <summary>
         /// LayoutItemNestedControlContainer6 control.
@@ -355,13 +355,13 @@ namespace BanHang {
         protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer6;
         
         /// <summary>
-        /// txtKhachCanTra11 control.
+        /// txtKhachCanTra control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit txtKhachCanTra11;
+        protected global::DevExpress.Web.ASPxTextBox txtKhachCanTra;
         
         /// <summary>
         /// txtKhachThanhToan control.
@@ -370,7 +370,7 @@ namespace BanHang {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit txtKhachThanhToan;
+        protected global::DevExpress.Web.ASPxTextBox txtKhachThanhToan;
         
         /// <summary>
         /// txtTienThoi control.
@@ -379,7 +379,7 @@ namespace BanHang {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit txtTienThoi;
+        protected global::DevExpress.Web.ASPxTextBox txtTienThoi;
         
         /// <summary>
         /// btnThanhToan control.
