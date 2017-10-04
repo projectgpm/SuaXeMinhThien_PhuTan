@@ -9,12 +9,12 @@ namespace BanHang.Data
 {
     public class dtDonHangChiNhanh
     {
-        public static string TongSoXuatTrongThang(string NgayBD, string NgayKT, string IDKho)
+        public static string TongSoXuatTrongThang(string NgayBD, string NgayKT)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = "select [IDKho], count(IDKho) as Tong from [GPM_DonHangChiNhanh] where [NgayLap] >= '" + DateTime.Parse(NgayBD).ToString("yyyy-MM-dd hh:mm:ss tt") + "' and [NgayLap] <= '" + DateTime.Parse(NgayKT).ToString("yyyy-MM-dd hh:mm:ss tt") + "' and [IDKho] = '" + IDKho + "' group by IDKho";
+                string cmdText = "select count(ID) as Tong from [GPM_DonDatHang] where [NgayLap] >= '" + DateTime.Parse(NgayBD).ToString("yyyy-MM-dd hh:mm:ss tt") + "' and [NgayLap] <= '" + DateTime.Parse(NgayKT).ToString("yyyy-MM-dd hh:mm:ss tt") + "'";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {

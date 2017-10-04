@@ -9,6 +9,61 @@ namespace BanHang.Data
 {
     public class dtNhaCungCap
     {
+        public DataTable DanhSachSoDonHang(string IDNhaCungCap)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = " SELECT * FROM [GPM_DonDatHang] WHERE IDNhaCungCap = '" + IDNhaCungCap + "' AND TrangThaiCongNo = 0 AND IDNhaCungCap > 0";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    return tb;
+                }
+            }
+        }
+        public static double LayTienThanhToan_IDPhieuNhapKho(string IDPhieuNhapKho)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT TongTien FROM [GPM_DonDatHang] WHERE [ID] = " + IDPhieuNhapKho;
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    if (tb.Rows.Count != 0)
+                    {
+                        DataRow dr = tb.Rows[0];
+                        return Double.Parse(dr["TongTien"].ToString());
+                    }
+                    else return 0;
+                }
+            }
+        }
+        public static double LayCongNo_IDNCC(string IDNCC)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT CongNo FROM [GPM_NhaCungCap] WHERE [ID] = " + IDNCC;
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    if (tb.Rows.Count != 0)
+                    {
+                        DataRow dr = tb.Rows[0];
+                        return Double.Parse(dr["CongNo"].ToString());
+                    }
+                    else return 0;
+                }
+            }
+        }
         public static string Dem_Max()
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))

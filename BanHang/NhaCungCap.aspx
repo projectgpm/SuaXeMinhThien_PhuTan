@@ -1,39 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="NhaCungCap.aspx.cs" Inherits="BanHang.NhaCungCap" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-   <%-- <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="8" Width="10%">
+    <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="8" Width="10%">
         <Items>
             <dx:LayoutItem Caption="" HorizontalAlign="Left">
                 <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                        <dx:ASPxButton ID="btnXuatPDF" runat="server" OnClick="btnXuatPDF_Click" Text="Xuất PDF">
-                            <Image IconID="export_exporttopdf_16x16">
-                            </Image>
-                        </dx:ASPxButton>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="" HorizontalAlign="Left">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                        <dx:ASPxButton ID="btnXuatExcel" runat="server" OnClick="btnXuatExcel_Click" Text="Xuất Excel">
-                            <Image IconID="export_exporttoxls_16x16">
-                            </Image>
-                        </dx:ASPxButton>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="" HorizontalAlign="Left">
-                <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer3" runat="server">
-                        <dx:ASPxButton ID="btnNhapExcel" runat="server" OnClick="btnNhapExcel_Click" Text="Nhập Excel">
-                            <Image IconID="export_exporttoxlsx_16x16gray">
+                        <dx:ASPxButton ID="btnNhapExcel" runat="server" Text="Chi Tiết Công Nợ" PostBackUrl="ChiTietCongNo.aspx">
+                            <Image IconID="filterelements_checkbuttons_32x32">
                             </Image>
                         </dx:ASPxButton>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
             </dx:LayoutItem>
         </Items>
-    </dx:ASPxFormLayout>--%>
+    </dx:ASPxFormLayout>
     <dx:ASPxGridViewExporter ID="XuatDuLieu" runat="server">
     </dx:ASPxGridViewExporter>
     <dx:ASPxGridView ID="gridNhaCungCap" runat="server" AutoGenerateColumns="False" Width="100%" KeyFieldName="ID" OnRowDeleting="gridNhaCungCap_RowDeleting" OnRowInserting="gridNhaCungCap_RowInserting" OnRowUpdating="gridNhaCungCap_RowUpdating" OnInitNewRow="gridNhaCungCap_InitNewRow">
@@ -98,7 +78,7 @@
             </Items>
         </EditFormLayoutProperties>
         <Columns>
-            <dx:GridViewCommandColumn ShowClearFilterButton="True" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="10" Name="chucnang">
+            <dx:GridViewCommandColumn ShowClearFilterButton="True" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="11" Name="chucnang">
             </dx:GridViewCommandColumn>
             <dx:GridViewDataTextColumn Caption="Tên NCC" FieldName="TenNhaCungCap" VisibleIndex="1">
                 <PropertiesTextEdit>
@@ -132,7 +112,7 @@
             <dx:GridViewDataTextColumn Caption="Mã số thuế" FieldName="MaSoThue" VisibleIndex="3">
             </dx:GridViewDataTextColumn>
             
-            <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" VisibleIndex="9">
+            <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" VisibleIndex="10">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Mã NCC" VisibleIndex="0" FieldName="MaNCC">
                 <PropertiesTextEdit>
@@ -141,7 +121,7 @@
                     </ValidationSettings>
                 </PropertiesTextEdit>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Công Nợ" FieldName="CongNo" VisibleIndex="11">
+            <dx:GridViewDataSpinEditColumn Caption="Công Nợ" FieldName="CongNo" VisibleIndex="9">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>

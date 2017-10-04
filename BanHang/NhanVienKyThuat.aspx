@@ -1,5 +1,29 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="NhanVienKyThuat.aspx.cs" Inherits="BanHang.NhanVienKyThuat" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="5">
+        <Items>
+            <dx:LayoutItem Caption="">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer runat="server">
+                        <dx:ASPxButton ID="btnCapNhatTien" runat="server" Text="Cập Nhật Tiền" OnClick="btnCapNhatTien_Click">
+                            <Image IconID="businessobjects_bosale_32x32">
+                            </Image>
+                        </dx:ASPxButton>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+            <dx:LayoutItem Caption="">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer runat="server">
+                        <dx:ASPxButton ID="ASPxFormLayout1_E2" runat="server" Text="Danh Sách Thanh Toán" PostBackUrl="CongNoKyThuat.aspx">
+                            <Image IconID="businessobjects_bofileattachment_32x32">
+                            </Image>
+                        </dx:ASPxButton>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+        </Items>
+    </dx:ASPxFormLayout>
     <dx:ASPxGridView ID="gridDanhSach" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridDanhSach_RowDeleting" OnRowInserting="gridDanhSach_RowInserting" OnRowUpdating="gridDanhSach_RowUpdating">
         <SettingsEditing Mode="PopupEditForm">
         </SettingsEditing>
@@ -94,9 +118,85 @@
             </TitlePanel>
         </Styles>
     </dx:ASPxGridView>
+
      <asp:SqlDataSource ID="SqlChietKhau" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenChietKhau] FROM [GPM_ChietKhau] WHERE ([DaXoa] = @DaXoa)">
         <SelectParameters>
             <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
         </SelectParameters>
 </asp:SqlDataSource>
+    <dx:ASPxPopupControl ID="popup" runat="server" AllowDragging="True" AllowResize="True" 
+         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"  Width="700px"
+         Height="300px" FooterText="Thông tin chi tiết nhập kho"
+        HeaderText="Thông tin cập nhật" ClientInstanceName="popup">
+
+       <ContentCollection>
+<dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+      <dx:ASPxFormLayout ID="ASPxFormLayout2" runat="server" ColCount="2" Width="100%">
+        <Items>
+            <dx:LayoutItem Caption="Chọn Kỹ Thuật" ColSpan="2">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
+                        <dx:ASPxComboBox ID="cmbKyThuat" runat="server" Width="100%" DataSourceID="SqlNhanVienKyThuat" TextField="TenKyThuat" ValueField="ID" AutoPostBack="True" OnSelectedIndexChanged="cmbKyThuat_SelectedIndexChanged">
+                        </dx:ASPxComboBox>
+                        <asp:SqlDataSource ID="SqlNhanVienKyThuat" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenKyThuat] FROM [GPM_KyThuat] WHERE ([DaXoa] = @DaXoa)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+            <dx:LayoutItem Caption="Tổng Tiền Hiện Tại" ColSpan="2">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
+                        <dx:ASPxSpinEdit ID="txtNoHienTai" runat="server" Width="100%" DisplayFormatString="N0" Enabled="False">
+                        </dx:ASPxSpinEdit>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+            <dx:LayoutItem Caption="Số Tiền Thanh Toán" ColSpan="2">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer5" runat="server">
+                        <dx:ASPxSpinEdit ID="txtTienThanhToan" runat="server" Width="100%" DisplayFormatString="N0">
+                        </dx:ASPxSpinEdit>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+            <dx:LayoutItem Caption="Nội Dung" ColSpan="2">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer7" runat="server">
+                        <dx:ASPxTextBox ID="txtNoiDung" runat="server" Width="100%">
+                        </dx:ASPxTextBox>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+            <dx:LayoutItem Caption="Ngày Thanh Toán" ColSpan="2">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer8" runat="server">
+                        <dx:ASPxDateEdit ID="dateNgayThanhToan" runat="server" Width="100%" DisplayFormatString="dd/MM/yyyy" OnInit="dateNgayThanhToan_Init">
+                        </dx:ASPxDateEdit>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+            <dx:LayoutItem Caption="" HorizontalAlign="Right">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer9" runat="server">
+                        <dx:ASPxButton ID="btnCapNhatThanhToan" runat="server" Text="Cập Nhật" OnClick="btnCapNhatThanhToan_Click" style="width: 114px" >
+                        </dx:ASPxButton>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+            <dx:LayoutItem Caption="">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer10" runat="server">
+                        <dx:ASPxButton ID="btnHuy" runat="server" Text="Hủy" OnClick="btnHuy_Click">
+                        </dx:ASPxButton>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+        </Items>
+    </dx:ASPxFormLayout>
+           </dx:PopupControlContentControl>
+           </ContentCollection>
+        </dx:ASPxPopupControl>
 </asp:Content>

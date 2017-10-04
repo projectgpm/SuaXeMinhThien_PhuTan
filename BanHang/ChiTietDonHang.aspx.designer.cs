@@ -10,51 +10,42 @@
 namespace BanHang {
     
     
-    public partial class NhaCungCap {
+    public partial class ChiTietDonHang {
         
         /// <summary>
-        /// ASPxFormLayout1 control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxFormLayout ASPxFormLayout1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer3 control.
+        /// gridChiTiet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer3;
+        protected global::DevExpress.Web.ASPxGridView gridChiTiet;
         
         /// <summary>
-        /// btnNhapExcel control.
+        /// SqlNguyenLieu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnNhapExcel;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlNguyenLieu;
         
         /// <summary>
-        /// XuatDuLieu control.
+        /// SqlDVT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridViewExporter XuatDuLieu;
-        
-        /// <summary>
-        /// gridNhaCungCap control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView gridNhaCungCap;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDVT;
     }
 }

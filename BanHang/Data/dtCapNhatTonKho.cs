@@ -120,12 +120,12 @@ namespace BanHang.Data
                 }
             }
         }
-        public static float GiaBan_Kho1(string IDHangHoa)
+        public static float GiaBan(string IDHangHoa)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = "SELECT GiaBanSauThue FROM [GPM_HangHoa] WHERE [ID] = '" + IDHangHoa + "'";
+                string cmdText = "SELECT GiaBan FROM [GPM_HangHoa] WHERE [ID] = '" + IDHangHoa + "'";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -134,7 +134,7 @@ namespace BanHang.Data
                     if (tb.Rows.Count != 0)
                     {
                         DataRow dr = tb.Rows[0];
-                        return float.Parse(dr["GiaBanSauThue"].ToString());
+                        return float.Parse(dr["GiaBan"].ToString());
                     }
                     else return -1;
                 }
@@ -260,12 +260,12 @@ namespace BanHang.Data
                 }
             }
         }
-        public static float GiaMua_Kho1(string IDHangHoa)
+        public static float GiaMua(string IDHangHoa)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = " SELECT GiaMuaSauThue FROM [GPM_HangHoa] WHERE [ID] = '" + IDHangHoa + "'";
+                string cmdText = " SELECT GiaMua FROM [GPM_HangHoa] WHERE [ID] = '" + IDHangHoa + "'";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -274,7 +274,7 @@ namespace BanHang.Data
                     if (tb.Rows.Count != 0)
                     {
                         DataRow dr = tb.Rows[0];
-                        return float.Parse(dr["GiaMuaSauThue"].ToString());
+                        return float.Parse(dr["GiaMua"].ToString());
                     }
                     else return -1;
                 }

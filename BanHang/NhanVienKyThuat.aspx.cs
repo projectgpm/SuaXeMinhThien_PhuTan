@@ -62,5 +62,68 @@ namespace BanHang
             LoadGrid();
         }
 
+        protected void cmbKyThuat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbKyThuat.Text != "")
+            {
+                txtTienThanhToan.Enabled = true;
+                txtNoHienTai.Text = dtNhanVienKyThuat.LayTongTienKyThuat(cmbKyThuat.Value.ToString()).ToString() ;
+            }
+        }
+
+        protected void dateNgayThanhToan_Init(object sender, EventArgs e)
+        {
+            dateNgayThanhToan.Date = DateTime.Now;
+        }
+
+        protected void btnCapNhatThanhToan_Click(object sender, EventArgs e)
+        {
+            if (cmbKyThuat.Text != ""  && txtTienThanhToan.Text != "")
+            {
+                string IDKyThuat = cmbKyThuat.Value.ToString();
+                double SoTienThanhToan = double.Parse(txtTienThanhToan.Text);
+                string NoiDung = txtNoiDung.Text == null ? "" : txtNoiDung.Text;
+                DateTime NgayThanhToan = DateTime.Parse(dateNgayThanhToan.Text);
+                if (double.Parse(txtNoHienTai.Text.ToString()) < double.Parse(txtTienThanhToan.Text.ToString()))
+                {
+                    txtTienThanhToan.Text = "";
+                    txtTienThanhToan.Focus();
+                    Response.Write("<script language='JavaScript'> alert('Số tiền trả vượt quá số tiền nợ.'); </script>");
+                }
+                else
+                {
+                    data = new dtNhanVienKyThuat();
+                    object ID = data.ThemChiTietCongNo(IDKyThuat, SoTienThanhToan, NoiDung, NgayThanhToan);
+                    if (ID != null)
+                    {
+                        data.CapNhatCongNo(IDKyThuat, SoTienThanhToan);
+                        Response.Redirect("CongNoKyThuat.aspx");
+                    }
+                }
+            }
+            else
+                Response.Write("<script language='JavaScript'> alert('Vui lòng nhập đủ thông tin.'); </script>");
+        }
+
+        protected void btnHuy_Click(object sender, EventArgs e)
+        {
+            cmbKyThuat.Text = "";
+            txtNoHienTai.Text = "";
+            txtTienThanhToan.Text = "";
+            txtNoiDung.Text = "";
+            txtTienThanhToan.Enabled = false;
+            popup.ShowOnPageLoad = false;
+        }
+
+        protected void btnCapNhatTien_Click(object sender, EventArgs e)
+        {
+            cmbKyThuat.Text = "";
+            txtNoHienTai.Text = "";
+            txtTienThanhToan.Text = "";
+            txtNoiDung.Text = "";
+            txtTienThanhToan.Enabled = false;
+            popup.ShowOnPageLoad = true;
+        }
+
     }
 }

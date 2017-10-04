@@ -33,40 +33,9 @@
     <dx:ASPxButton ID="ASPxButton2" runat="server" AutoPostBack="False" ClientVisible="false"  Text="ASPxButton">
             <ClientSideEvents Click="function(s, e){ txtBarCode.Focus();}" />
         </dx:ASPxButton>
-<%--    <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="8" Width="10%">
-        <Items>
-            <dx:LayoutItem Caption="" HorizontalAlign="Left">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                        <dx:ASPxButton ID="XuatFilePDF" runat="server" OnClick="XuatFilePDF_Click" Text="Xuất PDF">
-                            <Image IconID="export_exporttopdf_16x16">
-                            </Image>
-                        </dx:ASPxButton>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="" HorizontalAlign="Left">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                        <dx:ASPxButton ID="btnXuatExcel" runat="server" OnClick="btnXuatExcel_Click" Text="Xuất Excel">
-                            <Image IconID="export_exporttoxls_16x16">
-                            </Image>
-                        </dx:ASPxButton>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-            <dx:LayoutItem Caption="" HorizontalAlign="Left">
-                <LayoutItemNestedControlCollection>
-                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer3" runat="server">
-                        <dx:ASPxButton ID="btnNhapExcel" runat="server" OnClick="btnNhapExcel_Click" Text="Nhập Excel">
-                            <Image IconID="export_exporttoxlsx_16x16gray">
-                            </Image>
-                        </dx:ASPxButton>
-                    </dx:LayoutItemNestedControlContainer>
-                </LayoutItemNestedControlCollection>
-            </dx:LayoutItem>
-        </Items>
-    </dx:ASPxFormLayout>--%>
+    <%-- <ClientSideEvents FilesUploadComplete="function(s, e) {
+	                                if(e.isValid){gridHangHoa.UpdateEdit();}
+                                }" />--%>
     <dx:ASPxGridViewExporter ID="export" runat="server" GridViewID="aspGridViewExport">
     </dx:ASPxGridViewExporter>
     <dx:ASPxButton ID="ASPxButton1" runat="server" AutoPostBack="False" ClientVisible="false"  Text="ASPxButton">
@@ -211,7 +180,7 @@
                 </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Hình Ảnh">
                     <Template>
-                        <dx:ASPxUploadControl ID="ASPxUploadControl1" runat="server" OnFileUploadComplete="ASPxUploadControl1_FileUploadComplete" UploadMode="Auto" Width="100%" ClientInstanceName="upload">
+                        <dx:ASPxUploadControl ID="UpLoadHinhAnh" runat="server" UploadMode="Auto" Width="100%" ClientInstanceName="upload" ViewStateMode="Disabled">
                             <ValidationSettings AllowedFileExtensions=".jpg, .bmp, .jpeg, .png" MaxFileSize="4000000">
                             </ValidationSettings>
                            <%-- <ClientSideEvents FilesUploadComplete="function(s, e) {

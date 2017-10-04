@@ -16,12 +16,12 @@ namespace BanHang
         {
             if (Session["KTDangNhap"] == "GPM")
             {
-                if (dtSetting.LayChucNangCha(Session["IDNhom"].ToString(), 72) == false)
-                    btnDuyet.Enabled = false;
-                if (Int32.Parse(Session["IDNhom"].ToString()) != 3 && Int32.Parse(Session["IDNhom"].ToString()) != 4)
-                {
-                    btnDuyet.Enabled = false;
-                }
+                //if (dtSetting.LayChucNangCha(Session["IDNhom"].ToString(), 72) == false)
+                //    btnDuyet.Enabled = false;
+                //if (Int32.Parse(Session["IDNhom"].ToString()) != 3 && Int32.Parse(Session["IDNhom"].ToString()) != 4)
+                //{
+                //    btnDuyet.Enabled = false;
+                //}
                 
                 string IDPhieuKiemKho = Request.QueryString["IDPhieuKiemKho"];
                 if (IDPhieuKiemKho != null)
@@ -31,11 +31,11 @@ namespace BanHang
                         gridChiTietPhieuKiemKho.Columns["chucnang"].Visible = false;
                         btnDuyet.Enabled = false;
                     }
-                    if (dtKiemKho.LayIDKhoKiemKho(IDPhieuKiemKho) != Int32.Parse(Session["IDKho"].ToString()))
-                    {
-                        gridChiTietPhieuKiemKho.Columns["chucnang"].Visible = false;
-                        btnDuyet.Enabled = false;
-                    }
+                    //if (dtKiemKho.LayIDKhoKiemKho(IDPhieuKiemKho) != Int32.Parse(Session["IDKho"].ToString()))
+                    //{
+                    //    gridChiTietPhieuKiemKho.Columns["chucnang"].Visible = false;
+                    //    btnDuyet.Enabled = false;
+                    //}
 
                     LoadGrid(Int32.Parse(IDPhieuKiemKho.ToString()));
                 }
