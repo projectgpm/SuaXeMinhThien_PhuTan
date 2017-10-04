@@ -80,8 +80,7 @@ namespace BanHang
         }
         public void HuyHoaDon()
         {
-            txtTienThua.Text = "";
-            txtKhachThanhToan.Text = "";
+           
             int indexTabActive = tabControlSoHoaDon.ActiveTabIndex;
             DanhSachHoaDon.RemoveAt(indexTabActive);
             tabControlSoHoaDon.Tabs.RemoveAt(indexTabActive);
@@ -348,17 +347,17 @@ namespace BanHang
 
         protected void txtKhachThanhToan_TextChanged(object sender, EventArgs e)
         {
-            txtTienThua.Text = "";
-            float TienKhachThanhToan;
-            bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
-            if (!isNumeric)
-            {
-                HienThiThongBao("Nhập không đúng số tiền !!"); return;
-            }
-            int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
-            DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
-            DanhSachHoaDon[MaHoaDon].TienThua = TienKhachThanhToan - DanhSachHoaDon[MaHoaDon].TongTien;
-            txtTienThua.Text = DanhSachHoaDon[MaHoaDon].TienThua.ToString();
+            
+            //float TienKhachThanhToan;
+            //bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
+            //if (!isNumeric)
+            //{
+            //    HienThiThongBao("Nhập không đúng số tiền !!"); return;
+            //}
+            //int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
+            //DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
+            //DanhSachHoaDon[MaHoaDon].TienThua = TienKhachThanhToan - DanhSachHoaDon[MaHoaDon].TongTien;
+            //txtTienThua.Text = DanhSachHoaDon[MaHoaDon].TienThua.ToString();
         }
 
         protected void BtnXoaHang_Click(object sender, EventArgs e)
@@ -405,30 +404,30 @@ namespace BanHang
 
         protected void btnThanhToan_Click(object sender, EventArgs e)
         {
-            int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
-            float TienKhachThanhToan;
-            bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
-            if (!isNumeric)
-            {
-                HienThiThongBao("Nhập không đúng số tiền !!"); return;
-            }
-            if (TienKhachThanhToan < DanhSachHoaDon[MaHoaDon].KhachCanTra)
-            {
-                HienThiThongBao("Thanh toán chưa đủ số tiền !!"); return;
-            }
-            DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
-            dtBanHangLe dt = new dtBanHangLe();
-            string IDKho = Session["IDKho"].ToString();
-            string IDNhanVien = Session["IDThuNgan"].ToString();
-            string IDKhachHang = "1";
-            if (ccbKhachHang.Value != null)
-                IDKhachHang = ccbKhachHang.Value.ToString();
-            object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang, DanhSachHoaDon[MaHoaDon]);
-            HuyHoaDon();
-            ccbKhachHang.Text = "";
-            string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
-            ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
-            txtBarcode.Focus();
+            //int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
+            //float TienKhachThanhToan;
+            //bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
+            //if (!isNumeric)
+            //{
+            //    HienThiThongBao("Nhập không đúng số tiền !!"); return;
+            //}
+            //if (TienKhachThanhToan < DanhSachHoaDon[MaHoaDon].KhachCanTra)
+            //{
+            //    HienThiThongBao("Thanh toán chưa đủ số tiền !!"); return;
+            //}
+            //DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
+            //dtBanHangLe dt = new dtBanHangLe();
+            //string IDKho = Session["IDKho"].ToString();
+            //string IDNhanVien = Session["IDThuNgan"].ToString();
+            //string IDKhachHang = "1";
+            //if (ccbKhachHang.Value != null)
+            //    IDKhachHang = ccbKhachHang.Value.ToString();
+            //object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang, DanhSachHoaDon[MaHoaDon]);
+            //HuyHoaDon();
+            //ccbKhachHang.Text = "";
+            //string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
+            //ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
+            //txtBarcode.Focus();
         }
 
         protected void btnHuyKhachHang_Click(object sender, EventArgs e)
