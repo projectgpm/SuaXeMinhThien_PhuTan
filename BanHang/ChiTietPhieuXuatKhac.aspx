@@ -9,20 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="6">
-            <Items>
-                <dx:LayoutItem Caption="">
-                    <LayoutItemNestedControlCollection>
-                        <dx:LayoutItemNestedControlContainer runat="server">
-                            <dx:ASPxButton ID="btnDuyetPhieuXuat" runat="server" OnClick="btnDuyetPhieuXuat_Click" Text="Duyệt Phiếu Xuất">
-                                <Image IconID="actions_apply_32x32">
-                                </Image>
-                            </dx:ASPxButton>
-                        </dx:LayoutItemNestedControlContainer>
-                    </LayoutItemNestedControlCollection>
-                </dx:LayoutItem>
-            </Items>
-        </dx:ASPxFormLayout>
+        
     <dx:ASPxGridView runat="server" AutoGenerateColumns="False" Width="100%" ID="gridChiTietPhieuXuatKhac" KeyFieldName="ID">
         <SettingsEditing Mode="PopupEditForm">
         </SettingsEditing>
@@ -77,8 +64,6 @@
         </PropertiesComboBox>
     </dx:GridViewDataComboBoxColumn>
     
-    <dx:GridViewDataTextColumn Caption="Trọng Lượng" FieldName="TrongLuong" VisibleIndex="3">
-    </dx:GridViewDataTextColumn>
     <dx:GridViewDataTextColumn Caption="Ghi Chú" FieldName="GhiChu" VisibleIndex="6">
     </dx:GridViewDataTextColumn>
     <dx:GridViewDataSpinEditColumn Caption="Số Lượng Xuất" FieldName="SoLuongXuat" VisibleIndex="5">

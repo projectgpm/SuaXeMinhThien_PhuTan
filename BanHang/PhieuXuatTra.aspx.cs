@@ -22,23 +22,15 @@ namespace BanHang
             }
             else
             {
-                if (dtSetting.LayChucNangCha(Session["IDNhom"].ToString(), 69) == false)
-                    Response.Redirect("Default.aspx");
+                //if (dtSetting.LayChucNangCha(Session["IDNhom"].ToString(), 69) == false)
+                //    Response.Redirect("Default.aspx");
                 if (!IsPostBack)
                 {
-                    DateTime date = DateTime.Now;
-                    int thang = date.Month;
-                    int year = date.Year;
-                    string ngayBD = year + "-" + thang + "-01 00:00:00.000";
-                    string ngayKT = year + "-" + thang + "-" + dtSetting.tinhSoNgay(thang, year) + " 00:00:00.000";
-                    //Random ran = new Random();
-                    IDPhieuXuatTra_Temp.Value = Session["IDNhanVien"].ToString();// ran.Next(100000, 999999).ToString();
-                    cmbKho.Text = Session["IDKho"].ToString();
+                    IDPhieuXuatTra_Temp.Value = Session["IDNhanVien"].ToString();
                     txtNguoiLapPhieu.Text = Session["TenDangNhap"].ToString();
-                    txtSoDonXuat.Text = (dtSetting.LayMaKho(Session["IDKho"].ToString()) + "-" + dtPhieuXuatTra.TongSoXuatTrongThang(ngayBD, ngayKT, Session["IDKho"].ToString()) + "-" + (DateTime.Now.ToString("ddMMyyyy")));
+                    txtSoDonXuat.Text = DateTime.Now.ToString("ddMMyyyy-hhmmss");
                 }
                 LoadGrid(IDPhieuXuatTra_Temp.Value.ToString());
-
             }
         }
        
@@ -54,6 +46,8 @@ namespace BanHang
                 txtTonKho.Text = dtCapNhatTonKho.SoLuong_TonKho(cmbHangHoa.Value.ToString(),Session["IDKho"].ToString())+"";
                 txtSoLuong.Text = "0";
                 cmbDonViTinh.Value = dtHangHoa.LayIDDonViTinh(cmbHangHoa.Value.ToString());
+                txtDonGia.Text = dtHangHoa.GiaBan0(cmbHangHoa.Value.ToString(), Session["IDKho"].ToString()) + "";
+                
             }  
         }
 
@@ -67,7 +61,6 @@ namespace BanHang
                     int SLTon = Int32.Parse(txtTonKho.Text);
                     string IDHangHoa = cmbHangHoa.Value.ToString();
                     string IDPhieuXuatTra = IDPhieuXuatTra_Temp.Value.ToString();
-                    string TrongLuong = dtHangHoa.LayTrongLuong(IDHangHoa).ToString();
                     string GhiChu = txtGhiChuHH.Text == null ? "" : txtGhiChuHH.Text.ToString();
                     string TonKho = txtTonKho.Text.ToString();
                     if (dtSetting.KT_ChuyenAm() == 0)
@@ -84,7 +77,7 @@ namespace BanHang
                             if (db.Rows.Count == 0)
                             {
                                 data = new dtPhieuXuatTra();
-                                data.ThemChiTietPhieuXuatTra_Temp(IDPhieuXuatTra, IDHangHoa, cmbDonViTinh.Value.ToString(), SoLuong, TrongLuong, GhiChu, dtHangHoa.LayMaHang(IDHangHoa), TonKho);
+                                data.ThemChiTietPhieuXuatTra_Temp(IDPhieuXuatTra, IDHangHoa, cmbDonViTinh.Value.ToString(), SoLuong, GhiChu, dtHangHoa.LayMaHang(IDHangHoa), TonKho);
                                 Clear();
                             }
                             else
@@ -104,7 +97,7 @@ namespace BanHang
                         if (db.Rows.Count == 0)
                         {
                             data = new dtPhieuXuatTra();
-                            data.ThemChiTietPhieuXuatTra_Temp(IDPhieuXuatTra, IDHangHoa, cmbDonViTinh.Value.ToString(), SoLuong, TrongLuong, GhiChu, dtHangHoa.LayMaHang(IDHangHoa), TonKho);
+                            data.ThemChiTietPhieuXuatTra_Temp(IDPhieuXuatTra, IDHangHoa, cmbDonViTinh.Value.ToString(), SoLuong, GhiChu, dtHangHoa.LayMaHang(IDHangHoa), TonKho);
                             Clear();
                         }
                         else
@@ -164,20 +157,7 @@ namespace BanHang
                     DateTime NgayLapPhieu = DateTime.Parse(cmbNgayLapPhieu.Text);
                     DateTime NgayXuat = DateTime.Parse(txtNgayXuat.Text);
                     string GhiChu = txtGhiChu.Text == null ? "" : txtGhiChu.Text.ToString();
-                    string ChungTu = "";
-                    if (Page.IsValid && uploadfile.HasFile)
-                    {
-                        ChungTu = "ChungTu/" + DateTime.Now.ToString("ddMMyyyy_hhmmss_tt_") + uploadfile.FileName;
-                        string filePath = MapPath(ChungTu);
-                        uploadfile.SaveAs(filePath);
-                    }
-                    float TongTrongLuong = 0;
-                    foreach (DataRow dr in db.Rows)
-                    {
-                        float TrongLuong = float.Parse(dr["TrongLuong"].ToString());
-                        int SL = Int32.Parse(dr["SoLuong"].ToString());
-                        TongTrongLuong = TongTrongLuong + (TrongLuong * SL);
-                    }
+
                     data = new dtPhieuXuatTra();
                     object ID = data.ThemPhieuXuatTra_Temp(SoDonXuat, IDKhoLap, IDNhanVien, NgayLapPhieu, NgayXuat, TongTrongLuong.ToString(), GhiChu, IDNhaCungCap, ChungTu);
                     if (ID != null)

@@ -21,22 +21,13 @@ namespace BanHang
             }
             else
             {
-                if (dtSetting.LayChucNangCha(Session["IDNhom"].ToString(), 70) == false)
-                    Response.Redirect("Default.aspx");
+                //if (dtSetting.LayChucNangCha(Session["IDNhom"].ToString(), 70) == false)
+                //    Response.Redirect("Default.aspx");
                 if (!IsPostBack)
                 {
-
-                    DateTime date = DateTime.Now;
-                    int thang = date.Month;
-                    int year = date.Year;
-                    string ngayBD = year + "-" + thang + "-01 00:00:00.000";
-                    string ngayKT = year + "-" + thang + "-" + dtSetting.tinhSoNgay(thang, year) + " 00:00:00.000";
-
-                    //Random ran = new Random();
-                    IDPhieuXuatKhac_Temp.Value = Session["IDNhanVien"].ToString();// ran.Next(100000, 999999).ToString();
-                    txtSoDonXuat.Text = (dtSetting.LayMaKho(Session["IDKho"].ToString()) + "-" + dtPhieuXuatKhac.TongSoXuatTrongThang(ngayBD, ngayKT, Session["IDKho"].ToString()) + "-" + (DateTime.Now.ToString("ddMMyyyy")));
+                    IDPhieuXuatKhac_Temp.Value = Session["IDNhanVien"].ToString();
+                    txtSoDonXuat.Text = DateTime.Now.ToString("ddMMyyyy-hhmmss");
                     cmbNguoiLapPhieu.Text = Session["IDNhanVien"].ToString();
-                    cmbKho.Text = Session["IDKho"].ToString();
                 }
                 LoadGrid(IDPhieuXuatKhac_Temp.Value.ToString());
             }
@@ -49,7 +40,6 @@ namespace BanHang
             txtTonKho.Text = "";
             cmbDonViTinh.Text = "";
             txtGhiChuHH.Text = "";
-          
         }
         protected void cmbNgayLapPhieu_Init(object sender, EventArgs e)
         {
@@ -78,7 +68,6 @@ namespace BanHang
                     string IDPhieuXuatKhac = IDPhieuXuatKhac_Temp.Value.ToString();
                     string MaHang = dtHangHoa.LayMaHang(IDHangHoa);
                     string IDDonViTinh = dtHangHoa.LayIDDonViTinh(IDHangHoa);
-                    string TrongLuong = dtHangHoa.LayTrongLuong(IDHangHoa).ToString();
                     string TonKho = txtTonKho.Text.ToString();
                     string GhiChuHH = txtGhiChuHH.Text == null ? "" : txtGhiChuHH.Text.ToString();
                     if (dtSetting.KT_ChuyenAm() == 0)
@@ -94,7 +83,7 @@ namespace BanHang
                             if (db.Rows.Count == 0)
                             {
                                 data = new dtPhieuXuatKhac();
-                                data.ThemPhieuXuatKhac_Temp(IDPhieuXuatKhac, MaHang, IDHangHoa, IDDonViTinh, TrongLuong, TonKho, SoLuong.ToString(), GhiChuHH);
+                                data.ThemPhieuXuatKhac_Temp(IDPhieuXuatKhac, MaHang, IDHangHoa, IDDonViTinh, TonKho, SoLuong.ToString(), GhiChuHH);
                                 Clear();
                             }
                             else
@@ -112,7 +101,7 @@ namespace BanHang
                         if (db.Rows.Count == 0)
                         {
                             data = new dtPhieuXuatKhac();
-                            data.ThemPhieuXuatKhac_Temp(IDPhieuXuatKhac, MaHang, IDHangHoa, IDDonViTinh, TrongLuong, TonKho, SoLuong.ToString(), GhiChuHH);
+                            data.ThemPhieuXuatKhac_Temp(IDPhieuXuatKhac, MaHang, IDHangHoa, IDDonViTinh, TonKho, SoLuong.ToString(), GhiChuHH);
                             Clear();
                         }
                         else
@@ -166,27 +155,12 @@ namespace BanHang
                 {
                     string IDNguoiLapPhieu = cmbNguoiLapPhieu.Value.ToString();
                     DateTime NgayLapPhieu = DateTime.Parse(cmbNgayLapPhieu.Text.ToString());
-                    string IDKho = Session["IDKho"].ToString();
                     string IDLyDoXuat = cmbLyDoXuat.Value.ToString();
                     string GhiChu = txtGhiChu == null ? "" : txtGhiChu.Text.ToString();
                     string SoDonXuat = txtSoDonXuat.Text.ToString();
                     string IDNhanVien = Session["IDNhanVien"].ToString();
-                    string ChungTu = "";
-                    if (Page.IsValid && uploadfile.HasFile)
-                    {
-                        ChungTu = "ChungTu/" + DateTime.Now.ToString("ddMMyyyy_hhmmss_tt_") + uploadfile.FileName;
-                        string filePath = MapPath(ChungTu);
-                        uploadfile.SaveAs(filePath);
-                    }
-                    float TongTrongLuong = 0;
-                    foreach (DataRow dr in db.Rows)
-                    {
-                        float TrongLuong = float.Parse(dr["TrongLuong"].ToString());
-                        int SL = Int32.Parse(dr["SoLuongXuat"].ToString());
-                        TongTrongLuong = TongTrongLuong + (TrongLuong * SL);
-                    }
                     data = new dtPhieuXuatKhac();
-                    object ID = data.ThemPhieuXuatKhac(IDKho, IDNhanVien, IDLyDoXuat, GhiChu, NgayLapPhieu, SoDonXuat, ChungTu, TongTrongLuong.ToString());
+                    object ID = data.ThemPhieuXuatKhac(IDNhanVien, IDLyDoXuat, GhiChu, NgayLapPhieu, SoDonXuat);
                     if (ID != null)
                     {
                         foreach (DataRow dr in db.Rows)
@@ -194,21 +168,21 @@ namespace BanHang
                             string MaHang = dr["MaHang"].ToString();
                             string IDHangHoa = dr["IDHangHoa"].ToString();
                             string IDDonViTinh = dr["IDDonViTinh"].ToString();
-                            string TrongLuong = dr["TrongLuong"].ToString();
                             string TonKho = dr["TonKho"].ToString();
                             string SoLuongXuat = dr["SoLuongXuat"].ToString();
                             string GhiChuHH = dr["GhiChu"].ToString();
                             data = new dtPhieuXuatKhac();
-                            data.ThemChiTietPhieuXuatKhac(ID, MaHang, IDHangHoa, IDDonViTinh, TrongLuong, TonKho, SoLuongXuat, GhiChuHH);
+                            data.ThemChiTietPhieuXuatKhac(ID, MaHang, IDHangHoa, IDDonViTinh, TonKho, SoLuongXuat, GhiChuHH);
                            // dtLichSuKho.ThemLichSu(IDHangHoa, Session["IDNhanVien"].ToString(), SoLuong, "Phiếu xuất khác", Session["IDKho"].ToString());
                            // dtLichSuKho.ThemLichSuXuat(IDHangHoa, Session["IDNhanVien"].ToString(), SoLuong, Session["IDKho"].ToString());
 
                             // xuất khác qua giám đốc duyệt
-                            //object TheKho = dtTheKho.ThemTheKho(SoDonXuat, "Phiếu xuất khác ", "0", SoLuongXuat, (Int32.Parse(dtCapNhatTonKho.SoLuong_TonKho(IDHangHoa, Session["IDKho"].ToString()).ToString()) - Int32.Parse(SoLuongXuat)).ToString(), Session["IDNhanVien"].ToString(), Session["IDKho"].ToString(), IDHangHoa);
-                            //if (TheKho != null)
-                            //{
-                            //    dtCapNhatTonKho.TruTonKho(IDHangHoa, SoLuongXuat, Session["IDKho"].ToString());
-                            //}
+                           // object TheKho = dtTheKho.ThemTheKho(SoDonXuat, "Phiếu xuất khác ", "0", "", (Int32.Parse(dtCapNhatTonKho.SoLuong_TonKho(IDHangHoa, Session["IDKho"].ToString()).ToString()) - Int32.Parse(SoLuongXuat)).ToString(), Session["IDNhanVien"].ToString(), Session["IDKho"].ToString(), IDHangHoa, "Xuất", SoLuongXuat, "0", "0");
+                           // if (TheKho != null)
+                           // {
+                                dtCapNhatTonKho.TruTonKho(IDHangHoa, SoLuongXuat, Session["IDKho"].ToString());
+                           // }
+                            
                         }
                         dtLichSuTruyCap.ThemLichSu(Session["IDNhanVien"].ToString(), Session["IDNhom"].ToString(), "Phiếu Xuất Khác", Session["IDKho"].ToString(), "Nhập xuất tồn", "Thêm");
                         data = new dtPhieuXuatKhac();
@@ -246,12 +220,12 @@ namespace BanHang
 	                                        select GPM_HangHoa.ID, GPM_HangHoa.MaHang, GPM_HangHoa.TenHangHoa,GPM_DonViTinh.TenDonViTinh, 
 	                                        row_number()over(order by GPM_HangHoa.MaHang) as [rn] 
 	                                        FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh           
-	                                        WHERE (GPM_HangHoa.MaHang LIKE @MaHang) AND (GPM_HangHoa.DaXoa = 0) AND  GPM_HangHoa.IDTrangThaiHang < 5
+	                                        WHERE (GPM_HangHoa.MaHang LIKE @MaHang OR GPM_HangHoa.TenHangHoa LIKE @TenHang) AND (GPM_HangHoa.DaXoa = 0) 
 	                                        ) as st 
                                         where st.[rn] between @startIndex and @endIndex";
 
             sqlHangHoa.SelectParameters.Clear();
-            // dsHangHoa.SelectParameters.Add("TenHang", TypeCode.String, string.Format("%{0}%", e.Filter));
+            sqlHangHoa.SelectParameters.Add("TenHang", TypeCode.String, string.Format("%{0}%", e.Filter));
             sqlHangHoa.SelectParameters.Add("MaHang", TypeCode.String, string.Format("%{0}%", e.Filter));
             sqlHangHoa.SelectParameters.Add("IDKho", TypeCode.Int32, Session["IDKho"].ToString());
             sqlHangHoa.SelectParameters.Add("startIndex", TypeCode.Int64, (e.BeginIndex + 1).ToString());
@@ -268,7 +242,7 @@ namespace BanHang
             ASPxComboBox comboBox = (ASPxComboBox)source;
             sqlHangHoa.SelectCommand = @"SELECT GPM_HangHoa.ID, GPM_HangHoa.MaHang, GPM_HangHoa.TenHangHoa, GPM_DonViTinh.TenDonViTinh 
                                         FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh
-                                        WHERE (GPM_HangHoa.ID = @ID) AND  (GPM_HangHoa.IDTrangThaiHang < 5 )";
+                                        WHERE (GPM_HangHoa.ID = @ID)";
             sqlHangHoa.SelectParameters.Clear();
             sqlHangHoa.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
             comboBox.DataSource = sqlHangHoa;

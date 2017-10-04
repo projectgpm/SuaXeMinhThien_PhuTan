@@ -77,14 +77,6 @@
             </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataTextColumn Caption="Số Đơn Xuất" FieldName="SoDonXuat" VisibleIndex="1">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Trạng Thái" FieldName="TrangThai" VisibleIndex="8">
-                <PropertiesComboBox>
-                    <Items>
-                        <dx:ListEditItem Text="Chưa Duyệt" Value="0" />
-                        <dx:ListEditItem Text="Đã Duyệt" Value="1" />
-                    </Items>
-                </PropertiesComboBox>
-            </dx:GridViewDataComboBoxColumn>
         </Columns>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">

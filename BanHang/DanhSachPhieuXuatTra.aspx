@@ -68,10 +68,6 @@
                 </DataItemTemplate>
                 <HeaderStyle Wrap="True" />
             </dx:GridViewDataButtonEditColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Chi Nhánh" FieldName="IDKhoLap" VisibleIndex="0">
-                <PropertiesComboBox DataSourceID="sqlKhoHang" TextField="TenCuaHang" ValueField="ID">
-                </PropertiesComboBox>
-            </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataComboBoxColumn Caption="Người Lập Phiếu" FieldName="IDNhanVien" VisibleIndex="3">
                 <PropertiesComboBox DataSourceID="SqlNhanVien" TextField="TenNguoiDung" ValueField="ID">
                 </PropertiesComboBox>
@@ -82,13 +78,6 @@
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy">
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataHyperLinkColumn Caption="Chứng Từ" FieldName="ChungTu" VisibleIndex="7">
-                 <PropertiesHyperLinkEdit ImageUrl="image/download.png" ImageWidth="90" ImageHeight="60"></PropertiesHyperLinkEdit>     
-            </dx:GridViewDataHyperLinkColumn>
-            <dx:GridViewDataTextColumn Caption="Tổng Trọng Lượng" FieldName="TongTrongLuong" VisibleIndex="6">
-                <PropertiesTextEdit DisplayFormatString="{0} KG">
-                </PropertiesTextEdit>
-            </dx:GridViewDataTextColumn>
         </Columns>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">
@@ -111,12 +100,6 @@
                     <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
                 </SelectParameters>
             </asp:SqlDataSource>
-
-    <asp:SqlDataSource ID="sqlKhoHang" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenCuaHang] FROM [GPM_Kho] WHERE ([DaXoa] = @DaXoa)">
-        <SelectParameters>
-            <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
-        </SelectParameters>
-    </asp:SqlDataSource>
 
     <%--popup chi tiet don hang--%>
      <dx:ASPxPopupControl ID="popup" runat="server" AllowDragging="True" AllowResize="True" 
