@@ -29,7 +29,7 @@ namespace BanHang
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["KTBanLe"] == "GPMBanLe")
+            if (Session["KTDangNhap"] == "GPM")
             {
                 //if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
                 //{
@@ -364,7 +364,7 @@ namespace BanHang
                     }
                     double TienChietKhau = TienHeThong * TyLeChietKhauKyThuat / (float)100;
                     double TongThucNhan = TienChietKhau + TienHuong;// cộng tiền vào công nợ kỹ thuật
-                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), TongThucNhan.ToString(), "0", "0", "0", TyLeChietKhauKyThuat.ToString());
+                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), TongThucNhan.ToString(), "0", "0", "0", TyLeChietKhauKyThuat.ToString(),"1","0","0");
                     HuyHoaDon();
                     ccbKhachHang.Text = "";
                     cmbKyThuat.Text = "";
@@ -376,7 +376,7 @@ namespace BanHang
                 { 
                     //không có kỹ thuật, CK 0%// 
                     // không cộng tổng tiền cho kỹ thuật
-                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", "0", "0", "0", "0");
+                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", "0", "0", "0", "0","1","0","0");
                     HuyHoaDon();
                     ccbKhachHang.Text = "";
                     cmbKyThuat.Text = "";
@@ -389,19 +389,18 @@ namespace BanHang
             {
                 // tính chiết khấu khách sỉ
                 int TyLeChietKhauKhachHang = dtKhachHang.TyLeChietKhauKhachHang(IDKhachHang.ToString());
-                //object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon]);
-                //HuyHoaDon();
-                //ccbKhachHang.Text = "";
-                //string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
-                //ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
-                //txtBarcode.Focus();
+                // nếu tiền chiết khấu lưu trong hóa đơn, tổng tiền còn lại thì cập nhật vào công nợ khách hàng
+                double CongNoCu = dtKhachHang.LayCongNoCuKhachHang(IDKhachHang.ToString());
+                double TongTienKhachHang = DanhSachHoaDon[MaHoaDon].KhachThanhToan - DanhSachHoaDon[MaHoaDon].KhachCanTra;//
+                double ChietKhauKhachHang = DanhSachHoaDon[MaHoaDon].TongTien * (TyLeChietKhauKhachHang / (float)100);
+                object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", ChietKhauKhachHang.ToString(), (TongTienKhachHang * -1).ToString(), TyLeChietKhauKhachHang.ToString(), "0", "0", CongNoCu.ToString(), (CongNoCu + (TongTienKhachHang * -1)).ToString());
+                HuyHoaDon();
+                ccbKhachHang.Text = "";
+                cmbKyThuat.Text = "";
+                string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
+                ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
+                txtBarcode.Focus();
             }
-            //object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang, DanhSachHoaDon[MaHoaDon]);
-            //HuyHoaDon();
-            //ccbKhachHang.Text = "";
-            //string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
-            //ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
-            //txtBarcode.Focus();
         }
       
         protected void btnHuyKhachHang_Click(object sender, EventArgs e)

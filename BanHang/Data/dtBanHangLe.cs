@@ -221,7 +221,7 @@ namespace BanHang.Data
             //}
         }
 
-        public object InsertHoaDon(string IDKho, string IDNhanVien, string IDKhachHang, HoaDon hoaDon, string IDKyThuat, string TienChietKhauKyThuat, string TienChietKhauKhachHang, string TienCongNoKhachHang, string TyLeChietKhauKhachHang, string TyLeChietKhauKyThuat)
+        public object InsertHoaDon(string IDKho, string IDNhanVien, string IDKhachHang, HoaDon hoaDon, string IDKyThuat, string TienChietKhauKyThuat, string TienChietKhauKhachHang, string TienCongNoKhachHang, string TyLeChietKhauKhachHang, string TyLeChietKhauKyThuat, string TrangThaiCongNoKhachHang, string CongNoCuKhachHang, string CongNoMoiKhachHang)
         {
             object IDHoaDon = null;
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
@@ -248,9 +248,9 @@ namespace BanHang.Data
                     }
                     if (MaHoaDon != null)
                     {
-                        string InsertHoaDon = "INSERT INTO [GPM_HoaDon] ([IDKho], [IDKhachHang],[IDNhanVien],[NgayBan],[SoLuongHang],[TongTien],[GiamGia],[KhachCanTra],[KhachThanhToan], [MaHoaDon],[IDKyThuat],[TienChietKhauKyThuat],[TienChietKhauKhachHang],[TyLeChietKhauKhachHang],[TyLeChietKhauKyThuat],[TienSuaXe]) " +
+                        string InsertHoaDon = "INSERT INTO [GPM_HoaDon] ([IDKho], [IDKhachHang],[IDNhanVien],[NgayBan],[SoLuongHang],[TongTien],[GiamGia],[KhachCanTra],[KhachThanhToan], [MaHoaDon],[IDKyThuat],[TienChietKhauKyThuat],[TienChietKhauKhachHang],[TyLeChietKhauKhachHang],[TyLeChietKhauKyThuat],[TienSuaXe],[TrangThaiCongNoKhachHang],[CongNoCuKhachHang]) " +
                                               "OUTPUT INSERTED.ID " +
-                                              "VALUES (@IDKho, @IDKhachHang, @IDNhanVien, getdate(), @SoLuongHang, @TongTien, @GiamGia, @KhachCanTra, @KhachThanhToan, @MaHoaDon,@IDKyThuat,@TienChietKhauKyThuat,@TienChietKhauKhachHang,@TyLeChietKhauKhachHang,@TyLeChietKhauKyThuat,@TienSuaXe)";
+                                              "VALUES (@IDKho, @IDKhachHang, @IDNhanVien, getdate(), @SoLuongHang, @TongTien, @GiamGia, @KhachCanTra, @KhachThanhToan, @MaHoaDon,@IDKyThuat,@TienChietKhauKyThuat,@TienChietKhauKhachHang,@TyLeChietKhauKhachHang,@TyLeChietKhauKyThuat,@TienSuaXe,@TrangThaiCongNoKhachHang,@CongNoCuKhachHang)";
                         using (SqlCommand cmd = new SqlCommand(InsertHoaDon, con, trans))
                         {
                             cmd.Parameters.AddWithValue("@IDKho", IDKho);
@@ -268,6 +268,9 @@ namespace BanHang.Data
                             cmd.Parameters.AddWithValue("@TyLeChietKhauKyThuat", TyLeChietKhauKyThuat);
                             cmd.Parameters.AddWithValue("@TyLeChietKhauKhachHang", TyLeChietKhauKhachHang);
                             cmd.Parameters.AddWithValue("@TienSuaXe", hoaDon.TienSuaXe);
+                            cmd.Parameters.AddWithValue("@TrangThaiCongNoKhachHang", TrangThaiCongNoKhachHang);
+                            cmd.Parameters.AddWithValue("@CongNoCuKhachHang", CongNoCuKhachHang);
+                            cmd.Parameters.AddWithValue("@CongNoMoiKhachHang", CongNoMoiKhachHang);
                             IDHoaDon = cmd.ExecuteScalar();
                         }
                         if (IDHoaDon != null)

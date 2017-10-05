@@ -361,7 +361,7 @@
                                             </Items>
                                             <Paddings Padding="0px" />
                                         </dx:ASPxFormLayout>  
-                                        <dx:ASPxButton ID="btnThanhToan" runat="server" Text="THANH TOÁN" 
+                                        <dx:ASPxButton ID="btnThanhToan" runat="server" Text="IN PHIẾU" 
                                             EnableTheming="False" Font-Bold="True" Font-Names="Courier New" 
                                             Font-Size="25pt" Height="50px" BackColor="#33CCFF" Native="True" 
                                             OnClick="btnThanhToan_Click">                                    

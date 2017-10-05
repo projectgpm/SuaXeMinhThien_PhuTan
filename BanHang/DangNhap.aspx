@@ -24,9 +24,6 @@
             <label>Mật Khẩu</label>
           </div>
    
-      <button id="btnDangNhapBanHang"  class="button buttonBlue" runat="server"  onserverclick="btnDangNhapBanHang_Click">Bán Hàng
-        <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-      </button>
         <button id="btnDangNhapQuanLy" class="button buttonBlue" runat="server"  onserverclick="btnDangNhapQuanLy_Click">Quản Lý
         <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
       </button>
