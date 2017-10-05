@@ -101,7 +101,7 @@
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
             </dx:LayoutItem>
-            <dx:LayoutItem Caption="" HorizontalAlign="Right">
+            <dx:LayoutItem Caption="" HorizontalAlign="Center">
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer runat="server">
                         <dx:ASPxButton ID="btnThanhToan" runat="server" OnClick="btnThanhToan_Click" Text="Thanh Toán Chiết Khấu">
@@ -111,7 +111,7 @@
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>
             </dx:LayoutItem>
-            <dx:LayoutItem Caption="">
+            <dx:LayoutItem Caption="" HorizontalAlign="Left">
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer runat="server">
                         <dx:ASPxButton ID="ASPxFormLayout2_E2" runat="server" PostBackUrl="KhachHang.aspx" Text="Hủy Bỏ">
