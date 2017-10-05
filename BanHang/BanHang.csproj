@@ -99,6 +99,7 @@
     <Content Include="ChietKhau.aspx" />
     <Content Include="ChiNhanhDatHang.aspx" />
     <Content Include="ChiTietCongNo.aspx" />
+    <Content Include="ChiTietCongNoKhachHang.aspx" />
     <Content Include="ChiTietDonHang.aspx" />
     <Content Include="ChiTietHangHoaTrongKe.aspx" />
     <Content Include="ChiTietHoaDonDaIn.aspx" />
@@ -106,6 +107,7 @@
     <Content Include="ChiTietPhieuKiemKho.aspx" />
     <Content Include="ChiTietPhieuXuatKhac.aspx" />
     <Content Include="ChiTietPhieuXuatTra.aspx" />
+    <Content Include="ChiTietThanhToanChietKhau.aspx" />
     <Content Include="CongNoKyThuat.aspx" />
     <Content Include="Content\Images\AquaHeader.jpg" />
     <Content Include="Content\Images\BlackGlassHeader.jpg" />
@@ -184,6 +186,7 @@
     <Content Include="Root.master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ThanhToanChietKhau.aspx" />
     <Content Include="ThayDoiMatKhau.aspx" />
     <Content Include="TheKho.aspx" />
     <Content Include="TheKho_In.aspx" />
@@ -271,6 +274,13 @@
     <Compile Include="ChiTietCongNo.aspx.designer.cs">
       <DependentUpon>ChiTietCongNo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChiTietCongNoKhachHang.aspx.cs">
+      <DependentUpon>ChiTietCongNoKhachHang.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChiTietCongNoKhachHang.aspx.designer.cs">
+      <DependentUpon>ChiTietCongNoKhachHang.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChiTietDonHang.aspx.cs">
       <DependentUpon>ChiTietDonHang.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -319,6 +329,13 @@
     </Compile>
     <Compile Include="ChiTietPhieuXuatTra.aspx.designer.cs">
       <DependentUpon>ChiTietPhieuXuatTra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChiTietThanhToanChietKhau.aspx.cs">
+      <DependentUpon>ChiTietThanhToanChietKhau.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChiTietThanhToanChietKhau.aspx.designer.cs">
+      <DependentUpon>ChiTietThanhToanChietKhau.aspx</DependentUpon>
     </Compile>
     <Compile Include="CongNoKyThuat.aspx.cs">
       <DependentUpon>CongNoKyThuat.aspx</DependentUpon>
@@ -431,6 +448,7 @@
     <Compile Include="Data\dtPhieuXuatTra.cs" />
     <Compile Include="Data\dtQuanTriNguoiDung.cs" />
     <Compile Include="Data\dtSetting.cs" />
+    <Compile Include="Data\dtThanhToanChietKhau.cs" />
     <Compile Include="Data\dtThayDoiGia.cs" />
     <Compile Include="Data\dtTheKho.cs" />
     <Compile Include="Data\dtThemDonHangKho.cs" />
@@ -693,6 +711,13 @@
     <Compile Include="Root.master.designer.cs">
       <DependentUpon>Root.master</DependentUpon>
     </Compile>
+    <Compile Include="ThanhToanChietKhau.aspx.cs">
+      <DependentUpon>ThanhToanChietKhau.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ThanhToanChietKhau.aspx.designer.cs">
+      <DependentUpon>ThanhToanChietKhau.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ThayDoiMatKhau.aspx.cs">
       <DependentUpon>ThayDoiMatKhau.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -817,7 +842,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>36175</DevelopmentServerPort>
+          <DevelopmentServerPort>36647</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -6,6 +6,8 @@
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer runat="server">
                         <dx:ASPxButton ID="ASPxFormLayout1_E2" runat="server" Text="Cập Nhật Công Nợ" OnClick="ASPxFormLayout1_E2_Click">
+                            <Image IconID="filterelements_checkbuttons_32x32">
+                            </Image>
                         </dx:ASPxButton>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>

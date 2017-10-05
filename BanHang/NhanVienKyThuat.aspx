@@ -5,7 +5,7 @@
             <dx:LayoutItem Caption="">
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer runat="server">
-                        <dx:ASPxButton ID="btnCapNhatTien" runat="server" Text="Cập Nhật Tiền" OnClick="btnCapNhatTien_Click">
+                        <dx:ASPxButton ID="btnCapNhatTien" runat="server" Text="Thanh Toán Tiền" OnClick="btnCapNhatTien_Click">
                             <Image IconID="businessobjects_bosale_32x32">
                             </Image>
                         </dx:ASPxButton>

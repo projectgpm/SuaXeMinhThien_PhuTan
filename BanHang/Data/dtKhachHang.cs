@@ -9,6 +9,126 @@ namespace BanHang.Data
 {
     public class dtKhachHang
     {
+        public DataTable DanhSachChiTietCongNo()
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = " SELECT TOP 1000 * FROM [GPM_ChiTietCongNoKhachHang]  ORDER BY [ID] DESC";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    return tb;
+                }
+            }
+        }
+        public void CapNhatTinhTrang(string IDHoaDon)
+        {
+            using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
+            {
+                try
+                {
+                    myConnection.Open();
+                    string strSQL = "UPDATE [GPM_HoaDon] SET [TrangThaiCongNoKhachHang] = 1 WHERE [ID] = " + IDHoaDon;
+                    using (SqlCommand myCommand = new SqlCommand(strSQL, myConnection))
+                    {
+                        myCommand.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Lỗi: Quá trình duyệt dữ liệu gặp lỗi, hãy tải lại trang");
+                }
+            }
+        }
+        public void CapNhatCongNo(string ID, double SoTien)
+        {
+            using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
+            {
+                try
+                {
+                    myConnection.Open();
+                    string strSQL = "UPDATE [GPM_KhachHang] SET [CongNo] = [CongNo] - '" + SoTien + "' WHERE [ID] = @ID";
+                    using (SqlCommand myCommand = new SqlCommand(strSQL, myConnection))
+                    {
+                        myCommand.Parameters.AddWithValue("@ID", ID);
+                        myCommand.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Lỗi: Quá trình duyệt dữ liệu gặp lỗi, hãy tải lại trang");
+                }
+            }
+        }
+        public object ThemChiTietCongNo(string SoHoaDon, string IDKhachHang, string HinhThucThanhToan, string IDMaPhieu, double SoTienThanhToan, string NoiDung, DateTime NgayThanhToan)
+        {
+            using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
+            {
+                try
+                {
+                    object ID = null;
+                    myConnection.Open();
+                    string cmdText = "INSERT INTO [GPM_ChiTietCongNoKhachHang] ([SoHoaDon], [IDKhachHang], [HinhThucThanhToan], [IDMaPhieu], [SoTienThanhToan], [NoiDung], [NgayThanhToan], [NgayCapNhat],[SoTienBangChu]) OUTPUT INSERTED.ID VALUES (@SoHoaDon, @IDKhachHang, @HinhThucThanhToan, @IDMaPhieu, @SoTienThanhToan, @NoiDung, @NgayThanhToan, getdate(),@SoTienBangChu)";
+                    using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
+                    {
+                        myCommand.Parameters.AddWithValue("@SoHoaDon", SoHoaDon);
+                        myCommand.Parameters.AddWithValue("@IDKhachHang", IDKhachHang);
+                        myCommand.Parameters.AddWithValue("@HinhThucThanhToan", HinhThucThanhToan);
+                        myCommand.Parameters.AddWithValue("@IDMaPhieu", IDMaPhieu);
+                        myCommand.Parameters.AddWithValue("@SoTienThanhToan", SoTienThanhToan);
+                        myCommand.Parameters.AddWithValue("@NoiDung", NoiDung);
+                        myCommand.Parameters.AddWithValue("@NgayThanhToan", NgayThanhToan);
+                        myCommand.Parameters.AddWithValue("@SoTienBangChu", dtSetting.Conver_TienChu(SoTienThanhToan));
+                        ID = myCommand.ExecuteScalar();
+                    }
+
+                    myConnection.Close();
+                    return ID;
+                }
+                catch
+                {
+                    throw new Exception("Lỗi: Quá trình thêm dữ liệu gặp lỗi");
+                }
+            }
+        }
+        public static double LayTienThanhToan_IDHoaDon(string IDHoaDon)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT TongTien FROM [GPM_HoaDon] WHERE [ID] = " + IDHoaDon;
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    if (tb.Rows.Count != 0)
+                    {
+                        DataRow dr = tb.Rows[0];
+                        return Double.Parse(dr["TongTien"].ToString());
+                    }
+                    else return 0;
+                }
+            }
+        }
+        public DataTable DanhSachSoDonHang(string IDKhachHang)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = " SELECT * FROM [GPM_HoaDon] WHERE IDKhachHang = '" + IDKhachHang + "' AND TrangThaiCongNoKhachHang = 0 AND DaXoa = 0";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    return tb;
+                }
+            }
+        }
         public static double LayCongNoCuKhachHang(string IDKhachHang)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))

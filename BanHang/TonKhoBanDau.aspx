@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="TonKhoBanDau.aspx.cs" Inherits="BanHang.TonKhoBanDau" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-    <dx:ASPxGridView ID="gridTonKhoBanDau" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" >
+    <dx:ASPxGridView ID="gridTonKhoBanDau" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnHtmlRowPrepared="gridTonKhoBanDau_HtmlRowPrepared" >
         <SettingsEditing Mode="PopupEditForm">
         </SettingsEditing>
-        <Settings ShowFilterRow="True" ShowTitlePanel="True" />
+        <Settings ShowTitlePanel="True" />
         <SettingsBehavior ConfirmDelete="True" />
 
         <SettingsCommandButton>

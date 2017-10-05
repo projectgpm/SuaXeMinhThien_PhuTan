@@ -227,7 +227,7 @@
                         <tr>                            
                             <td align="left" width="40%">                                
                                 <dx:ASPxButton ID="btnNhanVien" runat="server" Text="Nhân viên A" 
-                                    RenderMode="Link">
+                                    RenderMode="Link" PostBackUrl="KhachHang.aspx">
                                     <Image IconID="businessobjects_bodetails_32x32">
                                     </Image>
                                 </dx:ASPxButton>                                
@@ -347,7 +347,7 @@
                                                     <CaptionStyle Font-Bold="True" Font-Italic="False">
                                                     </CaptionStyle>
                                                 </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="TIỀN THỒI" VerticalAlign="Middle" FieldName="TienThua">
+                                                <dx:LayoutItem Caption="TIỀN THỒI" VerticalAlign="Middle">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer runat="server">
                                                             <dx:ASPxTextBox ID="txtTienThoi" runat="server" Width="100%"  Font-Names="digital-7" Font-Bold="True" Font-Size="28pt" 
@@ -369,78 +369,67 @@
                                     </dx:ContentControl>
                                 </ContentCollection>
                             </dx:TabPage>
-                            <dx:TabPage Text="In Lại Hóa Đơn">
+                            <dx:TabPage Text="In Lại Phiếu">
                                 <ContentCollection>
                                     <dx:ContentControl ID="ContentControl2" runat="server">
-                                        <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" Width="100%">
+                                        <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" Width="100%" ColCount="2">
                                             <Items>
-                                                <dx:LayoutGroup Caption="Tìm kiếm" ColCount="2">
-                                                    <Items>
-                                                        <dx:LayoutItem Caption="Tìm Kiếm">
-                                                            <LayoutItemNestedControlCollection>
-                                                                <dx:LayoutItemNestedControlContainer runat="server">
-                                                                    <dx:ASPxTextBox ID="txtTimKiem" runat="server" Width="100%">
-                                                                    </dx:ASPxTextBox>
-                                                                </dx:LayoutItemNestedControlContainer>
-                                                            </LayoutItemNestedControlCollection>
-                                                        </dx:LayoutItem>
-                                                        <dx:LayoutItem Caption="">
-                                                            <LayoutItemNestedControlCollection>
-                                                                <dx:LayoutItemNestedControlContainer runat="server">
-                                                                    <dx:ASPxButton ID="btnTimKiem" runat="server" OnClick="btnTimKiem_Click" Text="Tìm">
-                                                                        <Image IconID="zoom_zoom_32x32">
-                                                                        </Image>
-                                                                    </dx:ASPxButton>
-                                                                </dx:LayoutItemNestedControlContainer>
-                                                            </LayoutItemNestedControlCollection>
-                                                        </dx:LayoutItem>
-                                                    </Items>
-                                                </dx:LayoutGroup>
-                                                <dx:LayoutGroup Caption="Thông tin ">
-                                                    <Items>
-                                                        <dx:LayoutItem Caption="">
-                                                            <LayoutItemNestedControlCollection>
-                                                                <dx:LayoutItemNestedControlContainer runat="server">
-                                                                 <dx:ASPxGridView ID="ASPxGridViewInBuil" runat="server" AutoGenerateColumns="False" KeyFieldName="ID">
-                                                                     <SettingsPager PageSize="5" Mode="ShowAllRecords">
-                                                                     </SettingsPager>
-                                            <SettingsCommandButton>
-                                                <ShowAdaptiveDetailButton ButtonType="Image">
-                                                </ShowAdaptiveDetailButton>
-                                                <HideAdaptiveDetailButton ButtonType="Image">
-                                                </HideAdaptiveDetailButton>
-                                            </SettingsCommandButton>
-                                            <SettingsText EmptyDataRow="Danh sách hóa đơn trống." />
-                                            <Columns>
-                                                <dx:GridViewDataTextColumn Caption="Khách Hàng" FieldName="TenKhachHang" ShowInCustomizationForm="True" VisibleIndex="1">
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataButtonEditColumn Caption="Chi tiết" ShowInCustomizationForm="True" VisibleIndex="7">
-                                                    <DataItemTemplate>
-                                                        <a href="javascript:void(0);" onclick="OnMoreInfoClick(this, '<%# Container.KeyValue %>')">Chi tiết</a>
-                                                    </DataItemTemplate>
-                                                </dx:GridViewDataButtonEditColumn>
-                                                <dx:GridViewDataTextColumn Caption="Số Hóa Đơn" FieldName="MaHoaDon" ShowInCustomizationForm="True" VisibleIndex="0">
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataDateColumn Caption="Ngày Bán" FieldName="NgayBan" ShowInCustomizationForm="True" VisibleIndex="6">
-                                                    <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy">
-                                                    </PropertiesDateEdit>
-                                                </dx:GridViewDataDateColumn>
-                                            </Columns>
-                                                                      <Styles>
-                            <Header Font-Bold="True" HorizontalAlign="Center">
-                            </Header>
-                            <AlternatingRow Enabled="True">
-                            </AlternatingRow>
-                            
-                        </Styles>
-                                        </dx:ASPxGridView>
-
-
-                                                                </dx:LayoutItemNestedControlContainer>
-                                                            </LayoutItemNestedControlCollection>
-                                                        </dx:LayoutItem>
-                                                    </Items>
-                                                </dx:LayoutGroup>
+                                                <dx:LayoutItem Caption="Tìm Kiếm">
+                                                    <LayoutItemNestedControlCollection>
+                                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                                            <dx:ASPxTextBox ID="txtTimKiem" runat="server" Width="100%">
+                                                            </dx:ASPxTextBox>
+                                                        </dx:LayoutItemNestedControlContainer>
+                                                    </LayoutItemNestedControlCollection>
+                                                </dx:LayoutItem>
+                                                <dx:LayoutItem Caption="">
+                                                    <LayoutItemNestedControlCollection>
+                                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                                            <dx:ASPxButton ID="btnTimKiem" runat="server" OnClick="btnTimKiem_Click" Text="Tìm">
+                                                                <Image IconID="zoom_zoom_32x32">
+                                                                </Image>
+                                                            </dx:ASPxButton>
+                                                        </dx:LayoutItemNestedControlContainer>
+                                                    </LayoutItemNestedControlCollection>
+                                                </dx:LayoutItem>
+                                                <dx:LayoutItem Caption="" ColSpan="2">
+                                                    <LayoutItemNestedControlCollection>
+                                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                                            <dx:ASPxGridView ID="ASPxGridViewInBuil" runat="server" AutoGenerateColumns="False" KeyFieldName="ID">
+                                                                <SettingsPager Mode="ShowAllRecords" PageSize="5">
+                                                                </SettingsPager>
+                                                                <SettingsCommandButton>
+                                                                    <ShowAdaptiveDetailButton ButtonType="Image">
+                                                                    </ShowAdaptiveDetailButton>
+                                                                    <HideAdaptiveDetailButton ButtonType="Image">
+                                                                    </HideAdaptiveDetailButton>
+                                                                </SettingsCommandButton>
+                                                                <SettingsText EmptyDataRow="Danh sách hóa đơn trống." />
+                                                                <Columns>
+                                                                    <dx:GridViewDataTextColumn Caption="Khách Hàng" FieldName="TenKhachHang" ShowInCustomizationForm="True" VisibleIndex="1">
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataButtonEditColumn Caption="Chi tiết" ShowInCustomizationForm="True" VisibleIndex="7">
+                                                                        <DataItemTemplate>
+                                                                            <a href="javascript:void(0);" onclick="OnMoreInfoClick(this, '<%# Container.KeyValue %>')">Chi tiết</a>
+                                                                        </DataItemTemplate>
+                                                                    </dx:GridViewDataButtonEditColumn>
+                                                                    <dx:GridViewDataTextColumn Caption="Số Hóa Đơn" FieldName="MaHoaDon" ShowInCustomizationForm="True" VisibleIndex="0">
+                                                                    </dx:GridViewDataTextColumn>
+                                                                    <dx:GridViewDataDateColumn Caption="Ngày Bán" FieldName="NgayBan" ShowInCustomizationForm="True" VisibleIndex="6">
+                                                                        <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy">
+                                                                        </PropertiesDateEdit>
+                                                                    </dx:GridViewDataDateColumn>
+                                                                </Columns>
+                                                                <Styles>
+                                                                    <Header Font-Bold="True" HorizontalAlign="Center">
+                                                                    </Header>
+                                                                    <AlternatingRow Enabled="True">
+                                                                    </AlternatingRow>
+                                                                </Styles>
+                                                            </dx:ASPxGridView>
+                                                        </dx:LayoutItemNestedControlContainer>
+                                                    </LayoutItemNestedControlCollection>
+                                                </dx:LayoutItem>
                                             </Items>
                                         </dx:ASPxFormLayout>
                                     </dx:ContentControl>

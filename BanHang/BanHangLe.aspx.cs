@@ -78,7 +78,7 @@ namespace BanHang
         }
         public void HuyHoaDon()
         {
-           
+            txtTienThoi.Text = "0";
             int indexTabActive = tabControlSoHoaDon.ActiveTabIndex;
             DanhSachHoaDon.RemoveAt(indexTabActive);
             tabControlSoHoaDon.Tabs.RemoveAt(indexTabActive);
@@ -97,6 +97,7 @@ namespace BanHang
         }
         public void ThemHangVaoChiTietHoaDon(DataTable tbThongTin)
         {
+            txtTienThoi.Text = "0"; txtKhachThanhToan.Text = "0";
             string MaHang = tbThongTin.Rows[0]["MaHang"].ToString();
             int IDHangHoa = Int32.Parse(tbThongTin.Rows[0]["ID"].ToString());
             int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
@@ -211,6 +212,7 @@ namespace BanHang
         }
         private void BatchUpdate()
         {
+            txtTienThoi.Text = "0"; txtKhachThanhToan.Text = "0";
             int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
             string IDKho = Session["IDKho"].ToString();
             for (int i = 0; i < gridChiTietHoaDon.VisibleRowCount; i++)
@@ -393,7 +395,8 @@ namespace BanHang
                 double CongNoCu = dtKhachHang.LayCongNoCuKhachHang(IDKhachHang.ToString());
                 double TongTienKhachHang = DanhSachHoaDon[MaHoaDon].KhachThanhToan - DanhSachHoaDon[MaHoaDon].KhachCanTra;//
                 double ChietKhauKhachHang = DanhSachHoaDon[MaHoaDon].TongTien * (TyLeChietKhauKhachHang / (float)100);
-                object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", ChietKhauKhachHang.ToString(), (TongTienKhachHang * -1).ToString(), TyLeChietKhauKhachHang.ToString(), "0", "0", CongNoCu.ToString(), (CongNoCu + (TongTienKhachHang * -1)).ToString());
+                double CongNoMoi = CongNoCu + (TongTienKhachHang * -1);
+                object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", ChietKhauKhachHang.ToString(), (TongTienKhachHang * -1).ToString(), TyLeChietKhauKhachHang.ToString(), "0", "0", CongNoCu.ToString(), CongNoMoi.ToString());
                 HuyHoaDon();
                 ccbKhachHang.Text = "";
                 cmbKyThuat.Text = "";
@@ -609,14 +612,15 @@ namespace BanHang
                     cmbKyThuat.Enabled = true;
                     txtTienSuaXe.Enabled = true;
                     cmbKyThuat.Text = "";
-                    txtTienSuaXe.Text = "0";
+                    txtTienSuaXe.Text = "0"; txtTienThoi.Text = "0"; txtKhachThanhToan.Text = "0";
                 }
                 else// #khách lẻ
                 {
+                    txtKhachThanhToan.Text = "0";
                     cmbKyThuat.Text = "";
                     txtTienSuaXe.Text = "0";
                     cmbKyThuat.Enabled = false;
-                    txtTienSuaXe.Enabled = false;
+                    txtTienSuaXe.Enabled = false; txtTienThoi.Text = "0";
                 }
             }
         }
@@ -634,7 +638,9 @@ namespace BanHang
             int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
             DanhSachHoaDon[MaHoaDon].TienSuaXe = TienSuaXe;
             DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe;
+            //DanhSachHoaDon[MaHoaDon].
             txtKhachCanTra.Text = DanhSachHoaDon[MaHoaDon].KhachCanTra.ToString();
+            txtTienThoi.Text = "0";
         }
 
        

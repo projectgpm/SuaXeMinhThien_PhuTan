@@ -73,13 +73,14 @@ namespace BanHang.Data
                 {
                     object ID = null;
                     myConnection.Open();
-                    string cmdText = "INSERT INTO [GPM_CongNoKyThuat] ([IDKyThuat], [SoTienThanhToan], [NoiDung], [NgayThanhToan]) OUTPUT INSERTED.ID VALUES (@IDKyThuat, @SoTienThanhToan, @NoiDung, @NgayThanhToan)";
+                    string cmdText = "INSERT INTO [GPM_CongNoKyThuat] ([IDKyThuat], [SoTienThanhToan], [NoiDung], [NgayThanhToan],[TienBangChu]) OUTPUT INSERTED.ID VALUES (@IDKyThuat, @SoTienThanhToan, @NoiDung, @NgayThanhToan,@TienBangChu)";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
                         myCommand.Parameters.AddWithValue("@IDKyThuat", IDKyThuat);
                         myCommand.Parameters.AddWithValue("@SoTienThanhToan", SoTienThanhToan);
                         myCommand.Parameters.AddWithValue("@NoiDung", NoiDung);
                         myCommand.Parameters.AddWithValue("@NgayThanhToan", NgayThanhToan);
+                        myCommand.Parameters.AddWithValue("@TienBangChu", dtSetting.Conver_TienChu(SoTienThanhToan));
                         ID = myCommand.ExecuteScalar();
                     }
 

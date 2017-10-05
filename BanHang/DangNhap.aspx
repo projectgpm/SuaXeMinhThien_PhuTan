@@ -23,10 +23,13 @@
             <input type="password" name ="txtMatKhau" id="txtMatKhau" runat="server"><span class="highlight"></span><span class="bar"></span>
             <label>Mật Khẩu</label>
           </div>
-   
-        <button id="btnDangNhapQuanLy" class="button buttonBlue" runat="server"  onserverclick="btnDangNhapQuanLy_Click">Quản Lý
-        <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-      </button>
+        <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Đăng nhập hệ thống" Width="100%" OnClick="ASPxButton1_Click" Font-Bold="True">
+            <Image IconID="businessobjects_bopermission_32x32">
+            </Image>
+        </dx:ASPxButton>
+       <%-- <button id="btnDangNhapQuanLy" class="button buttonBlue" runat="server"  onserverclick="btnDangNhapQuanLy_Click">Quản Lý--%>
+       <%-- <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+      </button>--%>
     </form>
      <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> 
   <script src="css/index.js"></script>

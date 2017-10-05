@@ -248,9 +248,9 @@ namespace BanHang.Data
                     }
                     if (MaHoaDon != null)
                     {
-                        string InsertHoaDon = "INSERT INTO [GPM_HoaDon] ([IDKho], [IDKhachHang],[IDNhanVien],[NgayBan],[SoLuongHang],[TongTien],[GiamGia],[KhachCanTra],[KhachThanhToan], [MaHoaDon],[IDKyThuat],[TienChietKhauKyThuat],[TienChietKhauKhachHang],[TyLeChietKhauKhachHang],[TyLeChietKhauKyThuat],[TienSuaXe],[TrangThaiCongNoKhachHang],[CongNoCuKhachHang]) " +
+                        string InsertHoaDon = "INSERT INTO [GPM_HoaDon] ([IDKho], [IDKhachHang],[IDNhanVien],[NgayBan],[SoLuongHang],[TongTien],[GiamGia],[KhachCanTra],[KhachThanhToan], [MaHoaDon],[IDKyThuat],[TienChietKhauKyThuat],[TienChietKhauKhachHang],[TyLeChietKhauKhachHang],[TyLeChietKhauKyThuat],[TienSuaXe],[TrangThaiCongNoKhachHang],[CongNoCuKhachHang],[CongNoMoiKhachHang]) " +
                                               "OUTPUT INSERTED.ID " +
-                                              "VALUES (@IDKho, @IDKhachHang, @IDNhanVien, getdate(), @SoLuongHang, @TongTien, @GiamGia, @KhachCanTra, @KhachThanhToan, @MaHoaDon,@IDKyThuat,@TienChietKhauKyThuat,@TienChietKhauKhachHang,@TyLeChietKhauKhachHang,@TyLeChietKhauKyThuat,@TienSuaXe,@TrangThaiCongNoKhachHang,@CongNoCuKhachHang)";
+                                              "VALUES (@IDKho, @IDKhachHang, @IDNhanVien, getdate(), @SoLuongHang, @TongTien, @GiamGia, @KhachCanTra, @KhachThanhToan, @MaHoaDon,@IDKyThuat,@TienChietKhauKyThuat,@TienChietKhauKhachHang,@TyLeChietKhauKhachHang,@TyLeChietKhauKyThuat,@TienSuaXe,@TrangThaiCongNoKhachHang,@CongNoCuKhachHang,@CongNoMoiKhachHang)";
                         using (SqlCommand cmd = new SqlCommand(InsertHoaDon, con, trans))
                         {
                             cmd.Parameters.AddWithValue("@IDKho", IDKho);

@@ -87,7 +87,7 @@ namespace BanHang.Data
                 {
                     object ID = null;
                     myConnection.Open();
-                    string cmdText = "INSERT INTO [GPM_ChiTietCongNo] ([SoHoaDon], [IDNhaCungCap], [HinhThucThanhToan], [IDMaPhieu], [SoTienThanhToan], [NoiDung], [NgayThanhToan], [NgayCapNhat]) OUTPUT INSERTED.ID VALUES (@SoHoaDon, @IDNhaCungCap, @HinhThucThanhToan, @IDMaPhieu, @SoTienThanhToan, @NoiDung, @NgayThanhToan, getdate())";
+                    string cmdText = "INSERT INTO [GPM_ChiTietCongNo] ([SoHoaDon], [IDNhaCungCap], [HinhThucThanhToan], [IDMaPhieu], [SoTienThanhToan], [NoiDung], [NgayThanhToan], [NgayCapNhat],[TienBangChu]) OUTPUT INSERTED.ID VALUES (@SoHoaDon, @IDNhaCungCap, @HinhThucThanhToan, @IDMaPhieu, @SoTienThanhToan, @NoiDung, @NgayThanhToan, getdate(),@TienBangChu)";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
                         myCommand.Parameters.AddWithValue("@SoHoaDon", SoHoaDon);
@@ -97,6 +97,7 @@ namespace BanHang.Data
                         myCommand.Parameters.AddWithValue("@SoTienThanhToan", SoTienThanhToan);
                         myCommand.Parameters.AddWithValue("@NoiDung", NoiDung);
                         myCommand.Parameters.AddWithValue("@NgayThanhToan", NgayThanhToan);
+                        myCommand.Parameters.AddWithValue("@TienBangChu", dtSetting.Conver_TienChu(SoTienThanhToan));
                         ID = myCommand.ExecuteScalar();
                     }
 
