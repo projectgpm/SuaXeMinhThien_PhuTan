@@ -349,8 +349,9 @@ namespace BanHang
                     txtKhachThanhToan.Focus();
                     HienThiThongBao("Thanh toán chưa đủ số tiền !!"); return;
                 }
-                if (IDKyThuat != 0)
+                if (IDKyThuat != 1)
                 {
+                    // có kỹ thuật
                     int TyLeChietKhauKyThuat = dtNhanVienKyThuat.TyLeChietKhauKyThuat(cmbKyThuat.Value.ToString());
                     double TienHuong = 0, TienHeThong = 0;
                     for (int i = 0; i < gridChiTietHoaDon.VisibleRowCount; i++)
@@ -363,13 +364,26 @@ namespace BanHang
                     }
                     double TienChietKhau = TienHeThong * TyLeChietKhauKyThuat / (float)100;
                     double TongThucNhan = TienChietKhau + TienHuong;// cộng tiền vào công nợ kỹ thuật
-
+                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), TongThucNhan.ToString(), "0", "0", "0", TyLeChietKhauKyThuat.ToString());
+                    HuyHoaDon();
+                    ccbKhachHang.Text = "";
+                    string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
+                    txtBarcode.Focus();
                 }
                 else
                 { 
+                    //không có kỹ thuật, CK 0%// 
+                    // không cộng tổng tiền cho kỹ thuật
+                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", "0", "0", "0", "0");
+                    HuyHoaDon();
+                    ccbKhachHang.Text = "";
+                    string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
+                    txtBarcode.Focus();
                 }
             }
-            else// #khach lẻ
+            else// khách sỉ
             {
                 // tính chiết khấu khách sỉ
                 int TyLeChietKhauKhachHang = dtKhachHang.TyLeChietKhauKhachHang(IDKhachHang.ToString());
@@ -387,7 +401,7 @@ namespace BanHang
             //ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
             //txtBarcode.Focus();
         }
-
+      
         protected void btnHuyKhachHang_Click(object sender, EventArgs e)
         {
             popupThemKhachHang.ShowOnPageLoad = false;
@@ -468,7 +482,6 @@ namespace BanHang
 
         protected void txtBarcode_ItemRequestedByValue(object source, ListEditItemRequestedByValueEventArgs e)
         {
-
             long value = 0;
             if (e.Value == null || !Int64.TryParse(e.Value.ToString(), out value))
                 return;
@@ -477,7 +490,6 @@ namespace BanHang
                                         FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh 
                                                            INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID 
                                         WHERE (GPM_HangHoa.ID = @ID)";
-
             dsHangHoa.SelectParameters.Clear();
             dsHangHoa.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
             comboBox.DataSource = dsHangHoa;
