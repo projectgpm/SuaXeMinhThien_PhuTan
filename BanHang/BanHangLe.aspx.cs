@@ -367,6 +367,7 @@ namespace BanHang
                     object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), TongThucNhan.ToString(), "0", "0", "0", TyLeChietKhauKyThuat.ToString());
                     HuyHoaDon();
                     ccbKhachHang.Text = "";
+                    cmbKyThuat.Text = "";
                     string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
                     ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
                     txtBarcode.Focus();
@@ -378,6 +379,7 @@ namespace BanHang
                     object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", "0", "0", "0", "0");
                     HuyHoaDon();
                     ccbKhachHang.Text = "";
+                    cmbKyThuat.Text = "";
                     string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
                     ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
                     txtBarcode.Focus();

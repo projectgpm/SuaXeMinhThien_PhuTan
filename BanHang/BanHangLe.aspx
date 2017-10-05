@@ -336,7 +336,7 @@
                                                     <CaptionStyle Font-Bold="True" Font-Italic="False">
                                                     </CaptionStyle>
                                                 </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="KHÁCH THANH TOÁN" VerticalAlign="Middle">
+                                                <dx:LayoutItem Caption="KHÁCH THANH TOÁN" VerticalAlign="Middle" FieldName="KhachThanhToan">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer runat="server">
                                                             <dx:ASPxTextBox ID="txtKhachThanhToan" runat="server" Width="100%"  Font-Names="digital-7" Font-Bold="True" Font-Size="28pt" 
@@ -347,7 +347,7 @@
                                                     <CaptionStyle Font-Bold="True" Font-Italic="False">
                                                     </CaptionStyle>
                                                 </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="TIỀN THỒI" VerticalAlign="Middle">
+                                                <dx:LayoutItem Caption="TIỀN THỒI" VerticalAlign="Middle" FieldName="TienThua">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer runat="server">
                                                             <dx:ASPxTextBox ID="txtTienThoi" runat="server" Width="100%"  Font-Names="digital-7" Font-Bold="True" Font-Size="28pt" 
