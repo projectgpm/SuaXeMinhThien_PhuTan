@@ -259,9 +259,15 @@ namespace BanHang.Data
                 {
                     myConnection.Open();
                     object IDPhieuChuyenKho = null;
-                    string cmdText = "INSERT INTO [GPM_PhieuKhachHangTraHang_ChiTiet] ([IDPhieuKhachHangTraHang],[IDHangHoa],[GiaBan],[SoLuong],[ThanhTien],[LyDoDoi]) OUTPUT INSERTED.ID VALUES ('" + IDPhieuKhachHangTraHang + "','" + IDHangHoa + "','" + GiaBan + "','" + SoLuong + "','" + ThanhTien + "',N'" + LyDoDoi + "')";
+                    string cmdText = "INSERT INTO [GPM_PhieuKhachHangTraHang_ChiTiet] ([IDPhieuKhachHangTraHang],[IDHangHoa],[GiaBan],[SoLuong],[ThanhTien],[LyDoDoi]) OUTPUT INSERTED.ID VALUES (@IDPhieuKhachHangTraHang,@IDHangHoa,@GiaBan,@SoLuong,@ThanhTien,@LyDoDoi)";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
+                        myCommand.Parameters.AddWithValue("@IDPhieuKhachHangTraHang", IDPhieuKhachHangTraHang);
+                        myCommand.Parameters.AddWithValue("@IDHangHoa", IDHangHoa);
+                        myCommand.Parameters.AddWithValue("@GiaBan", GiaBan);
+                        myCommand.Parameters.AddWithValue("@SoLuong", SoLuong);
+                        myCommand.Parameters.AddWithValue("@ThanhTien", ThanhTien);
+                        myCommand.Parameters.AddWithValue("@LyDoDoi", LyDoDoi);
                         IDPhieuChuyenKho = myCommand.ExecuteScalar();
                     }
                     myConnection.Close();
@@ -281,9 +287,15 @@ namespace BanHang.Data
                 try
                 {
                     myConnection.Open();
-                    string cmdText = "update GPM_PhieuKhachHangTraHang_ChiTiet_Temp set GiaBan = '" + GiaBan + "', SoLuong = '" + SoLuong + "', ThanhTien = '" + ThanhTien + "', LyDoDoi = '" + LyDoDoi + "' where IDPhieuKhachHangTraHang = '" + IDPhieuKhachHangTraHang + "' and IDHangHoa = '" + IDHangHoa + "'";
+                    string cmdText = "update GPM_PhieuKhachHangTraHang_ChiTiet_Temp set GiaBan = @GiaBan, SoLuong = @SoLuong, ThanhTien = @ThanhTien, LyDoDoi = @LyDoDoi where IDPhieuKhachHangTraHang = @IDPhieuKhachHangTraHang and IDHangHoa =@IDHangHoa";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
+                        myCommand.Parameters.AddWithValue("@IDPhieuKhachHangTraHang", IDPhieuKhachHangTraHang);
+                        myCommand.Parameters.AddWithValue("@IDHangHoa", IDHangHoa);
+                        myCommand.Parameters.AddWithValue("@GiaBan", GiaBan);
+                        myCommand.Parameters.AddWithValue("@SoLuong", SoLuong);
+                        myCommand.Parameters.AddWithValue("@ThanhTien", ThanhTien);
+                        myCommand.Parameters.AddWithValue("@LyDoDoi", LyDoDoi);
                         myCommand.ExecuteScalar();
                     }
                     myConnection.Close();
