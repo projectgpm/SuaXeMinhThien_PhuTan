@@ -33,7 +33,7 @@
             </DeleteButton>
         </SettingsCommandButton>
         <SettingsSearchPanel Visible="True" />
-        <SettingsText CommandDelete="Xóa" CommandEdit="Sửa" CommandNew="Thêm" Title="DANH SÁCH PHIẾU TRẢ HÀNG" ConfirmDelete="Bạn chắc chắn muốn xóa?"/>
+        <SettingsText CommandDelete="Xóa" CommandEdit="Sửa" CommandNew="Thêm" Title="DANH SÁCH PHIẾU TRẢ HÀNG" ConfirmDelete="Bạn chắc chắn muốn xóa?" EmptyDataRow="Danh sách trống" SearchPanelEditorNullText="Nhập thông tin cần tìm..."/>
         <Columns>
             <dx:GridViewDataButtonEditColumn Caption="Xem Chi Tiết" VisibleIndex="10">
                 
@@ -45,10 +45,6 @@
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" VisibleIndex="8">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Kho" FieldName="IDKho" VisibleIndex="0">
-                <PropertiesComboBox DataSourceID="sqlKhoHang" TextField="TenCuaHang" ValueField="ID">
-                </PropertiesComboBox>
-            </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataComboBoxColumn Caption="Khách hàng" FieldName="IDKhachHang" VisibleIndex="2">
                 <PropertiesComboBox DataSourceID="sqlKhachHang" TextField="TenKhachHang" ValueField="ID">
                 </PropertiesComboBox>
@@ -87,11 +83,6 @@
     </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="sqlNhanVien" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenNguoiDung] FROM [GPM_NguoiDung] WHERE ([DaXoa] = @DaXoa)">
-        <SelectParameters>
-            <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
-        </SelectParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="sqlKhoHang" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenCuaHang] FROM [GPM_Kho] WHERE ([DaXoa] = @DaXoa)">
         <SelectParameters>
             <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
         </SelectParameters>
