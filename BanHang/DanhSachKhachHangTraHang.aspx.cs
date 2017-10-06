@@ -32,7 +32,7 @@ namespace BanHang
         private void LoadGrid()
         {
             dtPhieuKhachHangTraHang data = new dtPhieuKhachHangTraHang();
-            gridPhieuKhachHangTraHang.DataSource = data.DanhSachPhieuKhachHangTraHang(Session["IDKho"].ToString());
+            gridPhieuKhachHangTraHang.DataSource = data.DanhSachPhieuKhachHangTraHang();
             gridPhieuKhachHangTraHang.DataBind();
         }
 

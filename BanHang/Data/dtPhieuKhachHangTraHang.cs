@@ -24,12 +24,12 @@ namespace BanHang.Data
                 }
             }
         }
-        public DataTable DanhSachPhieuKhachHangTraHang(string IDKho)
+        public DataTable DanhSachPhieuKhachHangTraHang()
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = "SELECT GPM_HoaDon.MaHoaDon, GPM_PhieuKhachHangTraHang.* FROM GPM_HoaDon,GPM_PhieuKhachHangTraHang WHERE GPM_HoaDon.ID = GPM_PhieuKhachHangTraHang.IDHoaDon AND GPM_PhieuKhachHangTraHang.IDHoaDon is not null AND (('" + IDKho + "' = -1) OR (GPM_PhieuKhachHangTraHang.IDKho = '" + IDKho + "')) ORDER BY GPM_PhieuKhachHangTraHang.ID DESC";
+                string cmdText = "SELECT GPM_PhieuKhachHangTraHang.* FROM GPM_PhieuKhachHangTraHang ORDER BY GPM_PhieuKhachHangTraHang.ID DESC";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -178,7 +178,7 @@ namespace BanHang.Data
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = "select GPM_HangHoa.IDDonViTinh, GPM_ChiTietHoaDon.* from GPM_HangHoa,GPM_ChiTietHoaDon where GPM_ChiTietHoaDon.IDHangHoa = GPM_HangHoa.ID and GPM_ChiTietHoaDon.ID = '" + ID + "'";
+                string cmdText = "select GPM_HangHoa.IDDonViTinh, GPM_ChiTietHoaDon.* from GPM_HangHoa,GPM_ChiTietHoaDon where GPM_ChiTietHoaDon.IDHangHoa = GPM_HangHoa.ID and GPM_ChiTietHoaDon.IDHangHoa = '" + ID + "'";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -188,7 +188,21 @@ namespace BanHang.Data
                 }
             }
         }
-
+        public DataTable DanhSachChiTietHoaDon(string IDHangHoa, string IDHoaDon)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "select GPM_HangHoa.IDDonViTinh, GPM_ChiTietHoaDon.* from GPM_HangHoa,GPM_ChiTietHoaDon where GPM_ChiTietHoaDon.IDHangHoa = GPM_HangHoa.ID and GPM_ChiTietHoaDon.IDHoaDon = '" + IDHoaDon + "' AND GPM_ChiTietHoaDon.IDHangHoa = '" + IDHangHoa + "'";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    return tb;
+                }
+            }
+        }
         public DataTable LayPhieuTraHang_Null(string IDKho)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
@@ -205,7 +219,7 @@ namespace BanHang.Data
             }
         }
 
-        public object ThemPhieuKhachHangTraHang(string IDKho)
+        public object ThemPhieuKhachHangTraHang(string MaHoaDon, string IDNhanVien, string IDKhachHang, string TongTienTra, string GhiChu)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
@@ -213,9 +227,14 @@ namespace BanHang.Data
                 {
                     myConnection.Open();
                     object IDPhieuChuyenKho = null;
-                    string cmdText = "INSERT INTO [GPM_PhieuKhachHangTraHang] ([NgayDoi],[IDKho]) OUTPUT INSERTED.ID VALUES (getdate(),'" + IDKho + "')";
+                    string cmdText = "INSERT INTO [GPM_PhieuKhachHangTraHang] ([MaHoaDon],[IDNhanVien],[IDKhachHang],[NgayDoi],[TongTienTra],[GhiChu]) OUTPUT INSERTED.ID VALUES (@MaHoaDon,@IDNhanVien,@IDKhachHang,getdate(),@TongTienTra,@GhiChu)";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
+                        myCommand.Parameters.AddWithValue("@MaHoaDon", MaHoaDon);
+                        myCommand.Parameters.AddWithValue("@IDNhanVien", IDNhanVien);
+                        myCommand.Parameters.AddWithValue("@IDKhachHang", IDKhachHang);
+                        myCommand.Parameters.AddWithValue("@TongTienTra", TongTienTra);
+                        myCommand.Parameters.AddWithValue("@GhiChu", GhiChu);
                         IDPhieuChuyenKho = myCommand.ExecuteScalar();
                     }
                     myConnection.Close();
@@ -236,9 +255,15 @@ namespace BanHang.Data
                 {
                     myConnection.Open();
                     object IDPhieuChuyenKho = null;
-                    string cmdText = "INSERT INTO [GPM_PhieuKhachHangTraHang_ChiTiet_Temp] ([IDPhieuKhachHangTraHang],[IDHangHoa],[GiaBan],[SoLuong],[ThanhTien],[LyDoDoi]) OUTPUT INSERTED.ID VALUES ('" + IDPhieuKhachHangTraHang + "','" + IDHangHoa + "','" + GiaBan + "','" + SoLuong + "','" + ThanhTien + "',N'" + LyDoDoi + "')";
+                    string cmdText = "INSERT INTO [GPM_PhieuKhachHangTraHang_ChiTiet_Temp] ([IDPhieuKhachHangTraHang],[IDHangHoa],[GiaBan],[SoLuong],[ThanhTien],[LyDoDoi]) OUTPUT INSERTED.ID VALUES (@IDPhieuKhachHangTraHang,@IDHangHoa,@GiaBan,@SoLuong,@ThanhTien,@LyDoDoi)";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
+                        myCommand.Parameters.AddWithValue("@IDPhieuKhachHangTraHang", IDPhieuKhachHangTraHang);
+                        myCommand.Parameters.AddWithValue("@IDHangHoa", IDHangHoa);
+                        myCommand.Parameters.AddWithValue("@GiaBan", GiaBan);
+                        myCommand.Parameters.AddWithValue("@SoLuong", SoLuong);
+                        myCommand.Parameters.AddWithValue("@ThanhTien", ThanhTien);
+                        myCommand.Parameters.AddWithValue("@LyDoDoi", LyDoDoi);
                         IDPhieuChuyenKho = myCommand.ExecuteScalar();
                     }
                     myConnection.Close();
@@ -251,7 +276,7 @@ namespace BanHang.Data
             }
         }
 
-        public object ThemChiTietPhieuKhachHangTraHang(string IDPhieuKhachHangTraHang, string IDHangHoa, string GiaBan, string SoLuong, string ThanhTien, string LyDoDoi)
+        public object ThemChiTietPhieuKhachHangTraHang(object IDPhieuKhachHangTraHang, string IDHangHoa, string GiaBan, string SoLuong, string ThanhTien, string LyDoDoi)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {

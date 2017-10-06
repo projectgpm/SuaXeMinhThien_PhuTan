@@ -41,7 +41,7 @@
                     <a href="javascript:void(0);" onclick="OnMoreInfoClick(this, '<%# Container.KeyValue %>')">Xem </a>
                 </DataItemTemplate>
             </dx:GridViewDataButtonEditColumn>
-            <dx:GridViewDataTextColumn Caption="Hóa đơn" FieldName="MaHoaDon" VisibleIndex="1">
+            <dx:GridViewDataTextColumn Caption="Mã Đơn Hàng" FieldName="MaHoaDon" VisibleIndex="1">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" VisibleIndex="8">
             </dx:GridViewDataTextColumn>
@@ -53,10 +53,6 @@
                 <PropertiesComboBox DataSourceID="sqlNhanVien" TextField="TenNguoiDung" ValueField="ID">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Tổng số hàng hóa" FieldName="TongHangHoaDoi" VisibleIndex="5">
-                <PropertiesSpinEdit DisplayFormatString="{0:#,#}" NumberFormat="Custom">
-                </PropertiesSpinEdit>
-            </dx:GridViewDataSpinEditColumn>
             <dx:GridViewDataSpinEditColumn Caption="Tổng tiền" FieldName="TongTienTra" VisibleIndex="7">
                 <PropertiesSpinEdit DisplayFormatString="{0:#,# đ}" NumberFormat="Custom">
                 </PropertiesSpinEdit>
