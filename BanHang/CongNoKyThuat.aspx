@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="CongNoKyThuat.aspx.cs" Inherits="BanHang.CongNoKyThuat" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-         <dx:ASPxGridView ID="gridDanhSach" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%">
+    <script type="text/javascript">
+        function OnMoreInfoClick(element, key) {
+            popup.SetContentUrl("InPhieuThanhToan2.aspx?ID=" + key);
+            popup.ShowAtElement();
+            // alert(key);
+        }
+
+    </script>     
+    <dx:ASPxGridView ID="gridDanhSach" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%">
         <SettingsEditing Mode="PopupEditForm">
         </SettingsEditing>
         <Settings AutoFilterCondition="Contains" ShowFilterRow="True" ShowTitlePanel="True" />
@@ -51,6 +59,11 @@
                  <PropertiesComboBox DataSourceID="SqlTenKyThuat" TextField="TenKyThuat" ValueField="ID">
                  </PropertiesComboBox>
              </dx:GridViewDataComboBoxColumn>
+             <dx:GridViewDataButtonEditColumn Caption="Xem Chi Tiết" VisibleIndex="6">
+                <DataItemTemplate>
+                    <a href="javascript:void(0);" onclick="OnMoreInfoClick(this, '<%# Container.KeyValue %>')">In phiếu </a>
+                </DataItemTemplate>
+            </dx:GridViewDataButtonEditColumn>
          </Columns>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">
@@ -66,4 +79,10 @@
                  <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
              </SelectParameters>
          </asp:SqlDataSource>
+    <%--popup chi tiet don hang--%>
+     <dx:ASPxPopupControl ID="popup" runat="server" AllowDragging="True" AllowResize="True" 
+         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"  Width="1100px"
+         Height="600px" FooterText="Thông tin chi tiết"
+        HeaderText="Thông tin chi tiết thanh toán chiết khấu" ClientInstanceName="popup" EnableHierarchyRecreation="True" CloseAction="CloseButton">
+    </dx:ASPxPopupControl>
 </asp:Content>

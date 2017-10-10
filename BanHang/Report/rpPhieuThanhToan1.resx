@@ -120,33 +120,7 @@
   <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="customSqlQuery1.Sql" xml:space="preserve">
-    <value>select "GPM_PhieuXuatKhac"."ID",
-       "GPM_PhieuXuatKhac"."SoDonXuat",
-       "GPM_PhieuXuatKhac"."NgayLapPhieu",
-       "GPM_PhieuXuatKhac"."GhiChu",
-       "GPM_Kho"."TenCuaHang",
-       "GPM_Kho"."MaKho",
-       "GPM_NguoiDung"."TenNguoiDung",
-       "GPM_TrangThaiPhieuXuatKhac"."TenTrangThai"
-  from ((("dbo"."GPM_PhieuXuatKhac"
-       "GPM_PhieuXuatKhac"
-  inner join "dbo"."GPM_Kho"
-       "GPM_Kho"
-       on ("GPM_Kho"."ID" = "GPM_PhieuXuatKhac"."IDKho"))
-  inner join "dbo"."GPM_NguoiDung"
-       "GPM_NguoiDung"
-       on ("GPM_NguoiDung"."ID" = "GPM_PhieuXuatKhac"."IDNhanVien"))
-  inner join "dbo"."GPM_TrangThaiPhieuXuatKhac"
-       "GPM_TrangThaiPhieuXuatKhac"
-       on ("GPM_TrangThaiPhieuXuatKhac"."ID" = "GPM_PhieuXuatKhac"."IDTrangThaiPhieuXuatKhac"))
- where
-       (("GPM_PhieuXuatKhac"."NgayLapPhieu" &gt;= @NgayBD)
-       and ("GPM_PhieuXuatKhac"."NgayLapPhieu" &lt;= @NgayKT)
-       and ((@IDKhoXuat = -1) OR ("GPM_PhieuXuatKhac"."IDKho" = @IDKhoXuat))
-       and ((@IDLyDoXuat = -1) OR ("GPM_PhieuXuatKhac"."IDTrangThaiPhieuXuatKhac" = @IDLyDoXuat)))</value>
-  </data>
   <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkdQTV9QaGlldVh1YXRLaGFjIj48RmllbGQgTmFtZT0iSUQiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJTb0Rvblh1YXQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTmdheUxhcFBoaWV1IiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iR2hpQ2h1IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRlbkN1YUhhbmciIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTWFLaG8iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iVGVuTmd1b2lEdW5nIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRlblRyYW5nVGhhaSIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48VmlldyBOYW1lPSJHUE1fUGhpZXVYdWF0S2hhY19DaGlUaWV0Ij48RmllbGQgTmFtZT0iSURQaGlldVh1YXRLaGFjIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iVHJvbmdMdW9uZyIgVHlwZT0iRG91YmxlIiAvPjxGaWVsZCBOYW1lPSJTb0x1b25nWHVhdCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkdoaUNodSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJNYUhhbmciIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iVGVuSGFuZ0hvYSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJUZW5Eb25WaVRpbmgiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iR2lhQmFuVHJ1b2NUaHVlIiBUeXBlPSJEb3VibGUiIC8+PEZpZWxkIE5hbWU9IklEIiBUeXBlPSJJbnQzMiIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iU2V0dGluZyI+PEZpZWxkIE5hbWU9IklEIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iSW5UaWV1RGUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iSW5Db25nVHkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iRGF0YWJhc2VOYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IktleUtpY2hIb2F0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9Ik5ndW9pS2ljaEhvYXQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iQ2h1eWVuRG9pRGF1IiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iQ2h1eWVuQW0iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJTb05nYXlUcmFIYW5nIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iVHVhblN1YXRCYW5IYW5nIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iQ2FwTmhhdERvbkhhbmdYdUx5IiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iSHV5RG9uSGFuZ1RodU11YSIgVHlwZT0iSW50MzIiIC8+PC9WaWV3PjxSZWxhdGlvbiBNYXN0ZXI9IkdQTV9QaGlldVh1YXRLaGFjIiBEZXRhaWw9IkdQTV9QaGlldVh1YXRLaGFjX0NoaVRpZXQiPjxLZXlDb2x1bW4gTWFzdGVyPSJJRCIgRGV0YWlsPSJJRFBoaWV1WHVhdEtoYWMiIC8+PC9SZWxhdGlvbj48L0RhdGFTZXQ+</value>
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkdQTV9DaGlUaWV0Q29uZ05vS2hhY2hIYW5nIj48RmllbGQgTmFtZT0iU29UaWVuVGhhbmhUb2FuIiBUeXBlPSJEb3VibGUiIC8+PEZpZWxkIE5hbWU9Ik5vaUR1bmciIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTmdheVRoYW5oVG9hbiIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IlNvVGllbkJhbmdDaHUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iVGVuS2hhY2hIYW5nIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9Ik1hS2hhY2hIYW5nIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkNvbmdObyIgVHlwZT0iRG91YmxlIiAvPjxGaWVsZCBOYW1lPSJEaWFDaGkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iRGllblRob2FpIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9IlNldHRpbmciPjxGaWVsZCBOYW1lPSJJblRpZXVEZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJbkNvbmdUeSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJbkRpYUNoaSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJbkRpZW5UaG9haSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJblJwRGlhQ2hpIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
   </data>
 </root>

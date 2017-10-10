@@ -10,33 +10,24 @@
 namespace BanHang {
     
     
-    public partial class ChiTietCongNoKhachHang {
+    public partial class InPhieuGiaoHang {
         
         /// <summary>
-        /// gridDanhSach control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView gridDanhSach;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// SqlKhachHang control.
+        /// reportView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlKhachHang;
-        
-        /// <summary>
-        /// popup control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl popup;
+        protected global::DevExpress.XtraReports.Web.ASPxDocumentViewer reportView;
     }
 }

@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="ChiTietThanhToanChietKhau.aspx.cs" Inherits="BanHang.ChiTietThanhToanChietKhau" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <script type="text/javascript">
+        function OnMoreInfoClick(element, key) {
+            popup.SetContentUrl("InPhieuThanhToan.aspx?ID=" + key);
+            popup.ShowAtElement();
+            // alert(key);
+        }
+
+    </script>
     <dx:ASPxGridView ID="gridDanhSach" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%">
         <SettingsEditing Mode="PopupEditForm">
         </SettingsEditing>
@@ -51,6 +59,11 @@
                  <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                  </PropertiesSpinEdit>
              </dx:GridViewDataSpinEditColumn>
+              <dx:GridViewDataButtonEditColumn Caption="Xem Chi Tiết" VisibleIndex="4">
+                <DataItemTemplate>
+                    <a href="javascript:void(0);" onclick="OnMoreInfoClick(this, '<%# Container.KeyValue %>')">In phiếu </a>
+                </DataItemTemplate>
+            </dx:GridViewDataButtonEditColumn>
          </Columns>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">
@@ -67,4 +80,10 @@
             <asp:Parameter DefaultValue="1" Name="ID" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
+    <%--popup chi tiet don hang--%>
+     <dx:ASPxPopupControl ID="popup" runat="server" AllowDragging="True" AllowResize="True" 
+         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"  Width="1100px"
+         Height="600px" FooterText="Thông tin chi tiết"
+        HeaderText="Thông tin chi tiết thanh toán chiết khấu" ClientInstanceName="popup" EnableHierarchyRecreation="True" CloseAction="CloseButton">
+    </dx:ASPxPopupControl>
 </asp:Content>

@@ -6,9 +6,9 @@ using DevExpress.XtraReports.UI;
 
 namespace BanHang.Report
 {
-    public partial class rpBaoCaoNhapHang : DevExpress.XtraReports.UI.XtraReport
+    public partial class rpPhieuThanhToan2 : DevExpress.XtraReports.UI.XtraReport
     {
-        public rpBaoCaoNhapHang()
+        public rpPhieuThanhToan2()
         {
             InitializeComponent();
         }

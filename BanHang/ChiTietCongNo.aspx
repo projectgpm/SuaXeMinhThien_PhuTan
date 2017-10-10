@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="ChiTietCongNo.aspx.cs" Inherits="BanHang.ChiTietCongNo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+        <script type="text/javascript">
+            function OnMoreInfoClick(element, key) {
+                popup.SetContentUrl("InPhieuThanhToan3.aspx?ID=" + key);
+                popup.ShowAtElement();
+                // alert(key);
+            }
+
+    </script>
     <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server">
         <Items>
             <dx:LayoutItem Caption="">
@@ -69,6 +77,11 @@
                  <PropertiesComboBox DataSourceID="SqlNhaCungCap" TextField="TenNhaCungCap" ValueField="ID">
                  </PropertiesComboBox>
              </dx:GridViewDataComboBoxColumn>
+             <dx:GridViewDataButtonEditColumn Caption="Xem Chi Tiết" VisibleIndex="6">
+                <DataItemTemplate>
+                    <a href="javascript:void(0);" onclick="OnMoreInfoClick(this, '<%# Container.KeyValue %>')">In phiếu </a>
+                </DataItemTemplate>
+            </dx:GridViewDataButtonEditColumn>
          </Columns>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">
@@ -187,5 +200,11 @@
            </dx:PopupControlContentControl>
 </ContentCollection>
 
+    </dx:ASPxPopupControl>
+    <%--popup chi tiet don hang--%>
+     <dx:ASPxPopupControl ID="ASPxPopupControl1" runat="server" AllowDragging="True" AllowResize="True" 
+         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"  Width="1100px"
+         Height="600px" FooterText="Thông tin chi tiết"
+        HeaderText="Thông tin chi tiết thanh toán chiết khấu" ClientInstanceName="popup" EnableHierarchyRecreation="True" CloseAction="CloseButton">
     </dx:ASPxPopupControl>
 </asp:Content>

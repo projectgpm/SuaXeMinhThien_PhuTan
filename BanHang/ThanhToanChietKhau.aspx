@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="ThanhToanChietKhau.aspx.cs" Inherits="BanHang.ThanhToanChietKhau" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <script type="text/javascript">
+        function OnMoreInfoClick(element, key) {
+            popup.SetContentUrl("InPhieuThanhToan.aspx?ID=" + key);
+            popup.ShowAtElement();
+            // alert(key);
+        }
+
+    </script>
     <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" Width="100%" ColCount="4">
         <Items>
             <dx:LayoutItem Caption="Khách Hàng">
@@ -106,6 +114,7 @@
              </dx:GridViewDataTextColumn>
              <dx:GridViewDataTextColumn Caption="Mã Đơn Hàng" FieldName="MaHoaDon" VisibleIndex="2">
              </dx:GridViewDataTextColumn>
+
          </Columns>
          <TotalSummary>
              <dx:ASPxSummaryItem DisplayFormat="Tổng = {0}" FieldName="TienChietKhauKhachHang" ShowInColumn="Tiền Chiết Khấu" SummaryType="Sum" />
