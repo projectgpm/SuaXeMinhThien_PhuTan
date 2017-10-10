@@ -90,18 +90,100 @@ namespace BanHang.Data
                 }
             }
         }
+        public static double TyLeChietKhau(string IDHoaDon)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT TyLeChietKhauKhachHang FROM [GPM_HoaDon] WHERE [ID] = " + IDHoaDon;
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    if (tb.Rows.Count != 0)
+                    {
+                        DataRow dr = tb.Rows[0];
+                        return Double.Parse(dr["TyLeChietKhauKhachHang"].ToString());
+                    }
+                    else return 0;
+                }
+            }
+        }
+        public static string LayMaHoaDon(string IDHoaDon)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT MaHoaDon FROM [GPM_HoaDon] WHERE [ID] = " + IDHoaDon;
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    if (tb.Rows.Count != 0)
+                    {
+                        DataRow dr = tb.Rows[0];
+                        return dr["MaHoaDon"].ToString();
+                    }
+                    else return null;
+                }
+            }
+        }
+
         public DataTable DanhSachChuaChietKhau(string IDKhachHang)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = " SELECT * FROM [GPM_HoaDon] WHERE IDKhachHang = '" + IDKhachHang + "' AND TrangThai = 0 AND DaXoa = 0";
+                string cmdText = " SELECT [GPM_HoaDon].*, 2 AS TrangThaiDonHang FROM [GPM_HoaDon] WHERE IDKhachHang = '" + IDKhachHang + "' AND TrangThai = 0 AND DaXoa = 0";
+             
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     DataTable tb = new DataTable();
                     tb.Load(reader);
                     return tb;
+                }
+            }
+        }
+        public DataTable DanhSachKhacHangTraHang(string IDKhachHang, string MaHoaDon, int TyLeChietKhau, int ID)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT " + ID + " AS ID," + TyLeChietKhau + " AS TyLeChietKhauKhachHang,1 AS TrangThaiDonHang,NgayDoi AS NgayBan,([TongTienTra] * (" + TyLeChietKhau + "*0.01))*(-1) AS TienChietKhauKhachHang,[TongTienTra] AS TongTien FROM [GPM_PhieuKhachHangTraHang] WHERE IDKhachHang = '" + IDKhachHang + "' AND MaHoaDon = N'" + MaHoaDon + "'";
+
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    return tb;
+                }
+            }
+        }
+        public static double TongTienTra(string MaHoaDon)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT SUM(TongTienTra) AS TongTien FROM [GPM_PhieuKhachHangTraHang] WHERE MaHoaDon = N'" + MaHoaDon + "'";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    if (tb.Rows.Count != 0)
+                    {
+                        DataRow dr = tb.Rows[0];
+                        if (dr["TongTien"].ToString() != "")
+                        {
+                            return double.Parse(dr["TongTien"].ToString());
+                        }
+                        else return 0;
+                    }
+                    else return 0;
                 }
             }
         }
