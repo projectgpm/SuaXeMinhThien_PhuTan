@@ -370,8 +370,10 @@ namespace BanHang
                     HuyHoaDon();
                     ccbKhachHang.Text = "";
                     cmbKyThuat.Text = "";
-                    string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
+
+                    chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon;
+                    chitietbuilInLai.ShowOnPageLoad = true;
+
                     txtBarcode.Focus();
                 }
                 else
@@ -382,8 +384,10 @@ namespace BanHang
                     HuyHoaDon();
                     ccbKhachHang.Text = "";
                     cmbKyThuat.Text = "";
-                    string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
+
+                    chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon;
+                    chitietbuilInLai.ShowOnPageLoad = true;
+
                     txtBarcode.Focus();
                 }
             }
@@ -400,8 +404,10 @@ namespace BanHang
                 HuyHoaDon();
                 ccbKhachHang.Text = "";
                 cmbKyThuat.Text = "";
-                string jsInHoaDon = "window.open(\"InHoaDonBanLe.aspx?IDHoaDon=" + IDHoaDon + "\", \"PrintingFrame\");";
-                ClientScript.RegisterStartupScript(this.GetType(), "Print", jsInHoaDon, true);
+
+                chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon;
+                chitietbuilInLai.ShowOnPageLoad = true;
+
                 txtBarcode.Focus();
             }
         }
