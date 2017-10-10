@@ -137,6 +137,33 @@ namespace BanHang.Data
                 }
             }
         }
+        public void SuaThongTinHangHoaKHinh(string ID, string IDNhomHang, string MaHang, string TenHangHoa, string IDDonViTinh, float GiaMua, float GiaBan, string GhiChu)
+        {
+            using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
+            {
+                try
+                {
+                    myConnection.Open();
+                    string strSQL = "UPDATE [GPM_HANGHOA] SET [IDNhomHang] = @IDNhomHang, [MaHang] = @MaHang, [TenHangHoa] = @TenHangHoa, [IDDonViTinh] = @IDDonViTinh, [GiaMua] = @GiaMua, [GiaBan] = @GiaBan, [GhiChu] = @GhiChu, [NgayCapNhat] = getdate() WHERE [ID] = @ID";
+                    using (SqlCommand myCommand = new SqlCommand(strSQL, myConnection))
+                    {
+                        myCommand.Parameters.AddWithValue("@ID", ID);
+                        myCommand.Parameters.AddWithValue("@IDNhomHang", IDNhomHang);
+                        myCommand.Parameters.AddWithValue("@MaHang", MaHang);
+                        myCommand.Parameters.AddWithValue("@TenHangHoa", TenHangHoa);
+                        myCommand.Parameters.AddWithValue("@IDDonViTinh", IDDonViTinh);
+                        myCommand.Parameters.AddWithValue("@GiaMua", GiaMua);
+                        myCommand.Parameters.AddWithValue("@GiaBan", GiaBan);
+                        myCommand.Parameters.AddWithValue("@GhiChu", GhiChu);
+                        myCommand.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Lỗi: Quá trình cập nhật dữ liệu gặp lỗi, hãy tải lại trang");
+                }
+            }
+        }
         public void ThemDanhSachBarCode(object IDHangHoa, List<string> ListBarCode)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))

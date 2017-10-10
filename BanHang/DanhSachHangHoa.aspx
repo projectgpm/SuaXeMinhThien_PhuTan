@@ -41,7 +41,7 @@
     <dx:ASPxButton ID="ASPxButton1" runat="server" AutoPostBack="False" ClientVisible="false"  Text="ASPxButton">
             <ClientSideEvents Click="function(s, e){ txtBarCode.Focus();}" />
         </dx:ASPxButton>
-    <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridHangHoa_RowDeleting" OnRowInserting="gridHangHoa_RowInserting" OnRowUpdating="gridHangHoa_RowUpdating" style="margin-top: 0px" OnInitNewRow="gridHangHoa_InitNewRow">
+    <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridHangHoa_RowDeleting" OnRowInserting="gridHangHoa_RowInserting" OnRowUpdating="gridHangHoa_RowUpdating" style="margin-top: 0px" OnInitNewRow="gridHangHoa_InitNewRow" OnCustomErrorText="gridHangHoa_CustomErrorText">
         <SettingsDetail ShowDetailRow="True" />
         <Templates>
             <EditForm>
@@ -52,10 +52,13 @@
                 </div>
                 <div style="padding: 4px 3px 4px">
 
+                    <br />
+
                     <dx:ASPxTextBox ID="txtBarCode" ClientInstanceName="txtBarCode" Caption="Barcode" runat="server" Width="100%">
                         <ClientSideEvents KeyDown="onBarCode_KeyDown" LostFocus="onBarCode_LostFocus" />
                     </dx:ASPxTextBox>
                     <br />
+
                     <dx:ASPxTokenBox ID="tkbListBarCode" ClientInstanceName="tkbListBarCode" runat="server"
                         AllowMouseWheel="True" Tokens='<%# LoadListBarCode(Eval("ID")) %>' Width="100%" NullText="Danh sách BarCode của hàng hóa">
                     </dx:ASPxTokenBox>                    
@@ -178,24 +181,19 @@
                 </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem Caption="Giá Bán" ColumnName="Giá Bán" Name="GiaBan1">
                 </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem ColumnName="Ghi Chú" Name="GhiChu">
+                </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Hình Ảnh">
                     <Template>
-                        <dx:ASPxUploadControl ID="UpLoadHinhAnh" runat="server" UploadMode="Auto" Width="100%" ClientInstanceName="upload" ViewStateMode="Disabled">
-                            <ValidationSettings AllowedFileExtensions=".jpg, .bmp, .jpeg, .png" MaxFileSize="4000000">
+                        <dx:ASPxUploadControl ID="UploadImages" runat="server" AutoStartUpload="True" OnFileUploadComplete="UploadImages_FileUploadComplete" ShowProgressPanel="True" UploadMode="Auto" Width="100%">
+                            <ValidationSettings AllowedFileExtensions=".jpge, .jpg, .png">
                             </ValidationSettings>
-                           <%-- <ClientSideEvents FilesUploadComplete="function(s, e) {
-	                                if(e.isValid){gridHangHoa.UpdateEdit();}
-                                }" />--%>
-                            <ClientSideEvents FilesUploadComplete="function(s, e) {
-	}" TextChanged="function(s, e) {
-
-}" />
-                            <BrowseButton Text="Thêm hình ảnh...">
+                            <BrowseButton Text="Chọn file ảnh...">
                             </BrowseButton>
+                            <AdvancedModeSettings EnableDragAndDrop="True" EnableMultiSelect="True">
+                            </AdvancedModeSettings>
                         </dx:ASPxUploadControl>
                     </Template>
-                </dx:GridViewColumnLayoutItem>
-                <dx:GridViewColumnLayoutItem ColumnName="Ghi Chú" Name="GhiChu">
                 </dx:GridViewColumnLayoutItem>
             </Items>
         </EditFormLayoutProperties>
@@ -247,6 +245,8 @@
                 </PropertiesTextEdit>
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataImageColumn Caption="Hình Ảnh" FieldName="HinhAnh" VisibleIndex="12">
+                <PropertiesImage ImageUrlFormatString="~/UploadImages/{0}" ImageAlign="Middle" ImageHeight="100px" ImageWidth="100px">
+                </PropertiesImage>
             </dx:GridViewDataImageColumn>
         </Columns>
         <Styles>

@@ -1,8 +1,10 @@
 ﻿using BanHang.Data;
 using DevExpress.Web;
+using DevExpress.Web.Internal;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -71,23 +73,13 @@ namespace BanHang
                 float GiaMua = float.Parse(e.NewValues["GiaMua"].ToString());
                 float GiaBan = float.Parse(e.NewValues["GiaBan"].ToString());
                 string GhiChu = e.NewValues["GhiChu"] != null ? e.NewValues["GhiChu"].ToString() : "";
-
-
-                ASPxUploadControl fileUpLoad = ((ASPxGridView)gridHangHoa).FindEditFormTemplateControl("UpLoadHinhAnh") as ASPxUploadControl;
-
-                ASPxGridView gridView = sender as ASPxGridView;
-                ASPxUploadControl control = gridHangHoa.FindEditRowCellTemplateControl(gridHangHoa.Columns[0] as GridViewDataColumn, "UpLoadHinhAnh") as ASPxUploadControl;
-                if (fileUpLoad.HasFile)
-                {
-                    string aHinhAnh = "HinhAnh/" + DateTime.Now.ToString("ddMMyyyy_hhmmss_tt_") + fileUpLoad.FileName;
-                    string filePath = MapPath(aHinhAnh);
-                    fileUpLoad.SaveAs(filePath);
-                    e.NewValues["HinhAnh"] = filePath;
-                }
+                ASPxUploadControl fileUpLoad = ((ASPxGridView)gridHangHoa).FindEditFormTemplateControl("UploadImage") as ASPxUploadControl;
+                e.NewValues["HinhAnh"] = Session["UploadImages"];
                 string HinhAnh = e.NewValues["HinhAnh"] != null ? e.NewValues["HinhAnh"].ToString() : "";
                 object IDHangHoa = data.ThemHangHoa(IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu, HinhAnh);
                 if (IDHangHoa != null)
                 {
+                    Session["UploadImages"] = "";
                     data.ThemDanhSachBarCode(IDHangHoa, ListBarCode);
                     DataTable dta = data.LayDanhSachCuaHang();
                     for (int i = 0; i < dta.Rows.Count; i++)
@@ -145,10 +137,12 @@ namespace BanHang
             object IDHangHoa = gridBarCode.GetMasterRowKeyValue();
             string BarCode = e.NewValues["Barcode"] != null ? e.NewValues["Barcode"].ToString() : "";
             data.CapNhatBarCode(ID, IDHangHoa, BarCode);
+
             e.Cancel = true;
             gridBarCode.CancelEdit();
             gridBarCode.DataSource = data.GetListBarCode(IDHangHoa);
             gridBarCode.DataBind();
+           
         }
 
         protected void gridBarCode_RowInserting(object sender, DevExpress.Web.Data.ASPxDataInsertingEventArgs e)
@@ -196,9 +190,18 @@ namespace BanHang
             float GiaMua = float.Parse(e.NewValues["GiaMua"].ToString());
             float GiaBan = float.Parse(e.NewValues["GiaBan"].ToString());
             string GhiChu = e.NewValues["GhiChu"] != null ? e.NewValues["GhiChu"].ToString() : "";
+            e.NewValues["HinhAnh"] = Session["UploadImages"];
             string HinhAnh = e.NewValues["HinhAnh"] != null ? e.NewValues["HinhAnh"].ToString() : "";
             string ID = e.Keys[0].ToString();
-            data.SuaThongTinHangHoa(ID, IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu, HinhAnh);
+            if (Session["UploadImages"].ToString() != "")
+            {
+                Session["UploadImages"] = "";
+                data.SuaThongTinHangHoa(ID, IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu, HinhAnh);
+            }
+            else
+            {
+                data.SuaThongTinHangHoaKHinh(ID, IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu);
+            } 
             data.SuaDanhSachBarCode(e.Keys["ID"] as object, ListBarCode);
             e.Cancel = true;
             gridHangHoa.CancelEdit();
@@ -210,5 +213,21 @@ namespace BanHang
         {
             e.NewValues["MaHang"] = dataHangHoa.Dem_Max();
         }
+
+        protected void gridHangHoa_CustomErrorText(object sender, ASPxGridViewCustomErrorTextEventArgs e)
+        {
+        //    if (e.Exception is CustomExceptions.MyException)
+        //    {
+        //        e.ErrorText = e.Exception.Message;
+        //    }
+        }
+        protected void UploadImages_FileUploadComplete(object sender, FileUploadCompleteEventArgs e)
+        {
+            string name = DateTime.Now.ToString("ddMMyyyy_hhmmss_tt_") + e.UploadedFile.FileName;
+            string path = Page.MapPath("~/UploadImages/") + name;
+            e.UploadedFile.SaveAs(path);
+            Session["UploadImages"] = name;
+        }
+        
     }
 }
