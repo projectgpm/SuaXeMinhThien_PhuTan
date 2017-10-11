@@ -46,3 +46,19 @@ D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.csproj.GenerateResource.C
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.dll.licenses
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.dll
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.pdb
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.csprojResolveAssemblyReference.cache
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuGiaoHang.resources
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.csproj.GenerateResource.Cache
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.dll.licenses
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.dll
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\bin\BanHang.dll
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\bin\BanHang.pdb
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpTheKho.resources
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.pdb
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuThanhToan.resources
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuThanhToan1.resources
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuThanhToan2.resources
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuThanhToan3.resources
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBaoCaoTonKho.resources
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBaoCaoBanHang.resources
+C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBaoCaoNhapHang.resources

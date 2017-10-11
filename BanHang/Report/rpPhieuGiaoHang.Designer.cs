@@ -93,12 +93,17 @@
             DevExpress.DataAccess.Sql.Column column23 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression23 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.Table table7 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column24 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression24 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table8 = new DevExpress.DataAccess.Sql.Table();
             DevExpress.DataAccess.Sql.Join join3 = new DevExpress.DataAccess.Sql.Join();
             DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo3 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
             DevExpress.DataAccess.Sql.Join join4 = new DevExpress.DataAccess.Sql.Join();
             DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo4 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
-            DevExpress.DataAccess.Sql.MasterDetailInfo masterDetailInfo1 = new DevExpress.DataAccess.Sql.MasterDetailInfo();
+            DevExpress.DataAccess.Sql.Join join5 = new DevExpress.DataAccess.Sql.Join();
             DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo5 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
+            DevExpress.DataAccess.Sql.MasterDetailInfo masterDetailInfo1 = new DevExpress.DataAccess.Sql.MasterDetailInfo();
+            DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo6 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rpPhieuGiaoHang));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
@@ -220,7 +225,7 @@
             this.xrTableCell9.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.GPM_HoaDonGPM_ChiTietHoaDon.MaHang")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.GPM_HoaDonGPM_ChiTietHoaDon.Barcode")});
             this.xrTableCell9.Dpi = 100F;
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.StylePriority.UseBorders = false;
@@ -925,6 +930,10 @@
             table7.Name = "GPM_DonViTinh";
             columnExpression23.Table = table7;
             column23.Expression = columnExpression23;
+            columnExpression24.ColumnName = "Barcode";
+            table8.Name = "GPM_HangHoa_Barcode";
+            columnExpression24.Table = table8;
+            column24.Expression = columnExpression24;
             selectQuery3.Columns.Add(column16);
             selectQuery3.Columns.Add(column17);
             selectQuery3.Columns.Add(column18);
@@ -933,6 +942,7 @@
             selectQuery3.Columns.Add(column21);
             selectQuery3.Columns.Add(column22);
             selectQuery3.Columns.Add(column23);
+            selectQuery3.Columns.Add(column24);
             selectQuery3.Name = "GPM_ChiTietHoaDon";
             relationColumnInfo3.NestedKeyColumn = "ID";
             relationColumnInfo3.ParentKeyColumn = "IDHangHoa";
@@ -944,19 +954,26 @@
             join4.KeyColumns.Add(relationColumnInfo4);
             join4.Nested = table7;
             join4.Parent = table6;
+            relationColumnInfo5.NestedKeyColumn = "IDHangHoa";
+            relationColumnInfo5.ParentKeyColumn = "IDHangHoa";
+            join5.KeyColumns.Add(relationColumnInfo5);
+            join5.Nested = table8;
+            join5.Parent = table5;
             selectQuery3.Relations.Add(join3);
             selectQuery3.Relations.Add(join4);
+            selectQuery3.Relations.Add(join5);
             selectQuery3.Tables.Add(table5);
             selectQuery3.Tables.Add(table6);
             selectQuery3.Tables.Add(table7);
+            selectQuery3.Tables.Add(table8);
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             selectQuery1,
             selectQuery2,
             selectQuery3});
             masterDetailInfo1.DetailQueryName = "GPM_ChiTietHoaDon";
-            relationColumnInfo5.NestedKeyColumn = "IDHoaDon";
-            relationColumnInfo5.ParentKeyColumn = "ID";
-            masterDetailInfo1.KeyColumns.Add(relationColumnInfo5);
+            relationColumnInfo6.NestedKeyColumn = "IDHoaDon";
+            relationColumnInfo6.ParentKeyColumn = "ID";
+            masterDetailInfo1.KeyColumns.Add(relationColumnInfo6);
             masterDetailInfo1.MasterQueryName = "GPM_HoaDon";
             this.sqlDataSource1.Relations.AddRange(new DevExpress.DataAccess.Sql.MasterDetailInfo[] {
             masterDetailInfo1});

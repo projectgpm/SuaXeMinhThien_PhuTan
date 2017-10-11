@@ -115,6 +115,12 @@ namespace BanHang.Data
             return getData(cmd);
         }
 
+        public DataTable getDanhSachNhomHang2()
+        {
+            string cmd = "SELECT ID, TenNhomHang FROM GPM_NHOMHANG WHERE DAXOA = 0";
+            return getData(cmd);
+        }
+
         public string LayTenNhomHang_ID(string ID)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))

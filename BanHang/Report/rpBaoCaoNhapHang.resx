@@ -120,7 +120,28 @@
   <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="customSqlQuery1.Sql" xml:space="preserve">
+    <value>select SUM("GPM_DonDatHang_ChiTiet"."SoLuong") as SoLuong,
+       "GPM_DonDatHang_ChiTiet"."DonGia",
+       SUM("GPM_DonDatHang_ChiTiet"."ThanhTien") as ThanhTien,
+       "GPM_HangHoa"."MaHang",
+       "GPM_HangHoa"."TenHangHoa",
+       "GPM_HangHoa"."ID",
+       "GPM_DonViTinh"."TenDonViTinh"
+  from ((("dbo"."GPM_DonDatHang" "GPM_DonDatHang"
+  inner join "dbo"."GPM_DonDatHang_ChiTiet"
+       "GPM_DonDatHang_ChiTiet"
+       on ("GPM_DonDatHang_ChiTiet"."IDDonHang" = "GPM_DonDatHang"."ID"))
+  inner join "dbo"."GPM_HangHoa" "GPM_HangHoa"
+       on ("GPM_HangHoa"."ID" = "GPM_DonDatHang_ChiTiet"."IDHangHoa"))
+  inner join "dbo"."GPM_DonViTinh" "GPM_DonViTinh"
+       on ("GPM_DonViTinh"."ID" = "GPM_HangHoa"."IDDonViTinh"))
+ where (("GPM_DonDatHang"."NgayLap" &gt;= @NgayBD)
+       and ("GPM_DonDatHang"."NgayLap" &lt;= @NgayKT))
+group by "GPM_DonDatHang_ChiTiet"."DonGia","GPM_HangHoa"."MaHang",
+       "GPM_HangHoa"."TenHangHoa","GPM_HangHoa"."ID","GPM_DonViTinh"."TenDonViTinh"</value>
+  </data>
   <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkdQTV9DaGlUaWV0SG9hRG9uIj48RmllbGQgTmFtZT0iSURIb2FEb24iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJHaWFCYW4iIFR5cGU9IkRvdWJsZSIgLz48RmllbGQgTmFtZT0iU29MdW9uZyIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IlRoYW5oVGllbiIgVHlwZT0iRG91YmxlIiAvPjxGaWVsZCBOYW1lPSJNYUhhbmciIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iVGVuSGFuZ0hvYSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJRCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IlRlbkRvblZpVGluaCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJCYXJjb2RlIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9IkdQTV9Ib2FEb24iPjxGaWVsZCBOYW1lPSJNYUhvYURvbiIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJOZ2F5QmFuIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iS2hhY2hDYW5UcmEiIFR5cGU9IkRvdWJsZSIgLz48RmllbGQgTmFtZT0iQ29uZ05vTW9pS2hhY2hIYW5nIiBUeXBlPSJEb3VibGUiIC8+PEZpZWxkIE5hbWU9Ik1hS2hhY2hIYW5nIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRlbktoYWNoSGFuZyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEaWFDaGkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iRGllblRob2FpIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRlbk5ndW9pRHVuZyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJRCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkNvbmdOb0N1S2hhY2hIYW5nIiBUeXBlPSJEb3VibGUiIC8+PC9WaWV3PjxWaWV3IE5hbWU9IlNldHRpbmciPjxGaWVsZCBOYW1lPSJJblRpZXVEZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJbkNvbmdUeSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJbkRpYUNoaSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJbkRpZW5UaG9haSIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48UmVsYXRpb24gTWFzdGVyPSJHUE1fSG9hRG9uIiBEZXRhaWw9IkdQTV9DaGlUaWV0SG9hRG9uIj48S2V5Q29sdW1uIE1hc3Rlcj0iSUQiIERldGFpbD0iSURIb2FEb24iIC8+PC9SZWxhdGlvbj48L0RhdGFTZXQ+</value>
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkdQTV9Eb25EYXRIYW5nIj48RmllbGQgTmFtZT0iU29MdW9uZyIgVHlwZT0iRG91YmxlIiAvPjxGaWVsZCBOYW1lPSJEb25HaWEiIFR5cGU9IkRvdWJsZSIgLz48RmllbGQgTmFtZT0iVGhhbmhUaWVuIiBUeXBlPSJEb3VibGUiIC8+PEZpZWxkIE5hbWU9Ik1hSGFuZyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJUZW5IYW5nSG9hIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IklEIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iVGVuRG9uVmlUaW5oIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9IlNldHRpbmciPjxGaWVsZCBOYW1lPSJJRCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkluVGlldURlIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkluQ29uZ1R5IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRhdGFiYXNlTmFtZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJLZXlLaWNoSG9hdCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJOZ3VvaUtpY2hIb2F0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkNodXllbkRvaURhdSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkNodXllbkFtIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iU29OZ2F5VHJhSGFuZyIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IlR1YW5TdWF0QmFuSGFuZyIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkNhcE5oYXREb25IYW5nWHVMeSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9Ikh1eURvbkhhbmdUaHVNdWEiIFR5cGU9IkludDMyIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
   </data>
 </root>

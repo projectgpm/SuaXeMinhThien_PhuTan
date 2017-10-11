@@ -358,5 +358,55 @@ namespace BanHang.Data
                 }
             }
         }
+
+        public string LayTenHangHoa(string IDHH)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT TenHangHoa FROM GPM_HANGHOA WHERE ID = '" + IDHH + "'";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    if(tb.Rows.Count != 0)
+                        return tb.Rows[0]["TenHangHoa"].ToString();
+                    return "";
+                }
+            }
+        }
+
+        public DataTable LayDanhSachHangHoa_Ten()
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT ID, TenHangHoa FROM GPM_HANGHOA WHERE DAXOA = 0";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    return tb;
+                }
+            }
+        }
+
+        public DataTable LayDanhSachHangHoa_IDNhom(string IdNhom)
+        {
+            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+            {
+                con.Open();
+                string cmdText = "SELECT ID, TenHangHoa FROM GPM_HANGHOA WHERE DAXOA = 0 AND IDNhomHang = '" + IdNhom + "'";
+                using (SqlCommand command = new SqlCommand(cmdText, con))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    DataTable tb = new DataTable();
+                    tb.Load(reader);
+                    return tb;
+                }
+            }
+        }
     }
 }
