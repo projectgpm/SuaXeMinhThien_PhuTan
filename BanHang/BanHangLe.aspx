@@ -64,10 +64,10 @@
                         <table width="95%">
                             <tr>
                                 <td width="80%">
-                                    <asp:Button ID="btnInsertHang" runat="server" OnClick="btnInsertHang_Click" Style="display: none"/>                                                                                        
+                                    <asp:Button ID="btnInsertHang" runat="server" OnClick="btnInsertHang_Click" Style="display: none"/>                                                                     
                                     <dx:ASPxComboBox ID="txtBarcode" runat="server" ValueType="System.String" 
                                         DropDownWidth="600" DropDownStyle="DropDown" 
-                                        ValueField="ID"
+                                        ValueField="ID" 
                                         NullText="Nhập Barcode hoặc mã hàng ......." Width="100%" TextFormatString="{0} - {1}"
                                         EnableCallbackMode="true" CallbackPageSize="10" 
                                         OnItemsRequestedByFilterCondition="txtBarcode_ItemsRequestedByFilterCondition"
@@ -82,6 +82,7 @@
                                         <DropDownButton Visible="False">
                                         </DropDownButton>
                                     </dx:ASPxComboBox>
+                                    
                                     <asp:SqlDataSource ID="dsHangHoa" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" >                                       
                                     </asp:SqlDataSource>
                                 </td>
