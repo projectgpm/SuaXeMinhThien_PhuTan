@@ -13,53 +13,22 @@ namespace BanHang
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["KTDangNhap"] != "GPM")
-            {
-                Response.Redirect("DangNhap.aspx");
-            }
-            else
-            {
-                string NgayBD = Request.QueryString["ngayBD"];
-                string NgayKT = Request.QueryString["NgayKT"];
-                string IDKhachHang = Request.QueryString["IDKhachHang"];
-                string IDKhoNhap = Request.QueryString["IDKhoNhap"];
-                string strKhachHang = "Tất cả khách hàng";
-                string strKhoNhap = "Tất cả các kho";
+            string NgayBD = Request.QueryString["ngayBD"];
+            string NgayKT = Request.QueryString["NgayKT"];
 
-                dtKhachHang dt = new dtKhachHang();
-                if (Int32.Parse(IDKhachHang) != -1)
-                    strKhachHang = dt.LayTenKhachHang_ID(IDKhachHang);
+            string strNgay = DateTime.Parse(NgayBD).ToString("dd-MM-yyyy") + " - " + DateTime.Parse(NgayKT).ToString("dd-MM-yyyy");
 
-                dtKho dt1 = new dtKho();
-                if (Int32.Parse(IDKhoNhap) != -1)
-                    strKhoNhap = dt1.LayTenKho_ID(IDKhoNhap);
+            rpBangKeBanHang rp = new rpBangKeBanHang();
 
-                string strNgay = DateTime.Parse(NgayBD).ToString("dd-MM-yyyy") + " - " + DateTime.Parse(NgayKT).ToString("dd-MM-yyyy");
+            rp.Parameters["strNgay"].Value = strNgay;
+            rp.Parameters["strNgay"].Visible = false;
 
-                rpBangKeBanHang rp = new rpBangKeBanHang();
+            rp.Parameters["NgayBD"].Value = NgayBD;
+            rp.Parameters["NgayBD"].Visible = false;
+            rp.Parameters["NgayKT"].Value = NgayKT;
+            rp.Parameters["NgayKT"].Visible = false;
 
-                rp.Parameters["strNgay"].Value = strNgay;
-                rp.Parameters["strNgay"].Visible = false;
-
-                rp.Parameters["strKhachHang"].Value = strKhachHang;
-                rp.Parameters["strKhachHang"].Visible = false;
-
-                rp.Parameters["strKhoNhap"].Value = strKhoNhap;
-                rp.Parameters["strKhoNhap"].Visible = false;
-
-                rp.Parameters["NgayBD"].Value = NgayBD;
-                rp.Parameters["NgayBD"].Visible = false;
-                rp.Parameters["NgayKT"].Value = NgayKT;
-                rp.Parameters["NgayKT"].Visible = false;
-
-                rp.Parameters["IDKhachHang"].Value = IDKhachHang;
-                rp.Parameters["IDKhachHang"].Visible = false;
-
-                rp.Parameters["IDKhoNhap"].Value = IDKhoNhap;
-                rp.Parameters["IDKhoNhap"].Visible = false;
-                viewerReport.Report = rp;
-
-            }
+            viewerReport.Report = rp;
         }
     }
 }
