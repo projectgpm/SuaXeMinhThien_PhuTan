@@ -68,17 +68,21 @@
             DevExpress.DataAccess.Sql.Column column12 = new DevExpress.DataAccess.Sql.Column();
             DevExpress.DataAccess.Sql.ColumnExpression columnExpression12 = new DevExpress.DataAccess.Sql.ColumnExpression();
             DevExpress.DataAccess.Sql.Table table6 = new DevExpress.DataAccess.Sql.Table();
+            DevExpress.DataAccess.Sql.Column column13 = new DevExpress.DataAccess.Sql.Column();
+            DevExpress.DataAccess.Sql.ColumnExpression columnExpression13 = new DevExpress.DataAccess.Sql.ColumnExpression();
+            DevExpress.DataAccess.Sql.Table table7 = new DevExpress.DataAccess.Sql.Table();
             DevExpress.DataAccess.Sql.Join join2 = new DevExpress.DataAccess.Sql.Join();
             DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo2 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
             DevExpress.DataAccess.Sql.Join join3 = new DevExpress.DataAccess.Sql.Join();
             DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo3 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
-            DevExpress.DataAccess.Sql.MasterDetailInfo masterDetailInfo1 = new DevExpress.DataAccess.Sql.MasterDetailInfo();
+            DevExpress.DataAccess.Sql.Join join4 = new DevExpress.DataAccess.Sql.Join();
             DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo4 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
+            DevExpress.DataAccess.Sql.MasterDetailInfo masterDetailInfo1 = new DevExpress.DataAccess.Sql.MasterDetailInfo();
+            DevExpress.DataAccess.Sql.RelationColumnInfo relationColumnInfo5 = new DevExpress.DataAccess.Sql.RelationColumnInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rpBangKeBanHang));
             DevExpress.XtraReports.UI.XRSummary xrSummary2 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary3 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary4 = new DevExpress.XtraReports.UI.XRSummary();
-            DevExpress.XtraReports.UI.XRSummary xrSummary5 = new DevExpress.XtraReports.UI.XRSummary();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -344,7 +348,7 @@
             this.xrTableCell18.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.GPM_HoaDonGPM_ChiTietHoaDon.MaHang")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.GPM_HoaDonGPM_ChiTietHoaDon.Barcode")});
             this.xrTableCell18.Dpi = 100F;
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseBorders = false;
@@ -487,6 +491,10 @@
             table6.Name = "GPM_DonViTinh";
             columnExpression12.Table = table6;
             column12.Expression = columnExpression12;
+            columnExpression13.ColumnName = "Barcode";
+            table7.Name = "GPM_HangHoa_Barcode";
+            columnExpression13.Table = table7;
+            column13.Expression = columnExpression13;
             selectQuery3.Columns.Add(column6);
             selectQuery3.Columns.Add(column7);
             selectQuery3.Columns.Add(column8);
@@ -494,6 +502,7 @@
             selectQuery3.Columns.Add(column10);
             selectQuery3.Columns.Add(column11);
             selectQuery3.Columns.Add(column12);
+            selectQuery3.Columns.Add(column13);
             selectQuery3.Name = "GPM_ChiTietHoaDon";
             relationColumnInfo2.NestedKeyColumn = "ID";
             relationColumnInfo2.ParentKeyColumn = "IDHangHoa";
@@ -505,19 +514,26 @@
             join3.KeyColumns.Add(relationColumnInfo3);
             join3.Nested = table6;
             join3.Parent = table5;
+            relationColumnInfo4.NestedKeyColumn = "IDHangHoa";
+            relationColumnInfo4.ParentKeyColumn = "ID";
+            join4.KeyColumns.Add(relationColumnInfo4);
+            join4.Nested = table7;
+            join4.Parent = table5;
             selectQuery3.Relations.Add(join2);
             selectQuery3.Relations.Add(join3);
+            selectQuery3.Relations.Add(join4);
             selectQuery3.Tables.Add(table4);
             selectQuery3.Tables.Add(table5);
             selectQuery3.Tables.Add(table6);
+            selectQuery3.Tables.Add(table7);
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             selectQuery1,
             selectQuery2,
             selectQuery3});
             masterDetailInfo1.DetailQueryName = "GPM_ChiTietHoaDon";
-            relationColumnInfo4.NestedKeyColumn = "IDHoaDon";
-            relationColumnInfo4.ParentKeyColumn = "ID";
-            masterDetailInfo1.KeyColumns.Add(relationColumnInfo4);
+            relationColumnInfo5.NestedKeyColumn = "IDHoaDon";
+            relationColumnInfo5.ParentKeyColumn = "ID";
+            masterDetailInfo1.KeyColumns.Add(relationColumnInfo5);
             masterDetailInfo1.MasterQueryName = "GPM_HoaDon";
             this.sqlDataSource1.Relations.AddRange(new DevExpress.DataAccess.Sql.MasterDetailInfo[] {
             masterDetailInfo1});
@@ -528,7 +544,7 @@
             this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable4});
             this.ReportFooter.Dpi = 100F;
-            this.ReportFooter.HeightF = 100F;
+            this.ReportFooter.HeightF = 167.2619F;
             this.ReportFooter.Name = "ReportFooter";
             // 
             // xrTable4
@@ -593,7 +609,7 @@
             xrSummary4.FormatString = "{0:#,# VND}";
             xrSummary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrTableCell27.Summary = xrSummary4;
-            this.xrTableCell27.Weight = 1.3332955227583998D;
+            this.xrTableCell27.Weight = 1.3332949124069955D;
             // 
             // xrTableCell28
             // 
@@ -602,9 +618,7 @@
             this.xrTableCell28.Dpi = 100F;
             this.xrTableCell28.Name = "xrTableCell28";
             this.xrTableCell28.StylePriority.UseBorders = false;
-            xrSummary5.FormatString = "{0}";
-            this.xrTableCell28.Summary = xrSummary5;
-            this.xrTableCell28.Weight = 1.51960621710952D;
+            this.xrTableCell28.Weight = 1.5196068274609242D;
             // 
             // ReportHeader
             // 
@@ -864,12 +878,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell24;
         private DevExpress.XtraReports.UI.ReportFooterBand ReportFooter;
         private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
-        private DevExpress.XtraReports.UI.XRTable xrTable4;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow4;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell25;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell26;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell27;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
         private DevExpress.XtraReports.UI.XRTable xrTable5;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow5;
@@ -887,5 +895,11 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel14;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
+        private DevExpress.XtraReports.UI.XRTable xrTable4;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow4;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell25;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell26;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell27;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
     }
 }

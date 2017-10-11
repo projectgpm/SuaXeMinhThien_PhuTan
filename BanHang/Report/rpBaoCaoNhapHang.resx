@@ -124,11 +124,11 @@
     <value>select SUM("GPM_DonDatHang_ChiTiet"."SoLuong") as SoLuong,
        "GPM_DonDatHang_ChiTiet"."DonGia",
        SUM("GPM_DonDatHang_ChiTiet"."ThanhTien") as ThanhTien,
-       "GPM_HangHoa"."MaHang",
+       "GPM_HangHoa"."ID", "GPM_HangHoa"."MaHang",
        "GPM_HangHoa"."TenHangHoa",
-       "GPM_HangHoa"."ID",
-       "GPM_DonViTinh"."TenDonViTinh"
-  from ((("dbo"."GPM_DonDatHang" "GPM_DonDatHang"
+       "GPM_DonViTinh"."TenDonViTinh",
+       "GPM_HangHoa_Barcode"."Barcode"
+  from (((("dbo"."GPM_DonDatHang" "GPM_DonDatHang"
   inner join "dbo"."GPM_DonDatHang_ChiTiet"
        "GPM_DonDatHang_ChiTiet"
        on ("GPM_DonDatHang_ChiTiet"."IDDonHang" = "GPM_DonDatHang"."ID"))
@@ -136,12 +136,15 @@
        on ("GPM_HangHoa"."ID" = "GPM_DonDatHang_ChiTiet"."IDHangHoa"))
   inner join "dbo"."GPM_DonViTinh" "GPM_DonViTinh"
        on ("GPM_DonViTinh"."ID" = "GPM_HangHoa"."IDDonViTinh"))
+  inner join "dbo"."GPM_HangHoa_Barcode"
+       "GPM_HangHoa_Barcode"
+       on ("GPM_HangHoa_Barcode"."IDHangHoa" = "GPM_HangHoa"."ID"))
  where (("GPM_DonDatHang"."NgayLap" &gt;= @NgayBD)
        and ("GPM_DonDatHang"."NgayLap" &lt;= @NgayKT))
-group by "GPM_DonDatHang_ChiTiet"."DonGia","GPM_HangHoa"."MaHang",
-       "GPM_HangHoa"."TenHangHoa","GPM_HangHoa"."ID","GPM_DonViTinh"."TenDonViTinh"</value>
+group by "GPM_DonDatHang_ChiTiet"."DonGia","GPM_HangHoa"."ID", "GPM_HangHoa"."MaHang",
+       "GPM_HangHoa"."TenHangHoa", "GPM_DonViTinh"."TenDonViTinh", "GPM_HangHoa_Barcode"."Barcode"</value>
   </data>
   <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkdQTV9Eb25EYXRIYW5nIj48RmllbGQgTmFtZT0iU29MdW9uZyIgVHlwZT0iRG91YmxlIiAvPjxGaWVsZCBOYW1lPSJEb25HaWEiIFR5cGU9IkRvdWJsZSIgLz48RmllbGQgTmFtZT0iVGhhbmhUaWVuIiBUeXBlPSJEb3VibGUiIC8+PEZpZWxkIE5hbWU9Ik1hSGFuZyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJUZW5IYW5nSG9hIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IklEIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iVGVuRG9uVmlUaW5oIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9IlNldHRpbmciPjxGaWVsZCBOYW1lPSJJRCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkluVGlldURlIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkluQ29uZ1R5IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRhdGFiYXNlTmFtZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJLZXlLaWNoSG9hdCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJOZ3VvaUtpY2hIb2F0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkNodXllbkRvaURhdSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkNodXllbkFtIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iU29OZ2F5VHJhSGFuZyIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IlR1YW5TdWF0QmFuSGFuZyIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkNhcE5oYXREb25IYW5nWHVMeSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9Ikh1eURvbkhhbmdUaHVNdWEiIFR5cGU9IkludDMyIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkdQTV9Eb25EYXRIYW5nIj48RmllbGQgTmFtZT0iU29MdW9uZyIgVHlwZT0iRG91YmxlIiAvPjxGaWVsZCBOYW1lPSJEb25HaWEiIFR5cGU9IkRvdWJsZSIgLz48RmllbGQgTmFtZT0iVGhhbmhUaWVuIiBUeXBlPSJEb3VibGUiIC8+PEZpZWxkIE5hbWU9IklEIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iTWFIYW5nIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRlbkhhbmdIb2EiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iVGVuRG9uVmlUaW5oIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkJhcmNvZGUiIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iU2V0dGluZyI+PEZpZWxkIE5hbWU9IklEIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iSW5UaWV1RGUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iSW5Db25nVHkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iRGF0YWJhc2VOYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IktleUtpY2hIb2F0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9Ik5ndW9pS2ljaEhvYXQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iQ2h1eWVuRG9pRGF1IiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iQ2h1eWVuQW0iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJTb05nYXlUcmFIYW5nIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iVHVhblN1YXRCYW5IYW5nIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iQ2FwTmhhdERvbkhhbmdYdUx5IiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iSHV5RG9uSGFuZ1RodU11YSIgVHlwZT0iSW50MzIiIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
   </data>
 </root>
