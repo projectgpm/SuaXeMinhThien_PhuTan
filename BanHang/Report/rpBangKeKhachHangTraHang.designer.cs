@@ -398,8 +398,9 @@
             // 
             this.DetailReport.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail1});
-            this.DetailReport.DataMember = "GPM_PhieuKhachHangTraHang.GPM_PhieuKhachHangTraHangGPM_ChiTietPhieuKhachHangTraHa" +
-    "ng";
+            this.DetailReport.DataMember = "GPM_PhieuKhachHangTraHang.GPM_PhieuKhachHangTraHangGPM_PhieuKhachHangTraHang_ChiT" +
+    "iet";
+            this.DetailReport.DataSource = this.sqlDataSource1;
             this.DetailReport.Dpi = 100F;
             this.DetailReport.Level = 0;
             this.DetailReport.Name = "DetailReport";
