@@ -179,7 +179,7 @@ namespace BanHang.Data
             {
                 con.Open();
                 string cmdText = "";
-                cmdText = "SELECT HH.ID, HH.TenHangHoa,HH.MaHang, Dvi.TenDonViTinh, HH.GiaBan, HH.GiaMua " +
+                cmdText = "SELECT HH.ID, HH.TenHangHoa,HH.MaHang, Dvi.TenDonViTinh, HH.GiaBan, HH.GiaMua, HH.HinhAnh " +
                                  "FROM GPM_HangHoa AS HH " +
                                  "INNER JOIN GPM_HangHoaTonKho AS HHTK ON HH.ID = HHTK.IDHangHoa " +
                                  "INNER JOIN GPM_DonViTinh as DVi ON HH.IDDonViTinh = DVi.ID " +

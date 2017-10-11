@@ -107,6 +107,7 @@ namespace BanHang
                 int SoLuong = exitHang.SoLuong + int.Parse(txtSoLuong.Text);
                 double ThanhTienOld = exitHang.ThanhTien;
                 exitHang.SoLuong = SoLuong;
+                exitHang.HinhAnh = tbThongTin.Rows[0]["HinhAnh"].ToString();
                 exitHang.DonGia = double.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
                 exitHang.GiaKyThuat = double.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
                 exitHang.TonKho = dtCapNhatTonKho.SoLuong_TonKho(IDHangHoa.ToString(), Session["IDKho"].ToString());
@@ -126,6 +127,7 @@ namespace BanHang
                 cthd.DonGia = double.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
                 cthd.GiaKyThuat = double.Parse(tbThongTin.Rows[0]["GiaBan"].ToString());
                 cthd.GiaMua = double.Parse(tbThongTin.Rows[0]["GiaMua"].ToString());
+                cthd.HinhAnh = tbThongTin.Rows[0]["HinhAnh"].ToString();
                 cthd.ThanhTien = int.Parse(txtSoLuong.Text) * double.Parse(cthd.GiaKyThuat.ToString());
                 DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Add(cthd);
                 DanhSachHoaDon[MaHoaDon].SoLuongHang++;
@@ -293,7 +295,8 @@ namespace BanHang
                 var itemToRemove =  DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Single(r => r.STT == STT);
                 DanhSachHoaDon[MaHoaDon].SoLuongHang--;
                 DanhSachHoaDon[MaHoaDon].TongTien = DanhSachHoaDon[MaHoaDon].TongTien - itemToRemove.ThanhTien;
-                DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien - DanhSachHoaDon[MaHoaDon].GiamGia;
+                DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe;
+                txtKhachCanTra.Text = DanhSachHoaDon[MaHoaDon].KhachCanTra.ToString();
                 DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Remove(itemToRemove);
                 BindGridChiTietHoaDon();
             }
@@ -690,6 +693,7 @@ namespace BanHang
         public double GiaMua { get; set; }
         public double ThanhTien { get; set; }
         public double GiaKyThuat { get; set; }
+        public string HinhAnh { get; set; }
         public ChiTietHoaDon()
         {
             TonKho = 0;
