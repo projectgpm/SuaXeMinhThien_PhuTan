@@ -296,7 +296,7 @@ namespace BanHang
                 DanhSachHoaDon[MaHoaDon].SoLuongHang--;
                 DanhSachHoaDon[MaHoaDon].TongTien = DanhSachHoaDon[MaHoaDon].TongTien - itemToRemove.ThanhTien;
                 DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe;
-                txtKhachCanTra.Text = DanhSachHoaDon[MaHoaDon].KhachCanTra.ToString();
+                txtTienThoi.Text = "0";
                 DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Remove(itemToRemove);
                 BindGridChiTietHoaDon();
             }
