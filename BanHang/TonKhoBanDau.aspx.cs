@@ -21,14 +21,9 @@ namespace BanHang
             else
             {
                 
-                if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
-                {
+                
                     LoadGrid();
-                }
-                else
-                {
-                    Response.Redirect("Default.aspx");
-                }
+               
             }
         }
         private void LoadGrid()

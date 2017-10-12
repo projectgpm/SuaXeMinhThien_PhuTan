@@ -21,18 +21,13 @@ namespace BanHang
             }
             else
             {
-                if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
-                {
+                
                     if (dtSetting.LayChucNang_ThemXoaSua(Session["IDNhom"].ToString()) == false)
                     {
                         gridNhomNguoiDung.Columns["chucnang"].Visible = false;
                     }
                     LoadGrid();
-                }
-                else
-                {
-                    Response.Redirect("Default.aspx");
-                }
+               
             }
 
         }

@@ -312,29 +312,29 @@ namespace BanHang.Data
                 }
             }
         }
-        public static bool LayChucNang_HienThi(string IDNhomNguoiDung)
-        {
-            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
-            {
-                con.Open();
-                string Link = (HttpContext.Current.Request.Url.AbsolutePath).Replace("/","");
-                string cmdText = "SELECT [GPM_PhanQuyen].TrangThai,[GPM_Menu].Link FROM [GPM_PhanQuyen],[GPM_Menu] WHERE [GPM_PhanQuyen].[IDNhomNguoiDung] = '" + IDNhomNguoiDung + "' AND [GPM_PhanQuyen].IDMenu = [GPM_Menu].ID AND  [GPM_Menu].Link = '" + Link + "'";
-                using (SqlCommand command = new SqlCommand(cmdText, con))
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    DataTable tb = new DataTable();
-                    tb.Load(reader);
-                    if (tb.Rows.Count != 0)
-                    {
-                        DataRow dr = tb.Rows[0];
-                        if (Int32.Parse(dr["TrangThai"].ToString()) == 1)
-                            return true;
-                        return false;
-                    }
-                    else return false;
-                }
-            }
-        }
+        //public static bool LayChucNang_HienThi(string IDNhomNguoiDung)
+        //{
+        //    using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+        //    {
+        //        con.Open();
+        //        string Link = (HttpContext.Current.Request.Url.AbsolutePath).Replace("/","");
+        //        string cmdText = "SELECT [GPM_PhanQuyen].TrangThai,[GPM_Menu].Link FROM [GPM_PhanQuyen],[GPM_Menu] WHERE [GPM_PhanQuyen].[IDNhomNguoiDung] = '" + IDNhomNguoiDung + "' AND [GPM_PhanQuyen].IDMenu = [GPM_Menu].ID AND  [GPM_Menu].Link = '" + Link + "'";
+        //        using (SqlCommand command = new SqlCommand(cmdText, con))
+        //        using (SqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            DataTable tb = new DataTable();
+        //            tb.Load(reader);
+        //            if (tb.Rows.Count != 0)
+        //            {
+        //                DataRow dr = tb.Rows[0];
+        //                if (Int32.Parse(dr["TrangThai"].ToString()) == 1)
+        //                    return true;
+        //                return false;
+        //            }
+        //            else return false;
+        //        }
+        //    }
+        //}
         public static bool LayChucNang_ThemXoaSua(string IDNhomNguoiDung)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))

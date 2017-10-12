@@ -36,11 +36,8 @@ D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBangKeBanHang.re
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBangKeKhachHangTraHang.resources
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBangKePhieuXuatKhac.resources
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBaoCaoBanHang.resources
-D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBaoCaoChuyenKho.resources
-D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBaoCaoKhachHangTraHang.resources
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBaoCaoNhapHang.resources
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBaoCaoTonKho.resources
-D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpHoaDonBanHangLe.resources
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpTheKho.resources
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.csproj.GenerateResource.Cache
 D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.dll.licenses
@@ -66,3 +63,9 @@ C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.
 C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBangKeKhachHangTraHang.resources
 C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpBangKePhieuXuatKhac.resources
 C:\Users\vmquy\Desktop\GPM Code\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuGiaoHang1.resources
+D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuGiaoHang.resources
+D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuGiaoHang1.resources
+D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuThanhToan.resources
+D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuThanhToan1.resources
+D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuThanhToan2.resources
+D:\GPM\SuaXeMinhThien_PhuTan\BanHang\obj\Debug\BanHang.Report.rpPhieuThanhToan3.resources

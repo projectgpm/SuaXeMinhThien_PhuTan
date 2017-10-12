@@ -20,8 +20,7 @@ namespace BanHang
             }
             else
             {
-                if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
-                {
+               
                     if (txtMaHangTraCuu.Text != "")
                     {
                         string MaHang = txtMaHangTraCuu.Text.ToString().Trim();
@@ -32,9 +31,7 @@ namespace BanHang
                             LoadDanhSachHangQuiDoi(dtHangHoa.LayIDHangHoa_MaHang(MaHang));
                         }
                     }
-                }
-                else
-                    Response.Redirect("Default.aspx");
+             
             }
         }
         public void LoadDanhSachBarcode(string IDHangHoa)

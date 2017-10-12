@@ -19,8 +19,7 @@ namespace BanHang
             }
             else
             {
-                if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
-                {
+               
                     if (!IsPostBack)
                     {
 
@@ -41,9 +40,7 @@ namespace BanHang
                         cmbKho.SelectedIndex = 0;
                     }
 
-                }
-                else
-                    Response.Redirect("Default.aspx");
+                
             }
         }
 
