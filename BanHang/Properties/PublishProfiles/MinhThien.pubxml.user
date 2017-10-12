@@ -74,7 +74,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/11/2017 08:17:02</publishTime>
     </File>
     <File Include="bin/BanHang.dll">
-      <publishTime>10/12/2017 10:56:57</publishTime>
+      <publishTime>10/12/2017 11:31:54</publishTime>
     </File>
     <File Include="ChietKhau.aspx">
       <publishTime>10/10/2017 10:15:45</publishTime>
@@ -219,6 +219,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="image/hotro.png">
       <publishTime>10/10/2017 10:15:48</publishTime>
+    </File>
+    <File Include="image/logo.jpg">
+      <publishTime>10/12/2017 11:19:08</publishTime>
     </File>
     <File Include="image/nhapxuat.png">
       <publishTime>10/10/2017 10:15:48</publishTime>
@@ -371,7 +374,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/10/2017 15:07:27</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/12/2017 10:56:57</publishTime>
+      <publishTime>10/12/2017 11:31:54</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -161,6 +161,7 @@
     <Content Include="image\download.png" />
     <Content Include="image\hethong.png" />
     <Content Include="image\hotro.png" />
+    <Content Include="image\logo.jpg" />
     <Content Include="image\nhapxuat.png" />
     <Content Include="image\suachua.png" />
     <Content Include="image\taikhoan.png" />

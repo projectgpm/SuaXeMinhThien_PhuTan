@@ -200,7 +200,7 @@
             // 
             this.xrLabel4.Dpi = 100F;
             this.xrLabel4.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(147.9259F, 138.0893F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(147.9259F, 143.0893F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.SizeF = new System.Drawing.SizeF(552.5463F, 32.25926F);
@@ -255,9 +255,9 @@
             // 
             this.xrPictureBox1.Dpi = 100F;
             this.xrPictureBox1.ImageUrl = "~\\image\\logo.jpg";
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(48.62035F, 55.50607F);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(48.62034F, 50.50607F);
             this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(92.30565F, 43.31479F);
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(155.2221F, 78.854F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
             // 
             // xrLabel13
