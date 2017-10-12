@@ -212,7 +212,7 @@
 
                                 </Columns>
                                  <TotalSummary>
-                                     <dx:ASPxSummaryItem DisplayFormat="Tổng = {0}" FieldName="ThanhTien" ShowInColumn="Thành Tiền" SummaryType="Sum" />
+                                     <dx:ASPxSummaryItem DisplayFormat="Tổng tiền: {0:N0}" FieldName="ThanhTien" ShowInColumn="Thành Tiền" SummaryType="Sum" />
                                  </TotalSummary>
                                  <Styles>
                                     <Header Font-Bold="True" HorizontalAlign="Center">
