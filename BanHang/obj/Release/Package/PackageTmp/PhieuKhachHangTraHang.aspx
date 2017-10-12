@@ -210,7 +210,7 @@
                                     </dx:GridViewDataButtonEditColumn>
                                     </Columns>
                                     <TotalSummary>
-                                        <dx:ASPxSummaryItem DisplayFormat="Tổng = {0}" FieldName="ThanhTien" ShowInColumn="Thành tiền" SummaryType="Sum" />
+                                        <dx:ASPxSummaryItem DisplayFormat="Tổng tiền: {0:N0}" FieldName="ThanhTien" ShowInColumn="Thành tiền" SummaryType="Sum" />
                                     </TotalSummary>
                                     <Styles>
                                         <Header Font-Bold="True" HorizontalAlign="Center">
