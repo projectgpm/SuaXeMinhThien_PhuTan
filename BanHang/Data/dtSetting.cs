@@ -468,9 +468,9 @@ namespace BanHang.Data
         public static int setKeyCode(string Key, string user)
         {
             PhysicalAddress address = GetMacAddress();
-            string strAddress = address.ToString();
+            string strAddress = address.ToString() + "GPM";
 
-            if (Key.CompareTo("1231123") == 0)
+            if (Key.CompareTo("gpm6868") == 0)
             {
                 string sha1Address = GetSHA1HashData(strAddress);
                 setData_Setting(sha1Address, user);
@@ -482,7 +482,7 @@ namespace BanHang.Data
         public static int getKeyCode()
         {
             PhysicalAddress address = GetMacAddress();
-            string strAddress = address.ToString();
+            string strAddress = address.ToString() + "GPM";
             string sha1Address = GetSHA1HashData(strAddress);
 
             DataTable da = getData_Setting();
