@@ -335,31 +335,31 @@ namespace BanHang.Data
         //        }
         //    }
         //}
-        public static bool LayChucNang_ThemXoaSua(string IDNhomNguoiDung)
-        {
-            using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
-            {
-                con.Open();
-                string Link = (HttpContext.Current.Request.Url.AbsolutePath).Replace("/", "");
-                string cmdText = "SELECT [GPM_PhanQuyen].ChucNang,[GPM_Menu].Link FROM [GPM_PhanQuyen],[GPM_Menu] WHERE [GPM_PhanQuyen].[IDNhomNguoiDung] = '" + IDNhomNguoiDung + "' AND [GPM_PhanQuyen].IDMenu = [GPM_Menu].ID AND  [GPM_Menu].Link = '" + Link + "'";
-                using (SqlCommand command = new SqlCommand(cmdText, con))
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    DataTable tb = new DataTable();
-                    tb.Load(reader);
-                    if (tb.Rows.Count != 0)
-                    {
-                        DataRow dr = tb.Rows[0];
-                        int KT = 0;
-                        if (Int32.Parse(dr["ChucNang"].ToString()) == 1)
-                            return true;
-                        return false;
+        //public static bool LayChucNang_ThemXoaSua(string IDNhomNguoiDung)
+        //{
+        //    using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
+        //    {
+        //        con.Open();
+        //        string Link = (HttpContext.Current.Request.Url.AbsolutePath).Replace("/", "");
+        //        string cmdText = "SELECT [GPM_PhanQuyen].ChucNang,[GPM_Menu].Link FROM [GPM_PhanQuyen],[GPM_Menu] WHERE [GPM_PhanQuyen].[IDNhomNguoiDung] = '" + IDNhomNguoiDung + "' AND [GPM_PhanQuyen].IDMenu = [GPM_Menu].ID AND  [GPM_Menu].Link = '" + Link + "'";
+        //        using (SqlCommand command = new SqlCommand(cmdText, con))
+        //        using (SqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            DataTable tb = new DataTable();
+        //            tb.Load(reader);
+        //            if (tb.Rows.Count != 0)
+        //            {
+        //                DataRow dr = tb.Rows[0];
+        //                int KT = 0;
+        //                if (Int32.Parse(dr["ChucNang"].ToString()) == 1)
+        //                    return true;
+        //                return false;
 
-                    }
-                    else return false;
-                }
-            }
-        }
+        //            }
+        //            else return false;
+        //        }
+        //    }
+        //}
         public static string convertDauSangKhongDau(string s)
         {
             Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");

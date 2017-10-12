@@ -42,7 +42,6 @@
             <ClientSideEvents Click="function(s, e){ txtBarCode.Focus();}" />
         </dx:ASPxButton>
     <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridHangHoa_RowDeleting" OnRowInserting="gridHangHoa_RowInserting" OnRowUpdating="gridHangHoa_RowUpdating" style="margin-top: 0px" OnInitNewRow="gridHangHoa_InitNewRow" OnCustomErrorText="gridHangHoa_CustomErrorText">
-        <SettingsDetail ShowDetailRow="True" />
         <Templates>
             <EditForm>
                 <div style="padding: 4px 3px 4px">
@@ -54,14 +53,6 @@
 
                     <br />
 
-                    <dx:ASPxTextBox ID="txtBarCode" ClientInstanceName="txtBarCode" Caption="Barcode" runat="server" Width="100%">
-                        <ClientSideEvents KeyDown="onBarCode_KeyDown" LostFocus="onBarCode_LostFocus" />
-                    </dx:ASPxTextBox>
-                    <br />
-
-                    <dx:ASPxTokenBox ID="tkbListBarCode" ClientInstanceName="tkbListBarCode" runat="server"
-                        AllowMouseWheel="True" Tokens='<%# LoadListBarCode(Eval("ID")) %>' Width="100%" NullText="Danh sách BarCode của hàng hóa">
-                    </dx:ASPxTokenBox>                    
                 </div>
                 <div style="text-align: right; padding: 2px">
                     <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton" 
@@ -105,8 +96,7 @@
                         </DeleteButton>
                     </SettingsCommandButton>
                     <Columns>
-                        <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" 
-                            ShowNewButtonInHeader="True" VisibleIndex="3">
+                        <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="3">
                         </dx:GridViewCommandColumn>
                         <dx:GridViewDataTextColumn Caption="ID" FieldName="ID" VisibleIndex="0" Visible ="false">
                             <EditFormSettings Visible="False" />
@@ -173,6 +163,8 @@
                 </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Tên Hàng Hóa">
                 </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem ColumnName="BarCode">
+                </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Đơn Vị Tính">
                 </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Nhóm Hàng">
@@ -205,7 +197,7 @@
                     </ValidationSettings>
                 </PropertiesTextEdit>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Đơn Vị Tính" FieldName="IDDonViTinh" VisibleIndex="3">
+            <dx:GridViewDataComboBoxColumn Caption="Đơn Vị Tính" FieldName="IDDonViTinh" VisibleIndex="4">
                 <PropertiesComboBox DataSourceID="sqlDonViTinh" TextField="TenDonViTinh" ValueField="ID">
                     <ValidationSettings>
                         <RequiredField IsRequired="True" />
@@ -216,14 +208,14 @@
             </dx:GridViewDataTextColumn>
             <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="14">
             </dx:GridViewCommandColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Giá Mua" FieldName="GiaMua" VisibleIndex="4">
+            <dx:GridViewDataSpinEditColumn Caption="Giá Mua" FieldName="GiaMua" VisibleIndex="5">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom" DisplayFormatInEditMode="True">
                     <ValidationSettings SetFocusOnError="True">
                         <RequiredField IsRequired="True" />
                     </ValidationSettings>
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Giá Bán" FieldName="GiaBan" VisibleIndex="5">
+            <dx:GridViewDataSpinEditColumn Caption="Giá Bán" FieldName="GiaBan" VisibleIndex="6">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom" DisplayFormatInEditMode="True">
                     <ValidationSettings SetFocusOnError="True">
                         <RequiredField IsRequired="True" />
@@ -248,6 +240,13 @@
                 <PropertiesImage ImageUrlFormatString="~/UploadImages/{0}" ImageAlign="Middle" ImageHeight="100px" ImageWidth="100px">
                 </PropertiesImage>
             </dx:GridViewDataImageColumn>
+            <dx:GridViewDataTextColumn Caption="BarCode" FieldName="Barcode" VisibleIndex="3">
+                <PropertiesTextEdit>
+                    <ValidationSettings SetFocusOnError="True">
+                        <RequiredField IsRequired="True" />
+                    </ValidationSettings>
+                </PropertiesTextEdit>
+            </dx:GridViewDataTextColumn>
         </Columns>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">

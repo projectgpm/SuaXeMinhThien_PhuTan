@@ -21,10 +21,7 @@ namespace BanHang
             else
             {
                
-                    if (dtSetting.LayChucNang_ThemXoaSua(Session["IDNhom"].ToString()) == false)
-                    {
-                        gridQuanTriNguoiDung.Columns["chucnang"].Visible = false;
-                    }
+                   
                     LoadGrid();
                 
             }

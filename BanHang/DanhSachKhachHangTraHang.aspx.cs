@@ -20,8 +20,7 @@ namespace BanHang
             {
               
                     LoadGrid();
-                    if (dtSetting.LayChucNang_ThemXoaSua(Session["IDNhom"].ToString()) == false)
-                        btnThemPhieuTraHang.Enabled = false;
+                    
               
             }
         }

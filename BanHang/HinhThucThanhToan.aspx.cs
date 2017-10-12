@@ -19,12 +19,7 @@ namespace BanHang
             }
             else
             {
-                
-               
-                    LoadGrid();
-                    if (dtSetting.LayChucNang_ThemXoaSua(Session["IDNhom"].ToString()) == false)
-                        gridHinhThucThanhToan.Columns["chucnang"].Visible = false;
-               
+                LoadGrid();
             }
         }
         public void LoadGrid()

@@ -61,7 +61,7 @@ namespace BanHang
         protected void gridHangHoa_RowInserting(object sender, DevExpress.Web.Data.ASPxDataInsertingEventArgs e)
         {
             data = new dataHangHoa();
-            List<string> ListBarCode = GetListBarCode();
+            //List<string> ListBarCode = GetListBarCode();
             string MaHang = e.NewValues["MaHang"].ToString();
             DataTable dd = data.KiemTraHangHoa(MaHang);
             if (dd.Rows.Count == 0)
@@ -80,7 +80,8 @@ namespace BanHang
                 if (IDHangHoa != null)
                 {
                     Session["UploadImages"] = "";
-                    data.ThemDanhSachBarCode(IDHangHoa, ListBarCode);
+                    string BarCode = e.NewValues["Barcode"].ToString();
+                    data.ThemDanhSachBarCode(IDHangHoa, BarCode);
                     DataTable dta = data.LayDanhSachCuaHang();
                     for (int i = 0; i < dta.Rows.Count; i++)
                     {
@@ -181,7 +182,7 @@ namespace BanHang
         protected void gridHangHoa_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
         {
             data = new dataHangHoa();
-            List<string> ListBarCode = GetListBarCode();
+            //List<string> ListBarCode = GetListBarCode();
             string MaHang = e.NewValues["MaHang"].ToString();
             string IDNhomHang = e.NewValues["IDNhomHang"].ToString();
             string TenHangHoa = e.NewValues["TenHangHoa"].ToString();
@@ -201,8 +202,9 @@ namespace BanHang
             else
             {
                 data.SuaThongTinHangHoaKHinh(ID, IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu);
-            } 
-            data.SuaDanhSachBarCode(e.Keys["ID"] as object, ListBarCode);
+            }
+            string BarCode = e.NewValues["Barcode"].ToString();
+            data.SuaDanhSachBarCode(e.Keys["ID"] as object, BarCode);
             e.Cancel = true;
             gridHangHoa.CancelEdit();
             LoadGrid();

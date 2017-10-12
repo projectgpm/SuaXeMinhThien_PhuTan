@@ -41,7 +41,7 @@ namespace BanHang
                     Session["TenThuNgan"] = dr["TenNguoiDung"].ToString();
                     Session["IDThuNgan"] = dr["ID"].ToString();
                     dtLichSuTruyCap.ThemLichSu(Session["IDNhanVien"].ToString(), Session["IDNhom"].ToString(), "Đăng Nhập", Session["IDKho"].ToString(), "Đăng Nhập", "Đăng Nhập");
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("TonKhoBanDau.aspx");
                 }
                 else
                 {

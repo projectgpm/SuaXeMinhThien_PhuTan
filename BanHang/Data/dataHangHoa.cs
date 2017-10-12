@@ -88,7 +88,7 @@ namespace BanHang.Data
                 }
             }
         }
-        public void SuaDanhSachBarCode(object ID, List<string> ListBarCode)
+        public void SuaDanhSachBarCode(object ID,string BarCode)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
@@ -101,7 +101,7 @@ namespace BanHang.Data
                         myCommand.Parameters.AddWithValue("@IDHangHoa", ID);
                         myCommand.ExecuteNonQuery();
                     }
-                    ThemDanhSachBarCode(ID, ListBarCode);
+                    ThemDanhSachBarCode(ID, BarCode);
                 }
                 catch (Exception e)
                 {
@@ -164,7 +164,7 @@ namespace BanHang.Data
                 }
             }
         }
-        public void ThemDanhSachBarCode(object IDHangHoa, List<string> ListBarCode)
+        public void ThemDanhSachBarCode(object IDHangHoa, string BarCode)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
@@ -177,14 +177,14 @@ namespace BanHang.Data
                     {
                         myCommand.Parameters.AddWithValue("@IDHangHoa", IDHangHoa);
                         myCommand.Parameters.AddWithValue("@BarCode", "");
-                        foreach (string barCode in ListBarCode)
-                        {
-                            if (KiemTraBarcode(barCode) == true)
+                        //foreach (string barCode in ListBarCode)
+                        //{
+                        if (KiemTraBarcode(BarCode) == true)
                             {
-                                myCommand.Parameters["@BarCode"].Value = barCode;
+                                myCommand.Parameters["@BarCode"].Value = BarCode;
                                 myCommand.ExecuteNonQuery();
                             }
-                        }
+                        //}
                     }
                 }
                 catch (Exception e)
@@ -348,7 +348,7 @@ namespace BanHang.Data
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = "SELECT [GPM_HANGHOA].* FROM [GPM_HANGHOA] WHERE GPM_HANGHOA.[DAXOA] = 0";
+                string cmdText = "SELECT [GPM_HANGHOA].*,[GPM_HangHoa_Barcode].[Barcode] FROM [GPM_HANGHOA],[GPM_HangHoa_Barcode] WHERE [GPM_HangHoa_Barcode].[IDHangHoa] = [GPM_HANGHOA].ID AND  GPM_HANGHOA.[DAXOA] = 0";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
