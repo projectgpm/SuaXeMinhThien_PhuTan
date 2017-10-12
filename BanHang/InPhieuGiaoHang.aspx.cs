@@ -13,11 +13,22 @@ namespace BanHang
         protected void Page_Load(object sender, EventArgs e)
         {
             string IDHoaDon = Request.QueryString["IDHoaDon"];
+            string KT = Request.QueryString["KT"];
 
-            rpPhieuGiaoHang rp = new rpPhieuGiaoHang();
-            rp.Parameters["ID"].Value = IDHoaDon;
-            rp.Parameters["ID"].Visible = false;
-            reportView.Report = rp;
+            if (Int32.Parse(KT) == 1)
+            {
+                rpPhieuGiaoHang rp = new rpPhieuGiaoHang();
+                rp.Parameters["ID"].Value = IDHoaDon;
+                rp.Parameters["ID"].Visible = false;
+                reportView.Report = rp;
+            }
+            else
+            {
+                rpPhieuGiaoHang1 rp = new rpPhieuGiaoHang1();
+                rp.Parameters["ID"].Value = IDHoaDon;
+                rp.Parameters["ID"].Visible = false;
+                reportView.Report = rp;
+            }
         }
     }
 }

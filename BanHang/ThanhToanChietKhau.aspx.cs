@@ -15,7 +15,10 @@ namespace BanHang
         dtThanhToanChietKhau data = new dtThanhToanChietKhau();
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadGrid();
+            if (dateNgayBD.Text != "" && dateNgayKT.Text != "" && cmbKhachHang.Text !="")
+            {
+                LoadGrid();
+            }
         }
         double TOngTien = 0;
         protected void btnThanhToan_Click(object sender, EventArgs e)
@@ -75,12 +78,23 @@ namespace BanHang
 
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
-            LoadGrid();
+            if (dateNgayBD.Text != "" && dateNgayKT.Text != "")
+            {
+                LoadGrid();
+            }
+            else
+                Response.Write("<script language='JavaScript'> alert('Vui lòng điền đầy đủ thông tin có dấu (*) .'); </script>");
+                
         }
         public void LoadGrid()
         {
             if (cmbKhachHang.Text != "")
             {
+                string ngayBD = DateTime.Parse(dateNgayBD.Value + "").ToString("yyyy-MM-dd ");
+                string ngayKT = DateTime.Parse(dateNgayKT.Value + "").ToString("yyyy-MM-dd ");
+                ngayBD = ngayBD + "00:00:0.000";
+                ngayKT = ngayKT + "23:59:59.999";
+
                 string iDKhachHang = cmbKhachHang.Value.ToString();
                 DataTable da = new DataTable();
                 da.Columns.Add("NgayBan", typeof(DateTime));
@@ -90,7 +104,7 @@ namespace BanHang
                 da.Columns.Add("ID", typeof(int));
                 da.Columns.Add("TrangThaiDonHang", typeof(int));
                 da.Columns.Add("MaHoaDon", typeof(string));
-                DataTable db = data.DanhSachChuaChietKhau(iDKhachHang);
+                DataTable db = data.DanhSachChuaChietKhau(iDKhachHang, ngayBD, ngayKT);
                 if (db.Rows.Count > 0)
                 {
                     foreach (DataRow dr in db.Rows)

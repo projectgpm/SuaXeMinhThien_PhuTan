@@ -29,7 +29,7 @@ namespace BanHang
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["KTDangNhap"] == "GPM")
+            if (Session["KTBanLe"] == "GPMBanLe")
             {
                 //if (dtSetting.LayChucNang_HienThi(Session["IDNhom"].ToString()) == true)
                 //{
@@ -282,7 +282,7 @@ namespace BanHang
             }
             int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
             DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
-            DanhSachHoaDon[MaHoaDon].TienThua = TienKhachThanhToan - DanhSachHoaDon[MaHoaDon].TongTien;
+            DanhSachHoaDon[MaHoaDon].TienThua = TienKhachThanhToan - DanhSachHoaDon[MaHoaDon].KhachCanTra;
             txtTienThoi.Text = DanhSachHoaDon[MaHoaDon].TienThua.ToString();
         }
 
@@ -374,7 +374,7 @@ namespace BanHang
                     ccbKhachHang.Text = "";
                     cmbKyThuat.Text = "";
 
-                    chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon;
+                    chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 1;
                     chitietbuilInLai.ShowOnPageLoad = true;
 
                     txtBarcode.Focus();
@@ -388,7 +388,7 @@ namespace BanHang
                     ccbKhachHang.Text = "";
                     cmbKyThuat.Text = "";
 
-                    chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon;
+                    chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 1;
                     chitietbuilInLai.ShowOnPageLoad = true;
 
                     txtBarcode.Focus();
@@ -408,7 +408,7 @@ namespace BanHang
                 ccbKhachHang.Text = "";
                 cmbKyThuat.Text = "";
 
-                chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon;
+                chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 0;
                 chitietbuilInLai.ShowOnPageLoad = true;
 
                 txtBarcode.Focus();
@@ -556,22 +556,22 @@ namespace BanHang
                 DataTable db = dt.LayThongHoaDon(TuKhoa);
                 if (db.Rows.Count > 0)
                 {
-                     ASPxGridViewInBuil.DataSource = dt.LayThongHoaDon(TuKhoa);
-                    ASPxGridViewInBuil.DataBind();
+                    string IDKH = 1 + "";
+                    if (Int32.Parse(db.Rows[0]["IDKhachHang"].ToString()) != 1)
+                        IDKH = 0 + "";
+
+                    chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + db.Rows[0]["ID"].ToString() + "&KT=" + IDKH;
+                    chitietbuilInLai.ShowOnPageLoad = true;
                 }
                 else
                 {
                     txtTimKiem.Focus();
-                    ASPxGridViewInBuil.DataSource = null;
-                    ASPxGridViewInBuil.DataBind();
                     HienThiThongBao("Không tìm thấy dữ liệu cần tìm?");
                 }
             }
             else
             {
                 txtTimKiem.Focus();
-                ASPxGridViewInBuil.DataSource = null;
-                ASPxGridViewInBuil.DataBind();
                 HienThiThongBao("Vui lòng nhập thông tin cần tìm?");
             }
         }
@@ -647,7 +647,7 @@ namespace BanHang
             int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
             DanhSachHoaDon[MaHoaDon].TienSuaXe = TienSuaXe;
             DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe;
-            //DanhSachHoaDon[MaHoaDon].
+            DanhSachHoaDon[MaHoaDon].TienThua = DanhSachHoaDon[MaHoaDon].KhachCanTra;
             txtKhachCanTra.Text = DanhSachHoaDon[MaHoaDon].KhachCanTra.ToString();
             txtTienThoi.Text = "0";
         }

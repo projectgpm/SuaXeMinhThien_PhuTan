@@ -95,6 +95,10 @@
     </Content>
     <Content Include="BangKeBanHang.aspx" />
     <Content Include="BangKeBanHang_In.aspx" />
+    <Content Include="BangKeKhachHangTraHang.aspx" />
+    <Content Include="BangKeKhachHangTraHang_In.aspx" />
+    <Content Include="BangKePhieuXuatKhac.aspx" />
+    <Content Include="BangKePhieuXuatKhac_In.aspx" />
     <Content Include="BanHangLe.aspx" />
     <Content Include="BaoCaoBanHang.aspx" />
     <Content Include="BaoCaoBanHang_In.aspx" />
@@ -208,6 +212,14 @@
     <Content Include="ThemQuyen.aspx" />
     <Content Include="TonKhoBanDau.aspx" />
     <Content Include="TraCuuMaHang.aspx" />
+    <Content Include="UploadImages\10102017_023250_PM_vibox-v2-pro-800x01.jpg" />
+    <Content Include="UploadImages\10102017_024652_PM_vibox-v2-pro-800x01.jpg" />
+    <Content Include="UploadImages\10102017_025558_PM_gallery2.jpg" />
+    <Content Include="UploadImages\10102017_025609_PM_gallery4.jpg" />
+    <Content Include="UploadImages\10102017_025619_PM_gallery7.jpg" />
+    <Content Include="UploadImages\10102017_025628_PM_testimonial3.jpg" />
+    <Content Include="UploadImages\10102017_030101_PM_signup-bg.png" />
+    <Content Include="UploadImages\10102017_030136_PM_blog-post1.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -271,6 +283,34 @@
     </Compile>
     <Compile Include="BangKeBanHang_In.aspx.designer.cs">
       <DependentUpon>BangKeBanHang_In.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BangKeKhachHangTraHang.aspx.cs">
+      <DependentUpon>BangKeKhachHangTraHang.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BangKeKhachHangTraHang.aspx.designer.cs">
+      <DependentUpon>BangKeKhachHangTraHang.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BangKeKhachHangTraHang_In.aspx.cs">
+      <DependentUpon>BangKeKhachHangTraHang_In.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BangKeKhachHangTraHang_In.aspx.designer.cs">
+      <DependentUpon>BangKeKhachHangTraHang_In.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BangKePhieuXuatKhac.aspx.cs">
+      <DependentUpon>BangKePhieuXuatKhac.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BangKePhieuXuatKhac.aspx.designer.cs">
+      <DependentUpon>BangKePhieuXuatKhac.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BangKePhieuXuatKhac_In.aspx.cs">
+      <DependentUpon>BangKePhieuXuatKhac_In.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BangKePhieuXuatKhac_In.aspx.designer.cs">
+      <DependentUpon>BangKePhieuXuatKhac_In.aspx</DependentUpon>
     </Compile>
     <Compile Include="BanHangLe.aspx.cs">
       <DependentUpon>BanHangLe.aspx</DependentUpon>
@@ -746,6 +786,18 @@
     <Compile Include="Report\rpBangKeBanHang.Designer.cs">
       <DependentUpon>rpBangKeBanHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\rpBangKeKhachHangTraHang.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\rpBangKeKhachHangTraHang.designer.cs">
+      <DependentUpon>rpBangKeKhachHangTraHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\rpBangKePhieuXuatKhac.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\rpBangKePhieuXuatKhac.designer.cs">
+      <DependentUpon>rpBangKePhieuXuatKhac.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\rpBaoCaoBanHang.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -769,6 +821,12 @@
     </Compile>
     <Compile Include="Report\rpPhieuGiaoHang.Designer.cs">
       <DependentUpon>rpPhieuGiaoHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\rpPhieuGiaoHang1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\rpPhieuGiaoHang1.Designer.cs">
+      <DependentUpon>rpPhieuGiaoHang1.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\rpPhieuThanhToan.cs">
       <SubType>Component</SubType>
@@ -883,6 +941,12 @@
     <EmbeddedResource Include="Report\rpBangKeBanHang.resx">
       <DependentUpon>rpBangKeBanHang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\rpBangKeKhachHangTraHang.resx">
+      <DependentUpon>rpBangKeKhachHangTraHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rpBangKePhieuXuatKhac.resx">
+      <DependentUpon>rpBangKePhieuXuatKhac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\rpBaoCaoBanHang.resx">
       <DependentUpon>rpBaoCaoBanHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -894,6 +958,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\rpPhieuGiaoHang.resx">
       <DependentUpon>rpPhieuGiaoHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rpPhieuGiaoHang1.resx">
+      <DependentUpon>rpPhieuGiaoHang1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\rpPhieuThanhToan.resx">
       <DependentUpon>rpPhieuThanhToan.cs</DependentUpon>
@@ -924,6 +991,9 @@
     <Folder Include="HoaDonBanLe\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Uploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\MinhThien.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

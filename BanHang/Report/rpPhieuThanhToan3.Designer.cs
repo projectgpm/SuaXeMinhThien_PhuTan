@@ -68,6 +68,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rpPhieuThanhToan3));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
@@ -117,11 +118,23 @@
             // 
             // TopMargin
             // 
+            this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel31});
             this.TopMargin.Dpi = 100F;
-            this.TopMargin.HeightF = 30.55556F;
+            this.TopMargin.HeightF = 39.66666F;
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel31
+            // 
+            this.xrLabel31.Dpi = 100F;
+            this.xrLabel31.LocationFloat = new DevExpress.Utils.PointFloat(711.4583F, 10.00001F);
+            this.xrLabel31.Name = "xrLabel31";
+            this.xrLabel31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel31.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel31.Text = "Nhà cung cấp";
+            this.xrLabel31.Visible = false;
             // 
             // BottomMargin
             // 
@@ -241,9 +254,11 @@
             // xrPictureBox1
             // 
             this.xrPictureBox1.Dpi = 100F;
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(48.62036F, 40.21902F);
+            this.xrPictureBox1.ImageUrl = "~\\image\\logo.jpg";
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(48.62035F, 55.50607F);
             this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(99.99999F, 87.81482F);
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(92.30565F, 43.31479F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
             // 
             // xrLabel13
             // 
@@ -664,7 +679,7 @@
             this.sqlDataSource1});
             this.DataMember = "Setting";
             this.DataSource = this.sqlDataSource1;
-            this.Margins = new System.Drawing.Printing.Margins(0, 0, 31, 100);
+            this.Margins = new System.Drawing.Printing.Margins(0, 0, 40, 100);
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.ID});
             this.Version = "16.1";
@@ -713,5 +728,6 @@
         private DevExpress.XtraReports.Parameters.Parameter ID;
         private DevExpress.XtraReports.UI.CalculatedField CNTruoc;
         private DevExpress.XtraReports.UI.CalculatedField CNSau;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel31;
     }
 }

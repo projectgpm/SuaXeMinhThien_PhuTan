@@ -131,12 +131,12 @@ namespace BanHang.Data
             }
         }
 
-        public DataTable DanhSachChuaChietKhau(string IDKhachHang)
+        public DataTable DanhSachChuaChietKhau(string IDKhachHang, string NgayBD, string NgayKetThuc)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = " SELECT [GPM_HoaDon].*, 2 AS TrangThaiDonHang FROM [GPM_HoaDon] WHERE IDKhachHang = '" + IDKhachHang + "' AND TrangThai = 0 AND DaXoa = 0";
+                string cmdText = " SELECT [GPM_HoaDon].*, 2 AS TrangThaiDonHang FROM [GPM_HoaDon] WHERE IDKhachHang = '" + IDKhachHang + "' AND TrangThai = 0 AND DaXoa = 0 AND NgayBan < '" + NgayKetThuc + "' AND NgayBan > '" + NgayBD + "'";
              
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())

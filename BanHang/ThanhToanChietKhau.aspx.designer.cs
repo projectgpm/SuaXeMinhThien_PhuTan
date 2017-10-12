@@ -40,22 +40,22 @@ namespace BanHang {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlKhachHang;
         
         /// <summary>
-        /// ASPxFormLayout1_E4 control.
+        /// dateNgayBD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxDateEdit ASPxFormLayout1_E4;
+        protected global::DevExpress.Web.ASPxDateEdit dateNgayBD;
         
         /// <summary>
-        /// ASPxFormLayout1_E2 control.
+        /// dateNgayKT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxDateEdit ASPxFormLayout1_E2;
+        protected global::DevExpress.Web.ASPxDateEdit dateNgayKT;
         
         /// <summary>
         /// btnTimKiem control.

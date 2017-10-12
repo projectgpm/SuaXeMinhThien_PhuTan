@@ -104,7 +104,7 @@ namespace BanHang.Data
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = "select TOP 10 GPM_HoaDon.ID,GPM_HoaDon.[MaHoaDon],GPM_KhachHang.TenKhachHang,GPM_HoaDon.NgayBan from GPM_HoaDon,GPM_KhachHang WHERE GPM_HoaDon.IDKhachHang = GPM_KhachHang.ID AND (GPM_HoaDon.[MaHoaDon] = '" + TuKhoa + "' OR GPM_KhachHang.TenKhachHang = N'" + TuKhoa + "') ORDER BY GPM_HoaDon.ID DESC";
+                string cmdText = "select TOP 10 GPM_HoaDon.ID,GPM_HoaDon.IDKhachHang,GPM_HoaDon.[MaHoaDon],GPM_KhachHang.TenKhachHang,GPM_HoaDon.NgayBan from GPM_HoaDon,GPM_KhachHang WHERE GPM_HoaDon.IDKhachHang = GPM_KhachHang.ID AND (GPM_HoaDon.[MaHoaDon] = '" + TuKhoa + "' OR GPM_KhachHang.TenKhachHang = N'" + TuKhoa + "')";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())

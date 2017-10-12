@@ -346,6 +346,15 @@ namespace BanHang {
         protected global::DevExpress.Web.ASPxTextBox txtKhachCanTra;
         
         /// <summary>
+        /// LayoutItemNestedControlContainer3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer3;
+        
+        /// <summary>
         /// txtKhachThanhToan control.
         /// </summary>
         /// <remarks>
@@ -353,6 +362,15 @@ namespace BanHang {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox txtKhachThanhToan;
+        
+        /// <summary>
+        /// LayoutItemNestedControlContainer5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer5;
         
         /// <summary>
         /// txtTienThoi control.
@@ -391,6 +409,15 @@ namespace BanHang {
         protected global::DevExpress.Web.ASPxFormLayout ASPxFormLayout1;
         
         /// <summary>
+        /// LayoutItemNestedControlContainer11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer11;
+        
+        /// <summary>
         /// txtTimKiem control.
         /// </summary>
         /// <remarks>
@@ -398,6 +425,15 @@ namespace BanHang {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox txtTimKiem;
+        
+        /// <summary>
+        /// LayoutItemNestedControlContainer12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer12;
         
         /// <summary>
         /// btnTimKiem control.
@@ -409,13 +445,13 @@ namespace BanHang {
         protected global::DevExpress.Web.ASPxButton btnTimKiem;
         
         /// <summary>
-        /// ASPxGridViewInBuil control.
+        /// LayoutItemNestedControlContainer13 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView ASPxGridViewInBuil;
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer13;
         
         /// <summary>
         /// popupThemKhachHang control.
