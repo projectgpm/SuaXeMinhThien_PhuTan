@@ -15,10 +15,10 @@ namespace BanHang
         protected void Page_Load(object sender, EventArgs e)
         {
            // txtDangNhap.Focus();
-            if (dtSetting.getKeyCode() == -1)
-            {
-                Response.Redirect("keyCode.aspx");
-            }
+            //if (dtSetting.getKeyCode() == -1)
+            //{
+            //    Response.Redirect("keyCode.aspx");
+            //}
         }
         protected void btnDangNhapQuanLy_Click(object sender, EventArgs e)
         {
