@@ -117,7 +117,7 @@
 
          </Columns>
          <TotalSummary>
-             <dx:ASPxSummaryItem DisplayFormat="Tổng = {0}" FieldName="TienChietKhauKhachHang" ShowInColumn="Tiền Chiết Khấu" SummaryType="Sum" />
+             <dx:ASPxSummaryItem DisplayFormat="Tổng tiền: {0:N0}" FieldName="TienChietKhauKhachHang" ShowInColumn="Tiền Chiết Khấu" SummaryType="Sum" />
          </TotalSummary>
         <Styles>
             <Header Font-Bold="True" HorizontalAlign="Center">

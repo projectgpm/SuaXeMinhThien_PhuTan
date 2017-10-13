@@ -330,87 +330,95 @@ namespace BanHang
         protected void btnThanhToan_Click(object sender, EventArgs e)
         {
             int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
-            float TienKhachThanhToan;
-            bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
-            if (!isNumeric)
+            if (DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Count > 0)
             {
-                HienThiThongBao("Nhập không đúng số tiền !!"); return;
-            }
-            
-            DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
-            dtBanHangLe dt = new dtBanHangLe();
-            string IDKho = Session["IDKho"].ToString();
-            string IDNhanVien = Session["IDThuNgan"].ToString();
-            int IDKhachHang = 1, IDKyThuat = 1;
-            if (ccbKhachHang.Value != null)
-                IDKhachHang = Int32.Parse(ccbKhachHang.Value.ToString());
-            if (cmbKyThuat.Value != null)
-                IDKyThuat = Int32.Parse(cmbKyThuat.Value.ToString());
-            if (IDKhachHang == 1)// khách lẻ
-            {
-                if (TienKhachThanhToan < DanhSachHoaDon[MaHoaDon].KhachCanTra)
+                float TienKhachThanhToan;
+                bool isNumeric = float.TryParse(txtKhachThanhToan.Text, out TienKhachThanhToan);
+                if (!isNumeric)
                 {
-                    txtKhachThanhToan.Text = "";
-                    txtKhachThanhToan.Focus();
-                    HienThiThongBao("Thanh toán chưa đủ số tiền !!"); return;
+                    HienThiThongBao("Nhập không đúng số tiền !!"); return;
                 }
-                if (IDKyThuat != 1)
+
+                DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
+                dtBanHangLe dt = new dtBanHangLe();
+                string IDKho = Session["IDKho"].ToString();
+                string IDNhanVien = Session["IDThuNgan"].ToString();
+                int IDKhachHang = 1, IDKyThuat = 1;
+                if (ccbKhachHang.Value != null)
+                    IDKhachHang = Int32.Parse(ccbKhachHang.Value.ToString());
+                if (cmbKyThuat.Value != null)
+                    IDKyThuat = Int32.Parse(cmbKyThuat.Value.ToString());
+                if (IDKhachHang == 1)// khách lẻ
                 {
-                    // có kỹ thuật
-                    int TyLeChietKhauKyThuat = dtNhanVienKyThuat.TyLeChietKhauKyThuat(cmbKyThuat.Value.ToString());
-                    double TienHuong = 0, TienHeThong = 0;
-                    for (int i = 0; i < gridChiTietHoaDon.VisibleRowCount; i++)
+                    if (TienKhachThanhToan < DanhSachHoaDon[MaHoaDon].KhachCanTra)
                     {
-                        int SoLuong = Int32.Parse(gridChiTietHoaDon.GetRowValues(i, "SoLuong").ToString());
-                        double TongTienGiaGoc =  double.Parse(gridChiTietHoaDon.GetRowValues(i, "DonGia").ToString());
-                        TienHeThong = TienHeThong + (double.Parse(gridChiTietHoaDon.GetRowValues(i, "DonGia").ToString()) * SoLuong);
-                        double TongTienBaoGia =  double.Parse(gridChiTietHoaDon.GetRowValues(i, "GiaKyThuat").ToString());
-                        TienHuong = TienHuong + ((TongTienBaoGia - TongTienGiaGoc) * SoLuong);
+                        txtKhachThanhToan.Text = "";
+                        txtKhachThanhToan.Focus();
+                        HienThiThongBao("Thanh toán chưa đủ số tiền !!"); return;
                     }
-                    double TienChietKhau = TienHeThong * TyLeChietKhauKyThuat / (float)100;
-                    double TongThucNhan = TienChietKhau + TienHuong;// cộng tiền vào công nợ kỹ thuật
-                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), TongThucNhan.ToString(), "0", "0", "0", TyLeChietKhauKyThuat.ToString(),"1","0","0");
-                    HuyHoaDon();
-                    ccbKhachHang.Text = "";
-                    cmbKyThuat.Text = "";
+                    if (IDKyThuat != 1)
+                    {
+                        // có kỹ thuật
+                        int TyLeChietKhauKyThuat = dtNhanVienKyThuat.TyLeChietKhauKyThuat(cmbKyThuat.Value.ToString());
+                        double TienHuong = 0, TienHeThong = 0;
+                        for (int i = 0; i < gridChiTietHoaDon.VisibleRowCount; i++)
+                        {
+                            int SoLuong = Int32.Parse(gridChiTietHoaDon.GetRowValues(i, "SoLuong").ToString());
+                            double TongTienGiaGoc = double.Parse(gridChiTietHoaDon.GetRowValues(i, "DonGia").ToString());
+                            TienHeThong = TienHeThong + (double.Parse(gridChiTietHoaDon.GetRowValues(i, "DonGia").ToString()) * SoLuong);
+                            double TongTienBaoGia = double.Parse(gridChiTietHoaDon.GetRowValues(i, "GiaKyThuat").ToString());
+                            TienHuong = TienHuong + ((TongTienBaoGia - TongTienGiaGoc) * SoLuong);
+                        }
+                        double TienChietKhau = TienHeThong * TyLeChietKhauKyThuat / (float)100;
+                        double TongThucNhan = TienChietKhau + TienHuong;// cộng tiền vào công nợ kỹ thuật
+                        object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), TongThucNhan.ToString(), "0", "0", "0", TyLeChietKhauKyThuat.ToString(), "1", "0", "0");
+                        HuyHoaDon();
+                        ccbKhachHang.Text = "";
+                        cmbKyThuat.Text = "";
 
-                    chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 1;
-                    chitietbuilInLai.ShowOnPageLoad = true;
+                        chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 1;
+                        chitietbuilInLai.ShowOnPageLoad = true;
 
-                    txtBarcode.Focus();
+                        txtBarcode.Focus();
+                    }
+                    else
+                    {
+                        //không có kỹ thuật, CK 0%// 
+                        // không cộng tổng tiền cho kỹ thuật
+                        object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", "0", "0", "0", "0", "1", "0", "0");
+                        HuyHoaDon();
+                        ccbKhachHang.Text = "";
+                        cmbKyThuat.Text = "";
+
+                        chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 1;
+                        chitietbuilInLai.ShowOnPageLoad = true;
+
+                        txtBarcode.Focus();
+                    }
                 }
-                else
-                { 
-                    //không có kỹ thuật, CK 0%// 
-                    // không cộng tổng tiền cho kỹ thuật
-                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", "0", "0", "0", "0","1","0","0");
+                else// khách sỉ
+                {
+                    // tính chiết khấu khách sỉ
+                    int TyLeChietKhauKhachHang = dtKhachHang.TyLeChietKhauKhachHang(IDKhachHang.ToString());
+                    // nếu tiền chiết khấu lưu trong hóa đơn, tổng tiền còn lại thì cập nhật vào công nợ khách hàng
+                    double CongNoCu = dtKhachHang.LayCongNoCuKhachHang(IDKhachHang.ToString());
+                    double TongTienKhachHang = DanhSachHoaDon[MaHoaDon].KhachThanhToan - DanhSachHoaDon[MaHoaDon].KhachCanTra;//
+                    double ChietKhauKhachHang = DanhSachHoaDon[MaHoaDon].TongTien * (TyLeChietKhauKhachHang / (float)100);
+                    double CongNoMoi = CongNoCu + (TongTienKhachHang * -1);
+                    object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", ChietKhauKhachHang.ToString(), (TongTienKhachHang * -1).ToString(), TyLeChietKhauKhachHang.ToString(), "0", "0", CongNoCu.ToString(), CongNoMoi.ToString());
                     HuyHoaDon();
                     ccbKhachHang.Text = "";
                     cmbKyThuat.Text = "";
 
-                    chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 1;
+                    chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 0;
                     chitietbuilInLai.ShowOnPageLoad = true;
 
                     txtBarcode.Focus();
                 }
             }
-            else// khách sỉ
+            else
             {
-                // tính chiết khấu khách sỉ
-                int TyLeChietKhauKhachHang = dtKhachHang.TyLeChietKhauKhachHang(IDKhachHang.ToString());
-                // nếu tiền chiết khấu lưu trong hóa đơn, tổng tiền còn lại thì cập nhật vào công nợ khách hàng
-                double CongNoCu = dtKhachHang.LayCongNoCuKhachHang(IDKhachHang.ToString());
-                double TongTienKhachHang = DanhSachHoaDon[MaHoaDon].KhachThanhToan - DanhSachHoaDon[MaHoaDon].KhachCanTra;//
-                double ChietKhauKhachHang = DanhSachHoaDon[MaHoaDon].TongTien * (TyLeChietKhauKhachHang / (float)100);
-                double CongNoMoi = CongNoCu + (TongTienKhachHang * -1);
-                object IDHoaDon = dt.InsertHoaDon(IDKho, IDNhanVien, IDKhachHang.ToString(), DanhSachHoaDon[MaHoaDon], IDKyThuat.ToString(), "0", ChietKhauKhachHang.ToString(), (TongTienKhachHang * -1).ToString(), TyLeChietKhauKhachHang.ToString(), "0", "0", CongNoCu.ToString(), CongNoMoi.ToString());
-                HuyHoaDon();
-                ccbKhachHang.Text = "";
-                cmbKyThuat.Text = "";
-
-                chitietbuilInLai.ContentUrl = "~/InPhieuGiaoHang.aspx?IDHoaDon=" + IDHoaDon + "&KT=" + 0;
-                chitietbuilInLai.ShowOnPageLoad = true;
-
+                HienThiThongBao("Danh sách hàng hóa trống !!!");
                 txtBarcode.Focus();
             }
         }
