@@ -340,7 +340,7 @@
             // xrLabel18
             // 
             this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_ThanhToanChietKhau.CNSau", "{0:#,# VND}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_ThanhToanChietKhau.CNSau", "{0:N0} VNĐ")});
             this.xrLabel18.Dpi = 100F;
             this.xrLabel18.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(251.2962F, 291.5001F);
@@ -363,7 +363,7 @@
             // xrLabel16
             // 
             this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_ThanhToanChietKhau.SoTienThanhToan", "{0:#,# VND}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_ThanhToanChietKhau.SoTienThanhToan", "{0:N0} VNĐ")});
             this.xrLabel16.Dpi = 100F;
             this.xrLabel16.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(203.8425F, 247.8149F);
@@ -467,7 +467,7 @@
             // xrLabel14
             // 
             this.xrLabel14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_ThanhToanChietKhau.CNTruoc", "{0:#,# VND}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_ThanhToanChietKhau.CNTruoc", "{0:N0} VNĐ")});
             this.xrLabel14.Dpi = 100F;
             this.xrLabel14.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(251.2962F, 203.4445F);

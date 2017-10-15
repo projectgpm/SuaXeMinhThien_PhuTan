@@ -230,7 +230,7 @@
             this.xrTableCell14.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.GPM_HoaDonGPM_ChiTietHoaDon.ThanhTien", "{0:#,#}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.GPM_HoaDonGPM_ChiTietHoaDon.ThanhTien", "{0:N0}")});
             this.xrTableCell14.Dpi = 100F;
             this.xrTableCell14.Name = "xrTableCell14";
             this.xrTableCell14.StylePriority.UseBorders = false;
@@ -691,7 +691,7 @@
             this.xrTableCell21.Dpi = 100F;
             this.xrTableCell21.Name = "xrTableCell21";
             this.xrTableCell21.StylePriority.UseBorders = false;
-            xrSummary3.FormatString = "{0:#,# VND}";
+            xrSummary3.FormatString = "{0:N0} VNĐ";
             xrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrTableCell21.Summary = xrSummary3;
             this.xrTableCell21.Weight = 1.3912052862752811D;
@@ -699,7 +699,7 @@
             // xrLabel16
             // 
             this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.TongTien", "{0:#,# VND}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.TongTien", "{0:N0} VNĐ")});
             this.xrLabel16.Dpi = 100F;
             this.xrLabel16.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(555.5647F, 28.75931F);
@@ -724,7 +724,7 @@
             // xrLabel20
             // 
             this.xrLabel20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.CongNoMoiKhachHang", "{0:#,# VND}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.CongNoMoiKhachHang", "{0:N0} VNĐ")});
             this.xrLabel20.Dpi = 100F;
             this.xrLabel20.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(555.5647F, 71.12965F);
@@ -775,7 +775,7 @@
             // xrLabel25
             // 
             this.xrLabel25.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.CongNoCuKhachHang", "{0:#,# VND}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_HoaDon.CongNoCuKhachHang", "{0:N0} VNĐ")});
             this.xrLabel25.Dpi = 100F;
             this.xrLabel25.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(555.5648F, 49.4445F);

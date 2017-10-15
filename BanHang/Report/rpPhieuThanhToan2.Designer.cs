@@ -330,7 +330,7 @@
             // xrLabel16
             // 
             this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_CongNoKyThuat.SoTienThanhToan", "{0:#,# VND}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_CongNoKyThuat.SoTienThanhToan", "{0:N0} VNĐ")});
             this.xrLabel16.Dpi = 100F;
             this.xrLabel16.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(203.8425F, 216.4869F);

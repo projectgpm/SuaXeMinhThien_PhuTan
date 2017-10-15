@@ -539,7 +539,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell23.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "GPM_PhieuKhachHangTraHang.GPM_PhieuKhachHangTraHangGPM_PhieuKhachHangTraHang_ChiT" +
-                    "iet.ThanhTien", "{0:#,#}")});
+                    "iet.ThanhTien", "{0:N0}")});
             this.xrTableCell23.Dpi = 100F;
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.StylePriority.UseBorders = false;
@@ -626,7 +626,7 @@
             this.xrTableCell27.Dpi = 100F;
             this.xrTableCell27.Name = "xrTableCell27";
             this.xrTableCell27.StylePriority.UseBorders = false;
-            xrSummary4.FormatString = "{0:#,# VND}";
+            xrSummary4.FormatString = "{0:N0} VNĐ";
             xrSummary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrTableCell27.Summary = xrSummary4;
             this.xrTableCell27.Weight = 1.5196081881019001D;
