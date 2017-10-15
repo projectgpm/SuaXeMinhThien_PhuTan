@@ -169,7 +169,7 @@ namespace BanHang
             string IDThuMuaDatHang = IDThuMuaDatHang_Temp.Value.ToString();
             data = new dtThemDonHangKho();
             data.XoaChiTietDonHang_Nhap(IDThuMuaDatHang);
-            Response.Redirect("DanhSachPhieuNhapHang.aspx");
+            Response.Redirect("DanhSachPhieuDatHang.aspx");
         }
         protected void BtnXoaHang_Click(object sender, EventArgs e)
         {
