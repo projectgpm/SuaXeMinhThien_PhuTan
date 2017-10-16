@@ -230,10 +230,11 @@ namespace BanHang
                                         data = new dtKhachHang();
                                         data.CapNhatTinhTrang(IDHoaDon);
                                         SoTienThanhToan = 0;
-                                        Response.Redirect("ChiTietCongNoKhachHang.aspx");
                                     }
+                                    Response.Redirect("ChiTietCongNoKhachHang.aspx");
                                 }
                             }
+                            Response.Redirect("ChiTietCongNoKhachHang.aspx");
                         }
                     }
                 }
