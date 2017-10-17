@@ -25,6 +25,7 @@ namespace BanHang
             {
                 if (!IsPostBack)
                 {
+                    txtBarcode.Focus();
                     IDThuMuaDatHang_Temp.Value = Session["IDNhanVien"].ToString();
                     TinhTongTien();
                     txtNguoiLap.Text = Session["TenDangNhap"].ToString();
@@ -39,11 +40,11 @@ namespace BanHang
             gridDanhSachHangHoa.DataSource = data.DanhSachDonDatHang_Temp(p);
             gridDanhSachHangHoa.DataBind();
         }
-        public void CLear()
-        {
-            txtBarcode.Text = "";
-            txtSoLuong.Text = "";
-        }
+        //public void CLear()
+        //{
+        //    txtBarcode.Text = "";
+        //    txtSoLuong.Text = "";
+        //}
         //protected void btnThem_Temp_Click(object sender, EventArgs e)
         //{
         //    if (txtBarcode.Text != "")
@@ -168,6 +169,7 @@ namespace BanHang
         }
         protected void BtnXoaHang_Click(object sender, EventArgs e)
         {
+            txtBarcode.Focus();
             string ID = (((ASPxButton)sender).CommandArgument).ToString();
             string IDThuMuaDatHang = IDThuMuaDatHang_Temp.Value.ToString();
             data = new dtThemDonHangKho();
@@ -219,14 +221,13 @@ namespace BanHang
                         {
                             data.ThemChiTietDonHang_Temp(IDDonHang, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia, HinhAnh);
                             TinhTongTien();
-                            txtBarcode.Focus();
                         }
                         else
                         {
                             data.CapNhatChiTietDonHang_temp(IDDonHang, IDHangHoa, SoLuong, DonGia);
                             TinhTongTien();
-                            txtBarcode.Focus();
                         }
+                        LoadGrid(IDDonHang);
                     }
                     else
                     {

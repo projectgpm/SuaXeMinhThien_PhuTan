@@ -172,11 +172,11 @@ namespace BanHang.Data
                 try
                 {
                     myConnection.Open();
-                    string cmdText = "UPDATE [GPM_DonDatHang_ChiTiet_Temp] SET [ThanhTien] = @ThanhTien,[SoLuong] = [SoLuong] + @SoLuong,[DonGia] = @DonGia WHERE [IDHangHoa] = @IDHangHoa AND [IDDonHang] = @IDDonHang";
+                    string cmdText = "UPDATE [GPM_DonDatHang_ChiTiet_Temp] SET [ThanhTien] = ([SoLuong] + @SoLuong) *@DonGia  ,[SoLuong] = [SoLuong] + @SoLuong,[DonGia] = @DonGia WHERE [IDHangHoa] = @IDHangHoa AND [IDDonHang] = @IDDonHang";
                     using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
                     {
                         myCommand.Parameters.AddWithValue("@IDHangHoa", IDHangHoa);
-                        myCommand.Parameters.AddWithValue("@ThanhTien", SoLuong * DonGia);
+                       
                         myCommand.Parameters.AddWithValue("@IDDonHang", IDDonHang);
                         myCommand.Parameters.AddWithValue("@SoLuong", SoLuong);
                         myCommand.Parameters.AddWithValue("@DonGia", DonGia);
