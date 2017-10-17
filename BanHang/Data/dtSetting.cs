@@ -9,6 +9,8 @@ using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Web;
 using System.Management;
+using System.IO;
+using System.Collections; 
 
 namespace BanHang.Data
 {
@@ -393,6 +395,14 @@ namespace BanHang.Data
 
         public static PhysicalAddress GetMacAddress()
         {
+            NetworkInterface[] nic1 = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.Name.ToString().CompareTo("Wi-Fi") == 0 || nic.Name.ToString().CompareTo("Ethernet") == 0)
+                {
+                    return nic.GetPhysicalAddress();
+                }
+            }
             return null;
         }
 
@@ -460,8 +470,10 @@ namespace BanHang.Data
         // Key code..
         public static int setKeyCode(string Key, string user)
         {
-            PhysicalAddress address = GetMacAddress();
-            string strAddress = address.ToString() + "GPM";
+            //PhysicalAddress address = GetMacAddress();
+            string sx = GetHardDiskSerialNo();
+
+            string strAddress = sx + "GPM";
 
             if (Key.CompareTo("gpm6868") == 0)
             {
@@ -474,8 +486,10 @@ namespace BanHang.Data
         }
         public static int getKeyCode()
         {
-            PhysicalAddress address = GetMacAddress();
-            string strAddress = address.ToString() + "GPM";
+            //PhysicalAddress address = GetMacAddress();
+            string sx = GetHardDiskSerialNo();
+
+            string strAddress = sx + "GPM";
             string sha1Address = GetSHA1HashData(strAddress);
 
             DataTable da = getData_Setting();
@@ -487,6 +501,14 @@ namespace BanHang.Data
                     return 1;
             }
             return -1;
+        }
+
+        public static string GetHardDiskSerialNo()
+        {
+            string drive = "C";
+            ManagementObject disk = new ManagementObject("win32_logicaldisk.deviceid=\"" + drive + ":\"");
+            disk.Get();
+            return disk["VolumeSerialNumber"].ToString();
         }
     }
 }
