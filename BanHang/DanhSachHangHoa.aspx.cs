@@ -24,27 +24,14 @@ namespace BanHang
             }
             else
             {
-                //if (dtSetting.LayTrangThaiMenu_ChucNang(Session["IDNhom"].ToString(), 7) == 1)
-                //{
-                //    gridHangHoa.Columns["iconaction"].Visible = false;
-                //    btnNhapExel.Enabled = false;
-                //}
-
-                //if (dtSetting.LayTrangThaiMenu(Session["IDNhom"].ToString(), 7) == 1)
-                //{
-                    LoadGrid();
-                //}
-                //else
-                //{
-                //    Response.Redirect("Default.aspx");
-                //}
+                LoadGrid(cmbSoLuongXem.Value.ToString());
             }
         }
 
-        private void LoadGrid()
+        private void LoadGrid(string HienThi)
         {
             data = new dataHangHoa();
-            gridHangHoa.DataSource = data.LayDanhSachHangHoa();
+            gridHangHoa.DataSource = data.LayDanhSachHangHoa(HienThi);
             gridHangHoa.DataBind();
         }
 
@@ -55,45 +42,61 @@ namespace BanHang
             data.XoaHangHoa(ID);
             e.Cancel = true;
             gridHangHoa.CancelEdit();
-            LoadGrid();
+            LoadGrid(cmbSoLuongXem.Value.ToString());
         }
 
         protected void gridHangHoa_RowInserting(object sender, DevExpress.Web.Data.ASPxDataInsertingEventArgs e)
         {
             data = new dataHangHoa();
-            //List<string> ListBarCode = GetListBarCode();
+            List<string> ListBarCode = GetListBarCode();
             string MaHang = e.NewValues["MaHang"].ToString();
             DataTable dd = data.KiemTraHangHoa(MaHang);
             if (dd.Rows.Count == 0)
             {
                 string IDNhomHang = e.NewValues["IDNhomHang"].ToString();
                 string TenHangHoa = e.NewValues["TenHangHoa"].ToString();
-                TenHangHoa = dtSetting.convertDauSangKhongDau(TenHangHoa).ToUpper();
                 string IDDonViTinh =e.NewValues["IDDonViTinh"].ToString();
                 float GiaMua = float.Parse(e.NewValues["GiaMua"].ToString());
                 float GiaBan = float.Parse(e.NewValues["GiaBan"].ToString());
                 string GhiChu = e.NewValues["GhiChu"] != null ? e.NewValues["GhiChu"].ToString() : "";
-                ASPxUploadControl fileUpLoad = ((ASPxGridView)gridHangHoa).FindEditFormTemplateControl("UploadImage") as ASPxUploadControl;
                 e.NewValues["HinhAnh"] = Session["UploadImages"];
                 string HinhAnh = e.NewValues["HinhAnh"] != null ? e.NewValues["HinhAnh"].ToString() : "";
-                object IDHangHoa = data.ThemHangHoa(IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu, HinhAnh);
-                if (IDHangHoa != null)
+                int KT = 0;
+                if (ListBarCode.Count == 0)
                 {
-                    Session["UploadImages"] = "";
-                    string BarCode = e.NewValues["Barcode"].ToString();
-                    data.ThemDanhSachBarCode(IDHangHoa, BarCode);
-                    DataTable dta = data.LayDanhSachCuaHang();
-                    for (int i = 0; i < dta.Rows.Count; i++)
-                    {
-                        DataRow dr = dta.Rows[i];
-                        int IDKho = Int32.Parse(dr["ID"].ToString());
-
-                        data.ThemHangVaoTonKho(IDKho, (int)IDHangHoa, 0);
-                    }
+                    KT = 1;
+                    throw new Exception("Lỗi:Vui lòng nhập Barcode cho hàng hóa !!");
+                    return;
                 }
-                e.Cancel = true;
-                gridHangHoa.CancelEdit();
-                LoadGrid();
+                foreach (string barCode in ListBarCode)
+                {
+                    if (dataHangHoa.KiemTraBarcode(barCode) == false)
+                    {
+                        KT = 1;
+                        throw new Exception("Lỗi:Barcode đã tồn tại !!");
+                        return;
+                    }
+                   
+                }
+                if (KT == 0)
+                {
+                    object IDHangHoa = data.ThemHangHoa(IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu, HinhAnh);
+                    if (IDHangHoa != null)
+                    {
+                        Session["UploadImages"] = "";
+                        data.ThemDanhSachBarCode(IDHangHoa, ListBarCode);
+                        DataTable dta = data.LayDanhSachCuaHang();
+                        for (int i = 0; i < dta.Rows.Count; i++)
+                        {
+                            DataRow dr = dta.Rows[i];
+                            int IDKho = Int32.Parse(dr["ID"].ToString());
+                            data.ThemHangVaoTonKho(IDKho, (int)IDHangHoa, 0);
+                        }
+                    }
+                    e.Cancel = true;
+                    gridHangHoa.CancelEdit();
+                    LoadGrid(cmbSoLuongXem.Value.ToString());
+                }
             }
             else Response.Write("<script language='JavaScript'> alert('Mã hàng đã tồn tại.'); </script>");
         }
@@ -182,11 +185,10 @@ namespace BanHang
         protected void gridHangHoa_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
         {
             data = new dataHangHoa();
-            //List<string> ListBarCode = GetListBarCode();
+            List<string> ListBarCode = GetListBarCode();
             string MaHang = e.NewValues["MaHang"].ToString();
             string IDNhomHang = e.NewValues["IDNhomHang"].ToString();
             string TenHangHoa = e.NewValues["TenHangHoa"].ToString();
-            TenHangHoa = dtSetting.convertDauSangKhongDau(TenHangHoa).ToUpper();
             string IDDonViTinh = e.NewValues["IDDonViTinh"].ToString();
             float GiaMua = float.Parse(e.NewValues["GiaMua"].ToString());
             float GiaBan = float.Parse(e.NewValues["GiaBan"].ToString());
@@ -194,20 +196,29 @@ namespace BanHang
             e.NewValues["HinhAnh"] = Session["UploadImages"];
             string HinhAnh = e.NewValues["HinhAnh"] != null ? e.NewValues["HinhAnh"].ToString() : "";
             string ID = e.Keys[0].ToString();
-            if (Session["UploadImages"].ToString() != "")
+            int KT = 0;
+            if (ListBarCode.Count == 0)
             {
-                Session["UploadImages"] = "";
-                data.SuaThongTinHangHoa(ID, IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu, HinhAnh);
+                KT = 1;
+                throw new Exception("Lỗi:Vui lòng nhập Barcode cho hàng hóa !!");
+                return;
             }
-            else
+            if (KT == 0)
             {
-                data.SuaThongTinHangHoaKHinh(ID, IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu);
+                if( HinhAnh != "")
+                {
+                    Session["UploadImages"] = "";
+                    data.SuaThongTinHangHoa(ID, IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu, HinhAnh);
+                }
+                else
+                {
+                    data.SuaThongTinHangHoaKHinh(ID, IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu);
+                }
+                data.SuaDanhSachBarCode(e.Keys["ID"] as object, ListBarCode);
+                e.Cancel = true;
+                gridHangHoa.CancelEdit();
+                LoadGrid(cmbSoLuongXem.Value.ToString());
             }
-            string BarCode = e.NewValues["Barcode"].ToString();
-            data.SuaDanhSachBarCode(e.Keys["ID"] as object, BarCode);
-            e.Cancel = true;
-            gridHangHoa.CancelEdit();
-            LoadGrid();
 
         }
 
@@ -229,6 +240,11 @@ namespace BanHang
             string path = Page.MapPath("~/UploadImages/") + name;
             e.UploadedFile.SaveAs(path);
             Session["UploadImages"] = name;
+        }
+
+        protected void cmbSoLuongXem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadGrid(cmbSoLuongXem.Value.ToString());
         }
         
     }

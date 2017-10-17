@@ -41,8 +41,8 @@ namespace BanHang
             string TenDonViTinh = e.NewValues["TenDonViTinh"].ToString();
             string MaDonVi = e.NewValues["MaDonVi"].ToString();
             string MoTa = e.NewValues["MoTa"] == null ? "" : e.NewValues["MoTa"].ToString();
-            if (dtSetting.kiemTraChuyenDoiDau() == 1)
-                TenDonViTinh = dtSetting.convertDauSangKhongDau(TenDonViTinh).ToUpper();
+            //if (dtSetting.kiemTraChuyenDoiDau() == 1)
+            //    TenDonViTinh = dtSetting.convertDauSangKhongDau(TenDonViTinh).ToUpper();
             if (dtDonViTinh.KiemTraTen(TenDonViTinh) == 1)
             {
                 if (dtSetting.IsNumber(MaDonVi) == true)
@@ -88,8 +88,8 @@ namespace BanHang
             string TenDonViTinh = e.NewValues["TenDonViTinh"].ToString();
             string MoTa = e.NewValues["MoTa"] == null ? "" : e.NewValues["MoTa"].ToString();
             string MaDonVi = e.NewValues["MaDonVi"].ToString();
-            if (dtSetting.kiemTraChuyenDoiDau() == 1)
-                TenDonViTinh = dtSetting.convertDauSangKhongDau(TenDonViTinh).ToUpper();
+            //if (dtSetting.kiemTraChuyenDoiDau() == 1)
+            //    TenDonViTinh = dtSetting.convertDauSangKhongDau(TenDonViTinh).ToUpper();
             if (dtSetting.IsNumber(MaDonVi) == true)
             {
                 if (dtDonViTinh.KiemTraMaDonViTinh_ID(MaDonVi, ID.ToString()) == true)

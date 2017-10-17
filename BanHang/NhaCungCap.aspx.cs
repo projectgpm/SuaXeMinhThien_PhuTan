@@ -68,8 +68,8 @@ namespace BanHang
             string MaNCC = e.NewValues["MaNCC"].ToString();
             DateTime NgayCapNhat = DateTime.Today.Date;
             string ghiChu = e.NewValues["GhiChu"] == null ? "" : e.NewValues["GhiChu"].ToString();
-            if (dtSetting.kiemTraChuyenDoiDau() == 1)
-                tenNhaCungCap = dtSetting.convertDauSangKhongDau(tenNhaCungCap).ToUpper();
+            //if (dtSetting.kiemTraChuyenDoiDau() == 1)
+            //    tenNhaCungCap = dtSetting.convertDauSangKhongDau(tenNhaCungCap).ToUpper();
             if (dtSetting.IsNumber(MaNCC) == true)
             {
                 if (dtNhaCungCap.KiemTraMaNCC(MaNCC) == false)
@@ -104,8 +104,8 @@ namespace BanHang
             string linhVucKinhDoanh = e.NewValues["LinhVucKinhDoanh"] == null ? "" : e.NewValues["LinhVucKinhDoanh"].ToString();
             string MaNCC = e.NewValues["MaNCC"].ToString();
             string ghiChu = e.NewValues["GhiChu"] == null ? "" : e.NewValues["GhiChu"].ToString();
-            if (dtSetting.kiemTraChuyenDoiDau() == 1)
-                tenNhaCungCap = dtSetting.convertDauSangKhongDau(tenNhaCungCap).ToUpper();
+            //if (dtSetting.kiemTraChuyenDoiDau() == 1)
+            //    tenNhaCungCap = dtSetting.convertDauSangKhongDau(tenNhaCungCap).ToUpper();
             if (dtSetting.IsNumber(MaNCC) == true)
             {
                 if (dtNhaCungCap.KiemTraMaNCC_ID(MaNCC, ID) == true)

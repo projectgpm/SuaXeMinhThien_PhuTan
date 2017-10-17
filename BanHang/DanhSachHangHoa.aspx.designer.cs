@@ -13,6 +13,33 @@ namespace BanHang {
     public partial class DanhSachHangHoa {
         
         /// <summary>
+        /// ASPxFormLayout1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxFormLayout ASPxFormLayout1;
+        
+        /// <summary>
+        /// LayoutItemNestedControlContainer5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer5;
+        
+        /// <summary>
+        /// cmbSoLuongXem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox cmbSoLuongXem;
+        
+        /// <summary>
         /// ASPxButton2 control.
         /// </summary>
         /// <remarks>

@@ -53,8 +53,8 @@ namespace BanHang
             //int IDNganhHang = Int32.Parse(e.NewValues["IDNganhHang"].ToString());
             string MaNhom = e.NewValues["MaNhom"].ToString();
             string TenNhomHang = e.NewValues["TenNhomHang"].ToString();
-            if (dtSetting.kiemTraChuyenDoiDau() == 1)
-                TenNhomHang = dtSetting.convertDauSangKhongDau(TenNhomHang).ToUpper();
+            //if (dtSetting.kiemTraChuyenDoiDau() == 1)
+            //    TenNhomHang = dtSetting.convertDauSangKhongDau(TenNhomHang).ToUpper();
 
             string GhiChu = e.NewValues["GhiChu"] != null ? e.NewValues["GhiChu"].ToString() : "";
 
@@ -84,8 +84,8 @@ namespace BanHang
             string ID = e.Keys["ID"].ToString();
             string MaNhom = e.NewValues["MaNhom"].ToString();
             string TenNhomHang = e.NewValues["TenNhomHang"].ToString();
-            if (dtSetting.kiemTraChuyenDoiDau() == 1)
-                TenNhomHang = dtSetting.convertDauSangKhongDau(TenNhomHang).ToUpper();
+            //if (dtSetting.kiemTraChuyenDoiDau() == 1)
+            //    TenNhomHang = dtSetting.convertDauSangKhongDau(TenNhomHang).ToUpper();
             string GhiChu = e.NewValues["GhiChu"] != null ? e.NewValues["GhiChu"].ToString() : "";
             if (dtSetting.IsNumber(MaNhom) == true)
             {
