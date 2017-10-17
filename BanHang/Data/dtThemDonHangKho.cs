@@ -191,6 +191,32 @@ namespace BanHang.Data
                 }
             }
         }
+        public void CapNhatChiTietDonHang_temp2(string IDDonHang, string ID, float SoLuong, double DonGia)
+        {
+            using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
+            {
+                try
+                {
+                    myConnection.Open();
+                    string cmdText = "UPDATE [GPM_DonDatHang_ChiTiet_Temp] SET [ThanhTien] = @SoLuong*@DonGia  ,[SoLuong] = @SoLuong,[DonGia] = @DonGia WHERE [ID] = @ID AND [IDDonHang] = @IDDonHang";
+                    using (SqlCommand myCommand = new SqlCommand(cmdText, myConnection))
+                    {
+                        myCommand.Parameters.AddWithValue("@ID", ID);
+
+                        myCommand.Parameters.AddWithValue("@IDDonHang", IDDonHang);
+                        myCommand.Parameters.AddWithValue("@SoLuong", SoLuong);
+                        myCommand.Parameters.AddWithValue("@DonGia", DonGia);
+
+                        myCommand.ExecuteNonQuery();
+                    }
+                    myConnection.Close();
+                }
+                catch
+                {
+                    throw new Exception("Lỗi: Quá trình cập nhật dữ liệu gặp lỗi");
+                }
+            }
+        }
         public void ThemChiTietDonHang_Temp(string IDDonHang, string IDHangHoa, string MaHangHoa, string IDDonViTinh, int SoLuong, double DonGia, string HinhAnh)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))

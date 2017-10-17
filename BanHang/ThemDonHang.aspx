@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="ThemDonHang.aspx.cs" Inherits="BanHang.ThemDonHang" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+       
       <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="3" Width="100%">
     <Items>
         <dx:LayoutGroup Caption="Thông tin đơn hàng" ColCount="3" ColSpan="3" RowSpan="3">
@@ -28,18 +29,10 @@
                         </dx:LayoutItemNestedControlContainer>
                     </LayoutItemNestedControlCollection>
                 </dx:LayoutItem>
-                <dx:LayoutItem Caption="Tổng Tiền">
+                <dx:LayoutItem Caption="Nhà Cung Cấp" ColSpan="2">
                     <LayoutItemNestedControlCollection>
                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                            <dx:ASPxSpinEdit ID="txtTongTien" runat="server" AutoPostBack="True" Width="100%" DisplayFormatString="N0" Enabled="False">
-                            </dx:ASPxSpinEdit>
-                        </dx:LayoutItemNestedControlContainer>
-                    </LayoutItemNestedControlCollection>
-                </dx:LayoutItem>
-                <dx:LayoutItem Caption="Nhà Cung Cấp">
-                    <LayoutItemNestedControlCollection>
-                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer3" runat="server">
-                            <dx:ASPxComboBox ID="cmbNhaCungCap" runat="server" Width="100%" DataSourceID="SqlNhaCungCap" TextField="TenNhaCungCap" ValueField="ID" AutoPostBack="True" OnSelectedIndexChanged="cmbNhaCungCap_SelectedIndexChanged">
+                            <dx:ASPxComboBox ID="cmbNhaCungCap" runat="server" AutoPostBack="True" DataSourceID="SqlNhaCungCap" OnSelectedIndexChanged="cmbNhaCungCap_SelectedIndexChanged" TextField="TenNhaCungCap" ValueField="ID" Width="100%">
                             </dx:ASPxComboBox>
                             <asp:SqlDataSource ID="SqlNhaCungCap" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenNhaCungCap] FROM [GPM_NhaCungCap] WHERE ([DaXoa] = @DaXoa)">
                                 <SelectParameters>
@@ -105,16 +98,18 @@
                 </dx:LayoutItem>
             </Items>
         </dx:LayoutGroup>
+
         <dx:LayoutGroup ColSpan="3" Caption="Danh Sách Hàng Hóa" ColCount="3">
             <Items>
                 <dx:LayoutItem Caption="" ColSpan="3">
+
                     <LayoutItemNestedControlCollection>
-                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer17" runat="server">
-                                                
-                            <dx:ASPxGridView ID="gridDanhSachHangHoa" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%">
+
+                            <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer17" runat="server">                      
+                            <dx:ASPxGridView ID="gridDanhSachHangHoa" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowUpdating="gridDanhSachHangHoa_RowUpdating">
                                  <SettingsPager Mode="ShowAllRecords">
                                  </SettingsPager>
-                                 <SettingsEditing Mode="PopupEditForm">
+                                 <SettingsEditing Mode="Batch">
                                  </SettingsEditing>
                                  <Settings ShowFooter="True" />
                                  <SettingsBehavior ConfirmDelete="True" />
@@ -127,15 +122,15 @@
                                         <Image IconID="actions_add_16x16" ToolTip="Thêm mới">
                                         </Image>
                                     </NewButton>
-                                    <UpdateButton ButtonType="Image" RenderMode="Image">
-                                        <Image IconID="save_save_32x32office2013" ToolTip="Lưu">
+                                    <UpdateButton>
+                                        <Image ToolTip="Lưu">
                                         </Image>
                                     </UpdateButton>
-                                    <CancelButton ButtonType="Image" RenderMode="Image">
-                                        <Image IconID="actions_close_32x32" ToolTip="Hủy thao tác">
+                                    <CancelButton>
+                                        <Image ToolTip="Hủy thao tác">
                                         </Image>
                                     </CancelButton>
-                                    <EditButton ButtonType="Image" RenderMode="Image">
+                                    <EditButton>
                                         <Image IconID="actions_edit_16x16devav" ToolTip="Sửa">
                                         </Image>
                                     </EditButton>
@@ -149,13 +144,14 @@
                                  </SettingsPopup>
                                 <SettingsText CommandBatchEditCancel="Hủy tất cả" CommandBatchEditUpdate="Lưu tất cả" Title="DANH SÁCH HÀNG HÓA GIÁ THEO CHI NHÁNH" ConfirmDelete="Bạn chắc chắn muốn xóa?" EmptyDataRow="Danh sách trống." />
                                 <Columns>
+
                                     <dx:GridViewDataTextColumn Caption="Mã Hàng Hóa" FieldName="MaHangHoa" ShowInCustomizationForm="True" VisibleIndex="0" ReadOnly="True">
                                     </dx:GridViewDataTextColumn>
-<dx:GridViewDataSpinEditColumn FieldName="DonGia" ShowInCustomizationForm="True" Caption="Giá Mua" VisibleIndex="5" ReadOnly="True">
-<PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom"></PropertiesSpinEdit>
-</dx:GridViewDataSpinEditColumn>
+                                    <dx:GridViewDataSpinEditColumn FieldName="DonGia" ShowInCustomizationForm="True" Caption="Giá Mua" VisibleIndex="5">
+                                    <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom"></PropertiesSpinEdit>
+                                    </dx:GridViewDataSpinEditColumn>
                                     <dx:GridViewDataSpinEditColumn Caption="Số Lượng Đặt" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="4">
-<PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                     </dx:GridViewDataSpinEditColumn>
                                     <dx:GridViewDataComboBoxColumn Caption="Tên Hàng Hóa" FieldName="IDHangHoa" ShowInCustomizationForm="True" VisibleIndex="1" ReadOnly="True">
                                         <PropertiesComboBox DataSourceID="SqlNguyenLieu" TextField="TenHangHoa" ValueField="ID">
@@ -180,12 +176,12 @@
                                         </CellStyle>
                                     </dx:GridViewDataButtonEditColumn>
 
-                                    <dx:GridViewDataSpinEditColumn Caption="Thành Tiền" FieldName="ThanhTien" ShowInCustomizationForm="True" VisibleIndex="7">
+                                    <dx:GridViewDataSpinEditColumn Caption="Thành Tiền" FieldName="ThanhTien" ShowInCustomizationForm="True" VisibleIndex="7" ReadOnly="True">
                                         <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                         </PropertiesSpinEdit>
                                     </dx:GridViewDataSpinEditColumn>
 
-                                    <dx:GridViewDataImageColumn Caption="Hình Ảnh" FieldName="HinhAnh" ShowInCustomizationForm="True" VisibleIndex="3" Width="90px">
+                                    <dx:GridViewDataImageColumn Caption="Hình Ảnh" FieldName="HinhAnh" ShowInCustomizationForm="True" VisibleIndex="3" Width="90px" ReadOnly="True">
                                         <PropertiesImage ImageUrlFormatString="~/UploadImages/{0}" ImageWidth="90px">
                                         </PropertiesImage>
                                     </dx:GridViewDataImageColumn>

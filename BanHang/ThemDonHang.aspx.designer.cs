@@ -85,24 +85,6 @@ namespace BanHang {
         protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer2;
         
         /// <summary>
-        /// txtTongTien control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit txtTongTien;
-        
-        /// <summary>
-        /// LayoutItemNestedControlContainer3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer3;
-        
-        /// <summary>
         /// cmbNhaCungCap control.
         /// </summary>
         /// <remarks>

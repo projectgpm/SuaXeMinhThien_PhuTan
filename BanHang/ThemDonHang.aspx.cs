@@ -27,7 +27,6 @@ namespace BanHang
                 {
                     txtBarcode.Focus();
                     IDThuMuaDatHang_Temp.Value = Session["IDNhanVien"].ToString();
-                    TinhTongTien();
                     txtNguoiLap.Text = Session["TenDangNhap"].ToString();
                     txtSoDonHang.Text = DateTime.Now.ToString("ddMMyyyy-hhmmss");
                 }
@@ -86,26 +85,6 @@ namespace BanHang
         //        return;
         //    }
         //}
-        public void TinhTongTien()
-        {
-            string IDThuMuaDatHang = IDThuMuaDatHang_Temp.Value.ToString();
-            data = new dtThemDonHangKho();
-            DataTable db = data.DanhSachDonDatHang_Temp(IDThuMuaDatHang);
-            if (db.Rows.Count != 0)
-            {
-                double TongTien = 0;
-                foreach (DataRow dr in db.Rows)
-                {
-                    double ThanhTien = double.Parse(dr["ThanhTien"].ToString());
-                    TongTien = TongTien + ThanhTien;
-                }
-                txtTongTien.Text = (TongTien).ToString();
-            }
-            else
-            {
-                txtTongTien.Text = "0";
-            }
-        }
         protected void btnThem_Click(object sender, EventArgs e)
         {
             if (cmbNhaCungCap.Text != "")
@@ -118,7 +97,13 @@ namespace BanHang
                     string SoDonHang = txtSoDonHang.Text.Trim();
                     string IDNguoiLap = Session["IDNhanVien"].ToString();
                     DateTime NgayLap = DateTime.Parse(txtNgayLap.Text);
-                    string TongTien = txtTongTien.Text;
+                    double TongTien1 = 0;
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        double ThanhTien = double.Parse(dr["ThanhTien"].ToString());
+                        TongTien1 = TongTien1 + ThanhTien;
+                    }
+                    string TongTien = TongTien1.ToString();
                     string IDChiNhanh = Session["IDKho"].ToString();
                     string GhiChu = txtGhiChu.Text == null ? "" : txtGhiChu.Text.ToString();
                     string IDNhaCungCap = cmbNhaCungCap.Text == "" ? "" : cmbNhaCungCap.Value.ToString();
@@ -182,7 +167,6 @@ namespace BanHang
             string IDThuMuaDatHang = IDThuMuaDatHang_Temp.Value.ToString();
             data = new dtThemDonHangKho();
             data.XoaChiTietDonHang_Temp_ID(ID);
-            TinhTongTien();
             LoadGrid(IDThuMuaDatHang);
         }
 
@@ -228,12 +212,10 @@ namespace BanHang
                         if (db.Rows.Count == 0)
                         {
                             data.ThemChiTietDonHang_Temp(IDDonHang, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia, HinhAnh);
-                            TinhTongTien();
                         }
                         else
                         {
                             data.CapNhatChiTietDonHang_temp(IDDonHang, IDHangHoa, SoLuong, DonGia);
-                            TinhTongTien();
                         }
                         LoadGrid(IDDonHang);
                     }
@@ -290,6 +272,22 @@ namespace BanHang
             dsHangHoa.SelectParameters.Add("endIndex", TypeCode.Int64, (e.EndIndex + 1).ToString());
             comboBox.DataSource = dsHangHoa;
             comboBox.DataBind();
+        }
+
+        protected void gridDanhSachHangHoa_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
+        {
+            if (e.NewValues["SoLuong"] != null && e.NewValues["DonGia"] != null)
+            {
+                string ID = e.Keys[0].ToString();
+                int SoLuong = Int32.Parse(e.NewValues["SoLuong"].ToString());
+                double DonGia = double.Parse(e.NewValues["DonGia"].ToString());
+                data.CapNhatChiTietDonHang_temp2(IDThuMuaDatHang_Temp.Value.ToString(), ID, SoLuong, DonGia);
+                e.Cancel = true;
+                gridDanhSachHangHoa.CancelEdit();
+                LoadGrid(IDThuMuaDatHang_Temp.Value.ToString());
+            }
+            else
+                throw new Exception("Lỗi: Không được bỏ trống số lượng và giá mua !!!");
         }
     }
 }
