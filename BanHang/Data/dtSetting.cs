@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Web;
+using System.Management;
 
 namespace BanHang.Data
 {
@@ -392,14 +393,6 @@ namespace BanHang.Data
 
         public static PhysicalAddress GetMacAddress()
         {
-            NetworkInterface[] nic1 = NetworkInterface.GetAllNetworkInterfaces();
-            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                if (nic.Name.ToString().CompareTo("Wi-Fi") == 0 || nic.Name.ToString().CompareTo("Ethernet") == 0)
-                {
-                    return nic.GetPhysicalAddress();
-                }
-            }
             return null;
         }
 
