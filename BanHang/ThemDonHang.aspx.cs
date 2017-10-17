@@ -108,56 +108,64 @@ namespace BanHang
         }
         protected void btnThem_Click(object sender, EventArgs e)
         {
-            string IDThuMuaDatHang = IDThuMuaDatHang_Temp.Value.ToString();
-            data = new dtThemDonHangKho();
-            DataTable dt = data.DanhSachDonDatHang_Temp(IDThuMuaDatHang);
-            if (dt.Rows.Count != 0)
+            if (cmbNhaCungCap.Text != "")
             {
-                string SoDonHang = txtSoDonHang.Text.Trim();
-                string IDNguoiLap = Session["IDNhanVien"].ToString();
-                DateTime NgayLap = DateTime.Parse(txtNgayLap.Text);
-                string TongTien = txtTongTien.Text;
-                string IDChiNhanh = Session["IDKho"].ToString();
-                string GhiChu = txtGhiChu.Text == null ? "" : txtGhiChu.Text.ToString();
-                string IDNhaCungCap = cmbNhaCungCap.Text == "" ? "" : cmbNhaCungCap.Value.ToString();
-                int TrangThai = 0;
-                if (ckThanhToan.Checked == true)
-                {
-                    TrangThai = 1;
-                }
-                if (cmbNhaCungCap.Text != "" && ckThanhToan.Checked == false)
-                {
-                    data = new dtThemDonHangKho();
-                    data.CongCongNoNCC(IDNhaCungCap, TongTien);
-
-                }
+                string IDThuMuaDatHang = IDThuMuaDatHang_Temp.Value.ToString();
                 data = new dtThemDonHangKho();
-                object ID = data.ThemPhieuDatHang();
-                if (ID != null)
+                DataTable dt = data.DanhSachDonDatHang_Temp(IDThuMuaDatHang);
+                if (dt.Rows.Count != 0)
                 {
-                    data.CapNhatDonDatHang(ID, SoDonHang, IDNguoiLap, NgayLap, TongTien, GhiChu, IDNhaCungCap, TrangThai);
-                    foreach (DataRow dr in dt.Rows)
+                    string SoDonHang = txtSoDonHang.Text.Trim();
+                    string IDNguoiLap = Session["IDNhanVien"].ToString();
+                    DateTime NgayLap = DateTime.Parse(txtNgayLap.Text);
+                    string TongTien = txtTongTien.Text;
+                    string IDChiNhanh = Session["IDKho"].ToString();
+                    string GhiChu = txtGhiChu.Text == null ? "" : txtGhiChu.Text.ToString();
+                    string IDNhaCungCap = cmbNhaCungCap.Text == "" ? "" : cmbNhaCungCap.Value.ToString();
+                    int TrangThai = 0;
+                    if (ckThanhToan.Checked == true)
                     {
-                        string IDHangHoa = dr["IDHangHoa"].ToString();
-                        string MaHangHoa = dr["MaHangHoa"].ToString();
-                        string IDDonViTinh = dr["IDDonViTinh"].ToString();
-                        string SoLuong = dr["SoLuong"].ToString();
-                        string DonGia = dr["DonGia"].ToString();
-                        string ThanhTien = dr["ThanhTien"].ToString();
+                        TrangThai = 1;
+                    }
+                    if (cmbNhaCungCap.Text != "" && ckThanhToan.Checked == false)
+                    {
                         data = new dtThemDonHangKho();
-                        dtCapNhatTonKho.CongTonKho(IDHangHoa, SoLuong, IDChiNhanh); // cộng kho không qua bước duyệt
-                        // ghi lịch sử
-                        data.ThemChiTietDonHang(ID, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia, ThanhTien);
+                        data.CongCongNoNCC(IDNhaCungCap, TongTien);
+
                     }
                     data = new dtThemDonHangKho();
-                    data.XoaChiTietDonHang_Nhap(IDThuMuaDatHang);
-                    Response.Redirect("DanhSachPhieuDatHang.aspx");
+                    object ID = data.ThemPhieuDatHang();
+                    if (ID != null)
+                    {
+                        data.CapNhatDonDatHang(ID, SoDonHang, IDNguoiLap, NgayLap, TongTien, GhiChu, IDNhaCungCap, TrangThai);
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            string IDHangHoa = dr["IDHangHoa"].ToString();
+                            string MaHangHoa = dr["MaHangHoa"].ToString();
+                            string IDDonViTinh = dr["IDDonViTinh"].ToString();
+                            string SoLuong = dr["SoLuong"].ToString();
+                            string DonGia = dr["DonGia"].ToString();
+                            string ThanhTien = dr["ThanhTien"].ToString();
+                            data = new dtThemDonHangKho();
+                            dtCapNhatTonKho.CongTonKho(IDHangHoa, SoLuong, IDChiNhanh); // cộng kho không qua bước duyệt
+                            // ghi lịch sử
+                            data.ThemChiTietDonHang(ID, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia, ThanhTien);
+                        }
+                        data = new dtThemDonHangKho();
+                        data.XoaChiTietDonHang_Nhap(IDThuMuaDatHang);
+                        Response.Redirect("DanhSachPhieuDatHang.aspx");
+                    }
+                }
+                else
+                {
+                    txtBarcode.Focus();
+                    Response.Write("<script language='JavaScript'> alert('Danh sách nguyên liệu rỗng.'); </script>");
                 }
             }
             else
             {
-                txtBarcode.Focus();
-                Response.Write("<script language='JavaScript'> alert('Danh sách nguyên liệu rỗng.'); </script>");
+                cmbNhaCungCap.Focus();
+                Response.Write("<script language='JavaScript'> alert('Vui lòng chọn nhà cung cấp.'); </script>");
             }
         }
         protected void btnHuy_Click(object sender, EventArgs e)
@@ -255,7 +263,7 @@ namespace BanHang
             dsHangHoa.SelectCommand = @"SELECT GPM_HangHoa.ID, GPM_HangHoa.MaHang,GPM_HangHoa.HinhAnh, GPM_HangHoa.TenHangHoa, GPM_HangHoa.GiaBan, GPM_DonViTinh.TenDonViTinh 
                                         FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh 
                                                            INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID 
-                                        WHERE (GPM_HangHoa.ID = @ID)";
+                                        WHERE (GPM_HangHoa.ID = @ID) ORDER BY GPM_HangHoa.TenHangHoa ASC";
             dsHangHoa.SelectParameters.Clear();
             dsHangHoa.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
             comboBox.DataSource = dsHangHoa;
@@ -273,7 +281,7 @@ namespace BanHang
                                                                INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID
 	                                        WHERE ((GPM_HangHoa.MaHang LIKE @MaHang) OR GPM_HangHoa.TenHangHoa LIKE @TenHang)  AND (GPM_HangHoaTonKho.IDKho = @IDKho) AND (GPM_HangHoaTonKho.DaXoa = 0)	
 	                                        ) as st 
-                                        where st.[rn] between @startIndex and @endIndex";
+                                        where st.[rn] between @startIndex and @endIndex ORDER BY TenHangHoa ASC";
             dsHangHoa.SelectParameters.Clear();
             dsHangHoa.SelectParameters.Add("MaHang", TypeCode.String, string.Format("%{0}%", e.Filter));
             dsHangHoa.SelectParameters.Add("TenHang", TypeCode.String, string.Format("%{0}%", e.Filter));
