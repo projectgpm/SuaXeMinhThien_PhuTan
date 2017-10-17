@@ -222,7 +222,7 @@ namespace BanHang
 	                                        FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh           
 	                                        WHERE (GPM_HangHoa.MaHang LIKE @MaHang OR GPM_HangHoa.TenHangHoa LIKE @TenHang) AND (GPM_HangHoa.DaXoa = 0) 
 	                                        ) as st 
-                                        where st.[rn] between @startIndex and @endIndex";
+                                        where st.[rn] between @startIndex and @endIndex ORDER BY TenHangHoa ASC";
 
             sqlHangHoa.SelectParameters.Clear();
             sqlHangHoa.SelectParameters.Add("TenHang", TypeCode.String, string.Format("%{0}%", e.Filter));
@@ -242,7 +242,7 @@ namespace BanHang
             ASPxComboBox comboBox = (ASPxComboBox)source;
             sqlHangHoa.SelectCommand = @"SELECT GPM_HangHoa.ID, GPM_HangHoa.MaHang, GPM_HangHoa.TenHangHoa, GPM_DonViTinh.TenDonViTinh 
                                         FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh
-                                        WHERE (GPM_HangHoa.ID = @ID)";
+                                        WHERE (GPM_HangHoa.ID = @ID) ORDER BY TenHangHoa ASC";
             sqlHangHoa.SelectParameters.Clear();
             sqlHangHoa.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
             comboBox.DataSource = sqlHangHoa;

@@ -491,7 +491,7 @@ namespace BanHang
                                                                INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID
 	                                        WHERE ((GPM_HangHoa.MaHang LIKE @MaHang) OR GPM_HangHoa.TenHangHoa LIKE @TenHang)  AND (GPM_HangHoaTonKho.IDKho = @IDKho) AND (GPM_HangHoaTonKho.DaXoa = 0)	
 	                                        ) as st 
-                                        where st.[rn] between @startIndex and @endIndex";
+                                        where st.[rn] between @startIndex and @endIndex ORDER BY TenHangHoa ASC";
             dsHangHoa.SelectParameters.Clear();
             dsHangHoa.SelectParameters.Add("MaHang", TypeCode.String, string.Format("%{0}%", e.Filter));
             dsHangHoa.SelectParameters.Add("TenHang", TypeCode.String, string.Format("%{0}%", e.Filter));
@@ -511,7 +511,7 @@ namespace BanHang
             dsHangHoa.SelectCommand = @"SELECT GPM_HangHoa.ID, GPM_HangHoa.MaHang,GPM_HangHoa.HinhAnh, GPM_HangHoa.TenHangHoa, GPM_HangHoa.GiaBan, GPM_DonViTinh.TenDonViTinh 
                                         FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh 
                                                            INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID 
-                                        WHERE (GPM_HangHoa.ID = @ID)";
+                                        WHERE (GPM_HangHoa.ID = @ID) ORDER BY TenHangHoa ASC";
             dsHangHoa.SelectParameters.Clear();
             dsHangHoa.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
             comboBox.DataSource = dsHangHoa;
@@ -528,7 +528,7 @@ namespace BanHang
 	                                            FROM GPM_KhachHang
 	                                            WHERE ((TenKhachHang LIKE @TenKhachHang) OR (DienThoai LIKE @DienThoai) OR (DiaChi LIKE @DiaChi)) AND (IDKho = @IDKho) AND (DaXoa = 0)	
 	                                        ) as st 
-                                        where st.[rn] between @startIndex and @endIndex";
+                                        where st.[rn] between @startIndex and @endIndex ORDER BY TenKhachHang ASC";
             sqlKhachHang.SelectParameters.Clear();
             sqlKhachHang.SelectParameters.Add("TenKhachHang", TypeCode.String, string.Format("%{0}%", e.Filter));
             sqlKhachHang.SelectParameters.Add("DienThoai", TypeCode.String, string.Format("%{0}%", e.Filter));
@@ -549,7 +549,7 @@ namespace BanHang
             ASPxComboBox comboBox = (ASPxComboBox)source;
             sqlKhachHang.SelectCommand = @"SELECT ID,TenKhachHang,DienThoai,DiaChi
                                         FROM GPM_KhachHang
-                                        WHERE (GPM_KhachHang.ID = @ID)";
+                                        WHERE (GPM_KhachHang.ID = @ID)  ORDER BY TenKhachHang ASC";
             sqlKhachHang.SelectParameters.Clear();
             sqlKhachHang.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
             comboBox.DataSource = sqlKhachHang;
