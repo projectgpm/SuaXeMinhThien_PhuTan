@@ -68,7 +68,7 @@ namespace BanHang
             {
                 string IDNhomHang = e.NewValues["IDNhomHang"].ToString();
                 string TenHangHoa = e.NewValues["TenHangHoa"].ToString();
-                TenHangHoa = dtSetting.convertDauSangKhongDau(TenHangHoa).ToUpper();
+               // TenHangHoa = dtSetting.convertDauSangKhongDau(TenHangHoa).ToUpper();
                 string IDDonViTinh =e.NewValues["IDDonViTinh"].ToString();
                 float GiaMua = float.Parse(e.NewValues["GiaMua"].ToString());
                 float GiaBan = float.Parse(e.NewValues["GiaBan"].ToString());
@@ -186,7 +186,7 @@ namespace BanHang
             string MaHang = e.NewValues["MaHang"].ToString();
             string IDNhomHang = e.NewValues["IDNhomHang"].ToString();
             string TenHangHoa = e.NewValues["TenHangHoa"].ToString();
-            TenHangHoa = dtSetting.convertDauSangKhongDau(TenHangHoa).ToUpper();
+           // TenHangHoa = dtSetting.convertDauSangKhongDau(TenHangHoa).ToUpper();
             string IDDonViTinh = e.NewValues["IDDonViTinh"].ToString();
             float GiaMua = float.Parse(e.NewValues["GiaMua"].ToString());
             float GiaBan = float.Parse(e.NewValues["GiaBan"].ToString());
