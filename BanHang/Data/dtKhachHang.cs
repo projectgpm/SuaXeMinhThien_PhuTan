@@ -336,7 +336,7 @@ namespace BanHang.Data
         }
 
 
-        public void SuaThongTinKhachHang(int ID, int IDNhomKhachHang, string TenKhachHang, string NgaySinh, string CMND, string DiaChi, string DienThoai, string Email, string GhiChu, string IDChietKhau)
+        public void SuaThongTinKhachHang(int ID, int IDNhomKhachHang, string TenKhachHang, DateTime NgaySinh, string CMND, string DiaChi, string DienThoai, string Email, string GhiChu, string IDChietKhau)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
