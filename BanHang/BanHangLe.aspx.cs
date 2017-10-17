@@ -79,7 +79,6 @@ namespace BanHang
         }
         public void HuyHoaDon()
         {
-            txtTienThoi.Text = "0";
             int indexTabActive = tabControlSoHoaDon.ActiveTabIndex;
             DanhSachHoaDon.RemoveAt(indexTabActive);
             tabControlSoHoaDon.Tabs.RemoveAt(indexTabActive);
@@ -98,7 +97,7 @@ namespace BanHang
         }
         public void ThemHangVaoChiTietHoaDon(DataTable tbThongTin)
         {
-            txtTienThoi.Text = "0"; txtKhachThanhToan.Text = "0";
+            txtKhachThanhToan.Text = "0";
             string MaHang = tbThongTin.Rows[0]["MaHang"].ToString();
             int IDHangHoa = Int32.Parse(tbThongTin.Rows[0]["ID"].ToString());
             int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
@@ -133,7 +132,7 @@ namespace BanHang
                 DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Add(cthd);
                 DanhSachHoaDon[MaHoaDon].SoLuongHang++;
                 DanhSachHoaDon[MaHoaDon].TongTien += cthd.ThanhTien;
-                DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe;//- DanhSachHoaDon[MaHoaDon].GiamGia;
+                DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe;
             }
         }
         protected void btnInsertHang_Click(object sender, EventArgs e)
@@ -215,7 +214,7 @@ namespace BanHang
         }
         private void BatchUpdate()
         {
-            txtTienThoi.Text = "0"; txtKhachThanhToan.Text = "0";
+             txtKhachThanhToan.Text = "0";
             int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
             string IDKho = Session["IDKho"].ToString();
             for (int i = 0; i < gridChiTietHoaDon.VisibleRowCount; i++)
@@ -284,7 +283,10 @@ namespace BanHang
             int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
             DanhSachHoaDon[MaHoaDon].KhachThanhToan = TienKhachThanhToan;
             DanhSachHoaDon[MaHoaDon].TienThua = TienKhachThanhToan - DanhSachHoaDon[MaHoaDon].KhachCanTra;
-            txtTienThoi.Text = DanhSachHoaDon[MaHoaDon].TienThua.ToString();
+            if (txtKhachThanhToan.Text != "0")
+            {
+                txtTienThoi.Text = DanhSachHoaDon[MaHoaDon].TienThua.ToString();
+            }
         }
 
         protected void BtnXoaHang_Click(object sender, EventArgs e)
@@ -297,7 +299,6 @@ namespace BanHang
                 DanhSachHoaDon[MaHoaDon].SoLuongHang--;
                 DanhSachHoaDon[MaHoaDon].TongTien = DanhSachHoaDon[MaHoaDon].TongTien - itemToRemove.ThanhTien;
                 DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe;
-                txtTienThoi.Text = "0";
                 DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon.Remove(itemToRemove);
                 BindGridChiTietHoaDon();
             }
@@ -491,7 +492,7 @@ namespace BanHang
                                                                INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID
 	                                        WHERE ((GPM_HangHoa.MaHang LIKE @MaHang) OR GPM_HangHoa.TenHangHoa LIKE @TenHang)  AND (GPM_HangHoaTonKho.IDKho = @IDKho) AND (GPM_HangHoaTonKho.DaXoa = 0)	
 	                                        ) as st 
-                                        where st.[rn] between @startIndex and @endIndex";
+                                        where st.[rn] between @startIndex and @endIndex ORDER BY TenHangHoa ASC";
             dsHangHoa.SelectParameters.Clear();
             dsHangHoa.SelectParameters.Add("MaHang", TypeCode.String, string.Format("%{0}%", e.Filter));
             dsHangHoa.SelectParameters.Add("TenHang", TypeCode.String, string.Format("%{0}%", e.Filter));
@@ -511,7 +512,7 @@ namespace BanHang
             dsHangHoa.SelectCommand = @"SELECT GPM_HangHoa.ID, GPM_HangHoa.MaHang,GPM_HangHoa.HinhAnh, GPM_HangHoa.TenHangHoa, GPM_HangHoa.GiaBan, GPM_DonViTinh.TenDonViTinh 
                                         FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh 
                                                            INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID 
-                                        WHERE (GPM_HangHoa.ID = @ID)";
+                                        WHERE (GPM_HangHoa.ID = @ID) ORDER BY TenHangHoa ASC";
             dsHangHoa.SelectParameters.Clear();
             dsHangHoa.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
             comboBox.DataSource = dsHangHoa;
@@ -528,7 +529,7 @@ namespace BanHang
 	                                            FROM GPM_KhachHang
 	                                            WHERE ((TenKhachHang LIKE @TenKhachHang) OR (DienThoai LIKE @DienThoai) OR (DiaChi LIKE @DiaChi)) AND (IDKho = @IDKho) AND (DaXoa = 0)	
 	                                        ) as st 
-                                        where st.[rn] between @startIndex and @endIndex";
+                                        where st.[rn] between @startIndex and @endIndex ORDER BY TenKhachHang ASC";
             sqlKhachHang.SelectParameters.Clear();
             sqlKhachHang.SelectParameters.Add("TenKhachHang", TypeCode.String, string.Format("%{0}%", e.Filter));
             sqlKhachHang.SelectParameters.Add("DienThoai", TypeCode.String, string.Format("%{0}%", e.Filter));
@@ -549,7 +550,7 @@ namespace BanHang
             ASPxComboBox comboBox = (ASPxComboBox)source;
             sqlKhachHang.SelectCommand = @"SELECT ID,TenKhachHang,DienThoai,DiaChi
                                         FROM GPM_KhachHang
-                                        WHERE (GPM_KhachHang.ID = @ID)";
+                                        WHERE (GPM_KhachHang.ID = @ID)  ORDER BY TenKhachHang ASC";
             sqlKhachHang.SelectParameters.Clear();
             sqlKhachHang.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
             comboBox.DataSource = sqlKhachHang;
@@ -630,7 +631,7 @@ namespace BanHang
                     cmbKyThuat.Enabled = true;
                     txtTienSuaXe.Enabled = true;
                     cmbKyThuat.Text = "";
-                    txtTienSuaXe.Text = "0"; txtTienThoi.Text = "0"; txtKhachThanhToan.Text = "0";
+                    txtTienSuaXe.Text = "0"; txtKhachThanhToan.Text = "0";
 
                     int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
                     DanhSachHoaDon[MaHoaDon].IDKhachHang = Int32.Parse(ccbKhachHang.SelectedIndex + "");
@@ -641,7 +642,7 @@ namespace BanHang
                     cmbKyThuat.Text = "";
                     txtTienSuaXe.Text = "0";
                     cmbKyThuat.Enabled = false;
-                    txtTienSuaXe.Enabled = false; txtTienThoi.Text = "0";
+                    txtTienSuaXe.Enabled = false;
 
                     int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
                     DanhSachHoaDon[MaHoaDon].IDKhachHang = Int32.Parse(ccbKhachHang.SelectedIndex + "");
@@ -662,9 +663,8 @@ namespace BanHang
             int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
             DanhSachHoaDon[MaHoaDon].TienSuaXe = TienSuaXe;
             DanhSachHoaDon[MaHoaDon].KhachCanTra = DanhSachHoaDon[MaHoaDon].TongTien + DanhSachHoaDon[MaHoaDon].TienSuaXe;
-            DanhSachHoaDon[MaHoaDon].TienThua = DanhSachHoaDon[MaHoaDon].KhachCanTra;
+            //DanhSachHoaDon[MaHoaDon].TienThua = DanhSachHoaDon[MaHoaDon].KhachCanTra;
             txtKhachCanTra.Text = DanhSachHoaDon[MaHoaDon].KhachCanTra.ToString();
-            txtTienThoi.Text = "0";
         }
 
        
