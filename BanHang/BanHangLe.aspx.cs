@@ -60,6 +60,7 @@ namespace BanHang
             gridChiTietHoaDon.DataSource = DanhSachHoaDon[MaHoaDon].ListChiTietHoaDon;
             gridChiTietHoaDon.DataBind();
             formLayoutThanhToan.DataSource = DanhSachHoaDon[MaHoaDon];
+            ccbKhachHang.SelectedIndex = DanhSachHoaDon[MaHoaDon].IDKhachHang;
             formLayoutThanhToan.DataBind();
         }
 
@@ -630,6 +631,9 @@ namespace BanHang
                     txtTienSuaXe.Enabled = true;
                     cmbKyThuat.Text = "";
                     txtTienSuaXe.Text = "0"; txtTienThoi.Text = "0"; txtKhachThanhToan.Text = "0";
+
+                    int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
+                    DanhSachHoaDon[MaHoaDon].IDKhachHang = Int32.Parse(ccbKhachHang.SelectedIndex + "");
                 }
                 else// #khách lẻ
                 {
@@ -638,6 +642,9 @@ namespace BanHang
                     txtTienSuaXe.Text = "0";
                     cmbKyThuat.Enabled = false;
                     txtTienSuaXe.Enabled = false; txtTienThoi.Text = "0";
+
+                    int MaHoaDon = tabControlSoHoaDon.ActiveTabIndex;
+                    DanhSachHoaDon[MaHoaDon].IDKhachHang = Int32.Parse(ccbKhachHang.SelectedIndex + "");
                 }
             }
         }
@@ -666,6 +673,7 @@ namespace BanHang
     public class HoaDon
     {
         public int IDHoaDon { get; set; }
+        public int IDKhachHang { get; set; }
         public int SoLuongHang { get; set; }
         public double TongTien { get; set; }
         public double GiamGia { get; set; }
