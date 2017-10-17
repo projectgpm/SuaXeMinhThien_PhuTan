@@ -352,12 +352,12 @@ namespace BanHang.Data
                 }
             }
         }
-        public DataTable LayDanhSachHangHoa()
+        public DataTable LayDanhSachHangHoa(string HienThi)
         {
             using (SqlConnection con = new SqlConnection(StaticContext.ConnectionString))
             {
                 con.Open();
-                string cmdText = "SELECT [GPM_HANGHOA].*,[GPM_HangHoa_Barcode].[Barcode] FROM [GPM_HANGHOA],[GPM_HangHoa_Barcode] WHERE [GPM_HangHoa_Barcode].[IDHangHoa] = [GPM_HANGHOA].ID AND  GPM_HANGHOA.[DAXOA] = 0";
+                string cmdText = "SELECT TOP " + HienThi + " [GPM_HANGHOA].*,[GPM_HangHoa_Barcode].[Barcode] FROM [GPM_HANGHOA],[GPM_HangHoa_Barcode] WHERE [GPM_HangHoa_Barcode].[IDHangHoa] = [GPM_HANGHOA].ID AND  GPM_HANGHOA.[DAXOA] = 0 ORDER BY [GPM_HANGHOA].TenHangHoa ASC ";
                 using (SqlCommand command = new SqlCommand(cmdText, con))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {

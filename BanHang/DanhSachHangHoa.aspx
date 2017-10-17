@@ -34,6 +34,27 @@
         //    alert('FileUploadComplete: ' + e.callbackData);
         //}
 </script>
+    <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" ColCount="5">
+        <Items>
+           
+            <dx:LayoutItem Caption="Hiển thị">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer5" runat="server">
+                        <dx:ASPxComboBox ID="cmbSoLuongXem" runat="server" AutoPostBack="True" SelectedIndex="0" OnSelectedIndexChanged="cmbSoLuongXem_SelectedIndexChanged">
+                            <Items>
+                                <dx:ListEditItem Selected="True" Text="50" Value="50" />
+                                <dx:ListEditItem Text="100" Value="100" />
+                                <dx:ListEditItem Text="200" Value="200" />
+                                <dx:ListEditItem Text="500" Value="500" />
+                                <dx:ListEditItem Text="1000" Value="1000" />
+                                <dx:ListEditItem Text="Tất Cả" Value="50000000000000" />
+                            </Items>
+                        </dx:ASPxComboBox>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+        </Items>
+    </dx:ASPxFormLayout>
     <dx:ASPxButton ID="ASPxButton2" runat="server" AutoPostBack="False" ClientVisible="false"  Text="ASPxButton">
             <ClientSideEvents Click="function(s, e){ txtBarCode.Focus();}" />
         </dx:ASPxButton>

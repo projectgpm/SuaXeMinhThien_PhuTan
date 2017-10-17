@@ -24,14 +24,14 @@ namespace BanHang
             }
             else
             {
-                LoadGrid();
+                LoadGrid(cmbSoLuongXem.Value.ToString());
             }
         }
 
-        private void LoadGrid()
+        private void LoadGrid(string HienThi)
         {
             data = new dataHangHoa();
-            gridHangHoa.DataSource = data.LayDanhSachHangHoa();
+            gridHangHoa.DataSource = data.LayDanhSachHangHoa(HienThi);
             gridHangHoa.DataBind();
         }
 
@@ -42,7 +42,7 @@ namespace BanHang
             data.XoaHangHoa(ID);
             e.Cancel = true;
             gridHangHoa.CancelEdit();
-            LoadGrid();
+            LoadGrid(cmbSoLuongXem.Value.ToString());
         }
 
         protected void gridHangHoa_RowInserting(object sender, DevExpress.Web.Data.ASPxDataInsertingEventArgs e)
@@ -95,7 +95,7 @@ namespace BanHang
                     }
                     e.Cancel = true;
                     gridHangHoa.CancelEdit();
-                    LoadGrid();
+                    LoadGrid(cmbSoLuongXem.Value.ToString());
                 }
             }
             else Response.Write("<script language='JavaScript'> alert('Mã hàng đã tồn tại.'); </script>");
@@ -205,7 +205,7 @@ namespace BanHang
             }
             if (KT == 0)
             {
-                if (Session["UploadImages"].ToString() != "")
+                if( HinhAnh != "")
                 {
                     Session["UploadImages"] = "";
                     data.SuaThongTinHangHoa(ID, IDNhomHang, MaHang, TenHangHoa, IDDonViTinh, GiaMua, GiaBan, GhiChu, HinhAnh);
@@ -217,7 +217,7 @@ namespace BanHang
                 data.SuaDanhSachBarCode(e.Keys["ID"] as object, ListBarCode);
                 e.Cancel = true;
                 gridHangHoa.CancelEdit();
-                LoadGrid();
+                LoadGrid(cmbSoLuongXem.Value.ToString());
             }
 
         }
@@ -240,6 +240,11 @@ namespace BanHang
             string path = Page.MapPath("~/UploadImages/") + name;
             e.UploadedFile.SaveAs(path);
             Session["UploadImages"] = name;
+        }
+
+        protected void cmbSoLuongXem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadGrid(cmbSoLuongXem.Value.ToString());
         }
         
     }
