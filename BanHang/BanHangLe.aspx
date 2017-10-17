@@ -166,7 +166,7 @@
                                         NumberType="Integer" Value='<%# Eval("SoLuong") %>' />
                                 </DataItemTemplate>
                             </dx:GridViewDataSpinEditColumn>
-                            <dx:GridViewDataSpinEditColumn Caption="Đơn giá" FieldName="DonGia" 
+                            <dx:GridViewDataSpinEditColumn Caption="Giá Sỉ" FieldName="DonGia" 
                                 VisibleIndex="7" Width="80px">                                   
                             <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom"></PropertiesSpinEdit>
                             </dx:GridViewDataSpinEditColumn>
@@ -191,7 +191,7 @@
                                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom" Width="50px">
                                 </PropertiesSpinEdit>
                             </dx:GridViewDataSpinEditColumn>
-                            <dx:GridViewDataSpinEditColumn Caption="Giá Kỹ Thuật" ShowInCustomizationForm="True" VisibleIndex="8" FieldName="GiaKyThuat" Width="150px">
+                            <dx:GridViewDataSpinEditColumn Caption="Giá Lẻ" ShowInCustomizationForm="True" VisibleIndex="8" FieldName="GiaKyThuat" Width="150px">
 <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                 <DataItemTemplate>
                                     <dx:ASPxSpinEdit ID="txtGiaKyThuatChange" runat="server" Width="100%"  DisplayFormatString="N0"
