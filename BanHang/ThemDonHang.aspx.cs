@@ -41,52 +41,50 @@ namespace BanHang
         }
         public void CLear()
         {
-            cmbHangHoa.Text = "";
-            txtTonKho.Text = "";
-            txtDonGia.Text = "";
+            txtBarcode.Text = "";
             txtSoLuong.Text = "";
         }
-        protected void btnThem_Temp_Click(object sender, EventArgs e)
-        {
-            if (cmbHangHoa.Text != "")
-            {
-                int SoLuong = Int32.Parse(txtSoLuong.Text.ToString());
-                if (SoLuong > 0)
-                {
-                    string IDHangHoa = cmbHangHoa.Value.ToString();
-                    string MaHangHoa = dtHangHoa.LayMaHang(IDHangHoa);
-                    string IDDonViTinh = dtHangHoa.LayIDDonViTinh(IDHangHoa);
-                    float DonGia = float.Parse(txtDonGia.Text);
-                    string IDDonHang = IDThuMuaDatHang_Temp.Value.ToString();
-                    DataTable db = dtThemDonHangKho.KTChiTietDonHang_Temp(IDHangHoa, IDDonHang);// kiểm tra hàng hóa
-                    if (db.Rows.Count == 0)
-                    {
-                        data = new dtThemDonHangKho();
-                        data.ThemChiTietDonHang_Temp(IDDonHang, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia);
-                        TinhTongTien();
-                        CLear();
-                    }
-                    else
-                    {
-                        data = new dtThemDonHangKho();
-                        data.CapNhatChiTietDonHang_temp(IDDonHang, IDHangHoa, SoLuong, DonGia);
-                        TinhTongTien();
-                        CLear();
-                    }
-                    LoadGrid(IDDonHang);
-                }
-                else
-                {
-                    Response.Write("<script language='JavaScript'> alert('Số Lượng phải > 0.'); </script>");
-                    return;
-                }
-            }
-            else
-            {
-                Response.Write("<script language='JavaScript'> alert('Vui lòng chọn hàng hóa.'); </script>");
-                return;
-            }
-        }
+        //protected void btnThem_Temp_Click(object sender, EventArgs e)
+        //{
+        //    if (txtBarcode.Text != "")
+        //    {
+        //        int SoLuong = Int32.Parse(txtSoLuong.Text.ToString());
+        //        if (SoLuong > 0)
+        //        {
+        //            string IDHangHoa = txtBarcode.Value.ToString();
+        //            string MaHangHoa = dtHangHoa.LayMaHang(IDHangHoa);
+        //            string IDDonViTinh = dtHangHoa.LayIDDonViTinh(IDHangHoa);
+        //            float DonGia = float.Parse(txtDonGia.Text);
+        //            string IDDonHang = IDThuMuaDatHang_Temp.Value.ToString();
+        //            DataTable db = dtThemDonHangKho.KTChiTietDonHang_Temp(IDHangHoa, IDDonHang);// kiểm tra hàng hóa
+        //            if (db.Rows.Count == 0)
+        //            {
+        //                data = new dtThemDonHangKho();
+        //                data.ThemChiTietDonHang_Temp(IDDonHang, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia);
+        //                TinhTongTien();
+        //                CLear();
+        //            }
+        //            else
+        //            {
+        //                data = new dtThemDonHangKho();
+        //                data.CapNhatChiTietDonHang_temp(IDDonHang, IDHangHoa, SoLuong, DonGia);
+        //                TinhTongTien();
+        //                CLear();
+        //            }
+        //            LoadGrid(IDDonHang);
+        //        }
+        //        else
+        //        {
+        //            Response.Write("<script language='JavaScript'> alert('Số Lượng phải > 0.'); </script>");
+        //            return;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Response.Write("<script language='JavaScript'> alert('Vui lòng chọn hàng hóa.'); </script>");
+        //        return;
+        //    }
+        //}
         public void TinhTongTien()
         {
             string IDThuMuaDatHang = IDThuMuaDatHang_Temp.Value.ToString();
@@ -152,15 +150,12 @@ namespace BanHang
                     }
                     data = new dtThemDonHangKho();
                     data.XoaChiTietDonHang_Nhap(IDThuMuaDatHang);
-
-                   // dtLichSuTruyCap.ThemLichSu(Session["IDChiNhanh"].ToString(), Session["IDNhom"].ToString(), Session["IDNhanVien"].ToString(), "Thêm đơn hàng", "Thêm đơn đặt hàng");
-
                     Response.Redirect("DanhSachPhieuDatHang.aspx");
                 }
             }
             else
             {
-                cmbHangHoa.Focus();
+                txtBarcode.Focus();
                 Response.Write("<script language='JavaScript'> alert('Danh sách nguyên liệu rỗng.'); </script>");
             }
         }
@@ -180,29 +175,98 @@ namespace BanHang
             TinhTongTien();
             LoadGrid(IDThuMuaDatHang);
         }
-        protected void cmbHangHoa_ItemRequestedByValue(object source, ListEditItemRequestedByValueEventArgs e)
+
+        protected void txtNgayLap_Init(object sender, EventArgs e)
+        {
+            txtNgayLap.Date = DateTime.Today;
+        }
+        protected void cmbNhaCungCap_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbNhaCungCap.Text != "")
+            {
+                ckThanhToan.Enabled = true;
+            }
+        }
+        protected void btnInsertHang_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dtBanHangLe dt = new dtBanHangLe();
+                if (txtBarcode.Text.Trim() != "")
+                {
+                    DataTable tbThongTin;
+                    if (txtBarcode.Value == null)
+                    {
+                        tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Text.ToString(), Session["IDKho"].ToString());
+                    }
+                    else
+                    {
+                        tbThongTin = dt.LayThongTinHangHoa(txtBarcode.Value.ToString(), Session["IDKho"].ToString());
+                    }
+
+                    if (tbThongTin.Rows.Count > 0)
+                    {
+                        string IDKho = Session["IDKho"].ToString();
+                        string IDDonHang = IDThuMuaDatHang_Temp.Value.ToString();
+                        string IDHangHoa = tbThongTin.Rows[0]["ID"].ToString();
+                        string MaHangHoa = tbThongTin.Rows[0]["MaHang"].ToString();
+                        string IDDonViTinh = dtHangHoa.LayIDDonViTinh(IDHangHoa);
+                        string HinhAnh = tbThongTin.Rows[0]["HinhAnh"].ToString();
+                        int SoLuong = Int32.Parse(txtSoLuong.Text.ToString());
+                        double DonGia = double.Parse(tbThongTin.Rows[0]["GiaMua"].ToString());
+                        DataTable db = dtThemDonHangKho.KTChiTietDonHang_Temp(IDHangHoa, IDDonHang);// kiểm tra hàng hóa
+                        if (db.Rows.Count == 0)
+                        {
+                            data.ThemChiTietDonHang_Temp(IDDonHang, IDHangHoa, MaHangHoa, IDDonViTinh, SoLuong, DonGia, HinhAnh);
+                            TinhTongTien();
+                            txtBarcode.Focus();
+                        }
+                        else
+                        {
+                            data.CapNhatChiTietDonHang_temp(IDDonHang, IDHangHoa, SoLuong, DonGia);
+                            TinhTongTien();
+                            txtBarcode.Focus();
+                        }
+                    }
+                    else
+                    {
+                        txtBarcode.Focus();
+                        Response.Write("<script language='JavaScript'> alert('Mã hàng không tồn tại !!!'); </script>");
+                    }
+                }
+                txtBarcode.Focus();
+                txtBarcode.Text = "";
+                txtBarcode.Value = "";
+                txtSoLuong.Text = "1";
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script language='JavaScript'> alert('Error: " + ex + "'); </script>");
+            }
+        }
+
+        protected void txtBarcode_ItemRequestedByValue(object source, ListEditItemRequestedByValueEventArgs e)
         {
             long value = 0;
             if (e.Value == null || !Int64.TryParse(e.Value.ToString(), out value))
                 return;
             ASPxComboBox comboBox = (ASPxComboBox)source;
-            dsHangHoa.SelectCommand = @"SELECT GPM_HangHoa.ID, GPM_HangHoa.MaHang, GPM_HangHoa.TenHangHoa, GPM_HangHoa.GiaMua, GPM_DonViTinh.TenDonViTinh 
+            dsHangHoa.SelectCommand = @"SELECT GPM_HangHoa.ID, GPM_HangHoa.MaHang,GPM_HangHoa.HinhAnh, GPM_HangHoa.TenHangHoa, GPM_HangHoa.GiaBan, GPM_DonViTinh.TenDonViTinh 
                                         FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh 
                                                            INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID 
                                         WHERE (GPM_HangHoa.ID = @ID)";
-
             dsHangHoa.SelectParameters.Clear();
             dsHangHoa.SelectParameters.Add("ID", TypeCode.Int64, e.Value.ToString());
             comboBox.DataSource = dsHangHoa;
             comboBox.DataBind();
         }
 
-        protected void cmbHangHoa_ItemsRequestedByFilterCondition(object source, ListEditItemsRequestedByFilterConditionEventArgs e)
+        protected void txtBarcode_ItemsRequestedByFilterCondition(object source, ListEditItemsRequestedByFilterConditionEventArgs e)
         {
             ASPxComboBox comboBox = (ASPxComboBox)source;
-            dsHangHoa.SelectCommand = @"SELECT [ID], [MaHang], [TenHangHoa], [GiaMua] , [TenDonViTinh]
+            dsHangHoa.SelectCommand = @"SELECT [ID], [MaHang], [TenHangHoa], [GiaBan] , [TenDonViTinh],[HinhAnh]
                                         FROM (
-	                                        select GPM_HangHoa.ID, GPM_HangHoa.MaHang, GPM_HangHoa.TenHangHoa, GPM_HangHoa.GiaMua, GPM_DonViTinh.TenDonViTinh, 
+	                                        select GPM_HangHoa.ID, GPM_HangHoa.MaHang,GPM_HangHoa.HinhAnh, GPM_HangHoa.TenHangHoa, GPM_HangHoa.GiaBan, GPM_DonViTinh.TenDonViTinh, 
 	                                        row_number()over(order by GPM_HangHoa.MaHang) as [rn] 
 	                                        FROM GPM_DonViTinh INNER JOIN GPM_HangHoa ON GPM_DonViTinh.ID = GPM_HangHoa.IDDonViTinh 
                                                                INNER JOIN GPM_HangHoaTonKho ON GPM_HangHoaTonKho.IDHangHoa = GPM_HangHoa.ID
@@ -217,28 +281,6 @@ namespace BanHang
             dsHangHoa.SelectParameters.Add("endIndex", TypeCode.Int64, (e.EndIndex + 1).ToString());
             comboBox.DataSource = dsHangHoa;
             comboBox.DataBind();
-        }
-
-        protected void cmbHangHoa_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbHangHoa.Text != "")
-            {
-                txtTonKho.Text = dtCapNhatTonKho.SoLuong_TonKho(cmbHangHoa.Value.ToString(), Session["IDKho"].ToString()) + "";
-                txtDonGia.Text = dtCapNhatTonKho.GiaMua(cmbHangHoa.Value.ToString()) + "";
-                txtSoLuong.Text = "0";
-            }
-        }
-
-        protected void txtNgayLap_Init(object sender, EventArgs e)
-        {
-            txtNgayLap.Date = DateTime.Today;
-        }
-        protected void cmbNhaCungCap_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbNhaCungCap.Text != "")
-            {
-                ckThanhToan.Enabled = true;
-            }
         }
     }
 }
