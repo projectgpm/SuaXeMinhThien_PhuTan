@@ -5,12 +5,16 @@
         var listBarCode = [];
         function onBarCode_KeyDown(s, e) {
             var keyCode = ASPxClientUtils.GetKeyCode(e.htmlEvent);
+            //alert(keyCode);
             if (keyCode === ASPx.Key.Esc) {
                 txtBarCode.SetText('');
                 preventEndEdit_LostFocus_onBarCode = true;
             }
             if (keyCode === ASPx.Key.Tab || keyCode === ASPx.Key.Enter) {
                 listBarCode.push(txtBarCode.GetText());
+                //listBarCode = "";
+                //if(tkbListBarCode
+                tkbListBarCode.SetText('');
                 tkbListBarCode.AddToken(txtBarCode.GetText());
                 txtBarCode.SetText('');
                 preventEndEdit_LostFocus_onBarCode = true;
@@ -43,7 +47,7 @@
         </dx:ASPxButton>
     <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" Width="100%" OnRowDeleting="gridHangHoa_RowDeleting" OnRowInserting="gridHangHoa_RowInserting" OnRowUpdating="gridHangHoa_RowUpdating" style="margin-top: 0px" OnInitNewRow="gridHangHoa_InitNewRow" OnCustomErrorText="gridHangHoa_CustomErrorText">
         <Templates>
-            <EditForm>
+              <EditForm>
                 <div style="padding: 4px 3px 4px">
                     <dx:ASPxGridViewTemplateReplacement ID="Editors" ReplacementType="EditFormEditors"
                         runat="server">
@@ -51,11 +55,16 @@
                 </div>
                 <div style="padding: 4px 3px 4px">
 
+                    <dx:ASPxTextBox ID="txtBarCode" ClientInstanceName="txtBarCode" Caption="Barcode" runat="server" Width="100%">
+                        <ClientSideEvents KeyDown="onBarCode_KeyDown" LostFocus="onBarCode_LostFocus" />
+                    </dx:ASPxTextBox>
                     <br />
-
+                    <dx:ASPxTokenBox ID="tkbListBarCode" ClientInstanceName="tkbListBarCode" runat="server"
+                        AllowMouseWheel="True" Tokens='<%# LoadListBarCode(Eval("ID")) %>' Width="100%" NullText="Danh sách BarCode của hàng hóa">
+                    </dx:ASPxTokenBox>                    
                 </div>
                 <div style="text-align: right; padding: 2px">
-                    <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton" 
+                    <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton"
                         runat="server">
                     </dx:ASPxGridViewTemplateReplacement>
                     <dx:ASPxGridViewTemplateReplacement ID="CancelButton" ReplacementType="EditFormCancelButton"
@@ -162,8 +171,6 @@
                 <dx:GridViewColumnLayoutItem ColumnName="Mã Hàng" Name="TenHangHoa">
                 </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Tên Hàng Hóa">
-                </dx:GridViewColumnLayoutItem>
-                <dx:GridViewColumnLayoutItem ColumnName="BarCode">
                 </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Đơn Vị Tính">
                 </dx:GridViewColumnLayoutItem>

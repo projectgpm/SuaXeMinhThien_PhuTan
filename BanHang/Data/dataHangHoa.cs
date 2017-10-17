@@ -88,7 +88,7 @@ namespace BanHang.Data
                 }
             }
         }
-        public void SuaDanhSachBarCode(object ID,string BarCode)
+        public void SuaDanhSachBarCode(object ID, List<string> BarCode)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
@@ -101,7 +101,19 @@ namespace BanHang.Data
                         myCommand.Parameters.AddWithValue("@IDHangHoa", ID);
                         myCommand.ExecuteNonQuery();
                     }
-                    ThemDanhSachBarCode(ID, BarCode);
+                    int KT = 0;
+                    foreach (string barCode in BarCode)
+                    {
+                        if (KiemTraBarcode(barCode) == false)
+                        {
+                            KT = 1;
+                            throw new Exception("Lỗi:Barcode đã tồn tại !!");
+                        }
+                    }
+                    if (KT == 0)
+                    {
+                        ThemDanhSachBarCode(ID, BarCode);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -164,7 +176,7 @@ namespace BanHang.Data
                 }
             }
         }
-        public void ThemDanhSachBarCode(object IDHangHoa, string BarCode)
+        public void ThemDanhSachBarCode(object IDHangHoa, List<string> ListBarCode)
         {
             using (SqlConnection myConnection = new SqlConnection(StaticContext.ConnectionString))
             {
@@ -177,14 +189,11 @@ namespace BanHang.Data
                     {
                         myCommand.Parameters.AddWithValue("@IDHangHoa", IDHangHoa);
                         myCommand.Parameters.AddWithValue("@BarCode", "");
-                        //foreach (string barCode in ListBarCode)
-                        //{
-                        if (KiemTraBarcode(BarCode) == true)
-                            {
-                                myCommand.Parameters["@BarCode"].Value = BarCode;
-                                myCommand.ExecuteNonQuery();
-                            }
-                        //}
+                        foreach (string barCode in ListBarCode)
+                        {
+                            myCommand.Parameters["@BarCode"].Value = barCode;
+                            myCommand.ExecuteNonQuery();
+                        }
                     }
                 }
                 catch (Exception e)
