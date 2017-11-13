@@ -166,7 +166,7 @@
                                         NumberType="Integer" Value='<%# Eval("SoLuong") %>' />
                                 </DataItemTemplate>
                             </dx:GridViewDataSpinEditColumn>
-                            <dx:GridViewDataSpinEditColumn Caption="Đơn giá" FieldName="DonGia" 
+                            <dx:GridViewDataSpinEditColumn Caption="Giá Sỉ" FieldName="DonGia" 
                                 VisibleIndex="7" Width="80px">                                   
                             <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom"></PropertiesSpinEdit>
                             </dx:GridViewDataSpinEditColumn>
@@ -191,7 +191,7 @@
                                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom" Width="50px">
                                 </PropertiesSpinEdit>
                             </dx:GridViewDataSpinEditColumn>
-                            <dx:GridViewDataSpinEditColumn Caption="Giá Kỹ Thuật" ShowInCustomizationForm="True" VisibleIndex="8" FieldName="GiaKyThuat" Width="150px">
+                            <dx:GridViewDataSpinEditColumn Caption="Giá Lẻ" ShowInCustomizationForm="True" VisibleIndex="8" FieldName="GiaKyThuat" Width="150px">
 <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                 <DataItemTemplate>
                                     <dx:ASPxSpinEdit ID="txtGiaKyThuatChange" runat="server" Width="100%"  DisplayFormatString="N0"
@@ -223,6 +223,7 @@
             </dx:ASPxPanel>
             </dx:PanelContent>
         </PanelCollection>
+
     </dx:ASPxPanel><dx:ASPxPanel id="RightPanel" runat="server" fixedposition="WindowRight" Width="30%">
         <PanelCollection>
             <dx:PanelContent ID="PanelContent2" runat="server" SupportsDisabledAttribute="True">
@@ -245,7 +246,7 @@
                                     RenderMode="Link" Text="Thoát" PostBackUrl="DangXuat.aspx">
                                     <Image IconID="edit_delete_32x32">
                                     </Image>
-                                </dx:ASPxButton> 
+                                </dx:ASPxButton>
                             </td>
                         </tr>
                     </table>
@@ -262,17 +263,7 @@ ID="sqlKyThuat" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangCo
                                         <dx:ASPxFormLayout ID="formLayoutThanhToan" runat="server" Width="100%" 
                                             ClientInstanceName="formLayoutThanhToan">
                                             <Items>
-                                                <%--<dx:LayoutItem Caption="TIỀN KỸ THUẬT" VerticalAlign="Middle" FieldName="TienKyThuat">
-                                                    <LayoutItemNestedControlCollection>
-                                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer5" runat="server">
-                                                            <dx:ASPxTextBox ID="txtTienKyThuat" runat="server" Width="100%"  Font-Names="digital-7" Font-Bold="True" Font-Size="20pt" 
-                                                                HorizontalAlign="Right" DisplayFormatString="N0" ReadOnly="true"  NullText="0" ForeColor="#0000CC" Enabled="False">
-                                                            </dx:ASPxTextBox>
-                                                        </dx:LayoutItemNestedControlContainer>
-                                                    </LayoutItemNestedControlCollection>
-                                                    <CaptionStyle Font-Bold="True" Font-Italic="False">
-                                                    </CaptionStyle>
-</dx:LayoutItem>--%>
+                                              
                                                 <dx:LayoutItem Caption="KHÁCH HÀNG" VerticalAlign="Middle">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">

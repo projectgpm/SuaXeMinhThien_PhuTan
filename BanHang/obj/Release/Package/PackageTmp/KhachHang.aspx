@@ -269,7 +269,7 @@
             <dx:LayoutItem Caption="Ngày Thanh Toán" ColSpan="2">
                 <LayoutItemNestedControlCollection>
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer10" runat="server">
-                        <dx:ASPxDateEdit ID="dateNgayThanhToan" runat="server" Width="100%" DisplayFormatString="dd/MM/yyyy" OnInit="dateNgayThanhToan_Init">
+                        <dx:ASPxDateEdit ID="dateNgayThanhToan" runat="server" Width="100%" DisplayFormatString="dd/MM/yyyy" OnInit="dateNgayThanhToan_Init" Enabled="False">
                         </dx:ASPxDateEdit>
                     </dx:LayoutItemNestedControlContainer>
                 </LayoutItemNestedControlCollection>

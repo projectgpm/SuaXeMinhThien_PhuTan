@@ -77,7 +77,7 @@
                                              </PropertiesDateEdit>
                                          </dx:GridViewDataDateColumn>
                                          <dx:GridViewDataSpinEditColumn Caption="Tổng Tiền" FieldName="TongTien" VisibleIndex="3">
-                                             <PropertiesSpinEdit DisplayFormatString="{0:#,# đ}" NumberFormat="Custom">
+                                             <PropertiesSpinEdit DisplayFormatString="{0:N0} VNĐ" NumberFormat="Custom">
                                              </PropertiesSpinEdit>
                                          </dx:GridViewDataSpinEditColumn>
                                          <dx:GridViewDataButtonEditColumn Caption="Xem Chi Tiết" VisibleIndex="7">

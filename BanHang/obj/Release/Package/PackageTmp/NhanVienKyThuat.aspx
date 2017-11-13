@@ -138,9 +138,10 @@
                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
                         <dx:ASPxComboBox ID="cmbKyThuat" runat="server" Width="100%" DataSourceID="SqlNhanVienKyThuat" TextField="TenKyThuat" ValueField="ID" AutoPostBack="True" OnSelectedIndexChanged="cmbKyThuat_SelectedIndexChanged">
                         </dx:ASPxComboBox>
-                        <asp:SqlDataSource ID="SqlNhanVienKyThuat" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenKyThuat] FROM [GPM_KyThuat] WHERE ([DaXoa] = @DaXoa)">
+                        <asp:SqlDataSource ID="SqlNhanVienKyThuat" runat="server" ConnectionString="<%$ ConnectionStrings:BanHangConnectionString %>" SelectCommand="SELECT [ID], [TenKyThuat] FROM [GPM_KyThuat] WHERE (([DaXoa] = @DaXoa) AND ([ID] &gt; @ID))">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
+                                <asp:Parameter DefaultValue="1" Name="ID" Type="Int32" />
                             </SelectParameters>
                         </asp:SqlDataSource>
                     </dx:LayoutItemNestedControlContainer>
